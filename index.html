@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Наталья и Влад · Свадьба</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            background: #1a120b;
+            color: #3d2b1f;
+            line-height: 1.4;
+            scroll-behavior: smooth;
+        }
+
+        /* Все секции изначально прозрачны и смещены вниз */
+        section, footer {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .section-visible {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        /* Главный экран */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #2a1f17 0%, #3d2e24 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .avatar-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d4af37, #b89b7b);
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #2a1f17;
+            border: 3px solid #f0e9dc;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .greeting {
+            font-size: 1.3rem;
+            color: #e6d5b8;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 600;
+            color: #d4af37;
+            line-height: 1;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .names-sub {
+            font-size: 1.2rem;
+            color: #e6d5b8;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .date-circle {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: #2a1f17;
+            border: 3px solid #d4af37;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .day {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #d4af37;
+            line-height: 1;
+        }
+
+        .month-year {
+            font-size: 1.5rem;
+            color: #e6d5b8;
+        }
+
+        .weekday {
+            font-size: 1.2rem;
+            color: #b89b7b;
+            margin-top: 5px;
+        }
+
+        /* Общие стили для секций */
+        .photo-section {
+            background: #f8f1e4;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 2px solid #d4af37;
+        }
+
+        .question-section {
+            background: #f8f1e4;
+            padding: 30px 20px 50px 20px;
+            text-align: center;
+            border-bottom: 2px solid #d4af37;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timing-section {
+            background: #ffffff;
+            padding: 50px 20px;
+        }
+
+        .host-section {
+            background: #f8f1e4;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .dresscode-section {
+            background: #ffffff;
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 2px solid #d4af37;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .venue-section {
+            background: #f8f1e4;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 2px solid #d4af37;
+        }
+
+        .footer {
+            background: #2a1f17;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 3px solid #d4af37;
+        }
+
+        /* Звёзды */
+        .star-left, .star-right {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #d4af37;
+            animation: twinkle 1.5s infinite ease-in-out;
+            text-shadow: 0 0 10px #d4af37;
+            z-index: 2;
+        }
+
+        .star-left {
+            left: 20px;
+        }
+
+        .star-right {
+            right: 20px;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; transform: translateY(-50%) scale(0.8); }
+            50% { opacity: 1; transform: translateY(-50%) scale(1.2); }
+            100% { opacity: 0.3; transform: translateY(-50%) scale(0.8); }
+        }
+
+        @media (max-width: 500px) {
+            .star-left, .star-right {
+                font-size: 1.5rem;
+            }
+            .star-left { left: 10px; }
+            .star-right { right: 10px; }
+        }
+
+        .question-line1 {
+            font-size: 2.2rem;
+            color: #3d2b1f;
+            margin-bottom: 10px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .question-line2 {
+            font-size: 1.3rem;
+            color: #5e4b3c;
+            max-width: 300px;
+            margin: 0 auto;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: #3d2b1f;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .section-title:after {
+            content: "⚘";
+            display: block;
+            font-size: 2rem;
+            color: #d4af37;
+            margin-top: 5px;
+        }
+
+        .timing-list {
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        .timing-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 15px 0;
+            border-bottom: 2px dotted #e0d1c0;
+        }
+
+        .timing-item:last-child {
+            border-bottom: none;
+        }
+
+        .timing-event {
+            font-size: 1.3rem;
+            color: #3d2b1f;
+            font-weight: 500;
+        }
+
+        .timing-time {
+            font-size: 1.5rem;
+            color: #d4af37;
+            font-weight: 600;
+            font-family: monospace;
+        }
+
+        .host-label {
+            font-size: 1.2rem;
+            color: #5e4b3c;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .host-name {
+            font-size: 2.5rem;
+            color: #3d2b1f;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .host-phone {
+            font-size: 1.8rem;
+            color: #d4af37;
+            margin-bottom: 5px;
+            font-family: monospace;
+        }
+
+        .host-note {
+            color: #5e4b3c;
+            font-size: 1.1rem;
+        }
+
+        .dresscode-title {
+            font-size: 2.5rem;
+            color: #3d2b1f;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .dresscode-text {
+            font-size: 1.3rem;
+            color: #5e4b3c;
+            max-width: 350px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .dresscode-note {
+            font-size: 1.2rem;
+            color: #d4af37;
+            margin-top: 20px;
+            font-weight: 500;
+        }
+
+        .photo-frame {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            border: 4px solid #d4af37;
+        }
+
+        .venue-city {
+            font-size: 1.5rem;
+            color: #3d2b1f;
+            margin-bottom: 5px;
+        }
+
+        .venue-name {
+            font-size: 2rem;
+            color: #d4af37;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .venue-link {
+            color: #b89b7b;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-bottom: 1px dotted;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .map-container {
+            max-width: 100%;
+            margin: 20px auto;
+            border: 4px solid #d4af37;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 350px;
+            display: block;
+            border: none;
+        }
+
+        .map-hint {
+            font-size: 1rem;
+            color: #5e4b3c;
+            margin-top: 15px;
+            font-style: italic;
+            animation: pulse 3s infinite;
+        }
+
+        .rsvp-title {
+            font-size: 1.5rem;
+            color: #d4af37;
+            margin-bottom: 25px;
+        }
+
+        .rsvp-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 300px;
+            margin: 0 auto 25px;
+        }
+
+        .rsvp-link {
+            background: #3d2e24;
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: 2px solid #d4af37;
+            color: #f0e9dc;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .rsvp-link:hover {
+            background: #d4af37;
+            color: #2a1f17;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .contact-info {
+            color: #b89b7b;
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+
+        .contact-info .gold {
+            color: #d4af37;
+            font-size: 1.3rem;
+        }
+
+        .telegram-note {
+            color: #8a7a6a;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            animation: pulse 4s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        @media (max-width: 400px) {
+            h1 { font-size: 3.2rem; }
+            .day { font-size: 3rem; }
+            .date-circle { width: 140px; height: 140px; }
+            .timing-event { font-size: 1.1rem; }
+            .timing-time { font-size: 1.3rem; }
+            .map-container iframe { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ГЛАВНЫЙ ЭКРАН -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="avatar-circle">
+                <span>👰🤵</span>
+            </div>
+            <div class="greeting">Дорогие гости!</div>
+            <h1>Наталья<br>Влад</h1>
+            <div class="names-sub">приглашают вас</div>
+            
+            <div class="date-circle">
+                <div class="day">4</div>
+                <div class="month-year">июля</div>
+                <div class="weekday">2026</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ФОТО ЖЕНИХА (ПРОСТОЕ) -->
+    <section class="photo-section" id="groom-section">
+        <img src="groom.jpg" alt="Владислав" class="photo-frame" style="max-width:100%;">
+        <!-- Если фото не загрузится, покажется этот текст -->
+        <div id="groom-error" style="color:#b89b7b; padding:20px; display:none;">Фото жениха не найдено</div>
+    </section>
+
+    <!-- ВОПРОС С ЗВЁЗДАМИ -->
+    <section class="question-section" id="question">
+        <div class="star-left">✦</div>
+        <div class="star-right">✦</div>
+        
+        <div class="question-line1">Помните эту пару?</div>
+        <div class="question-line2">
+            А ведь наша любовь выросла, и мы решили соединить свои сердца! Ждём вас разделить с нами этот день.
+        </div>
+    </section>
+
+    <!-- ТАЙМИНГ -->
+    <section class="timing-section" id="timing">
+        <h2 class="section-title">Тайминг дня</h2>
+        <div class="timing-list">
+            <div class="timing-item"><span class="timing-event">Сбор гостей</span><span class="timing-time">15:00</span></div>
+            <div class="timing-item"><span class="timing-event">Церемония</span><span class="timing-time">15:30</span></div>
+            <div class="timing-item"><span class="timing-event">Прогулка, фотосессия</span><span class="timing-time">16:20</span></div>
+            <div class="timing-item"><span class="timing-event">Праздничный банкет</span><span class="timing-time">17:00</span></div>
+            <div class="timing-item"><span class="timing-event">Развлекательная программа</span><span class="timing-time">19:00</span></div>
+            <div class="timing-item"><span class="timing-event">Свадебный торт</span><span class="timing-time">22:00</span></div>
+        </div>
+    </section>
+
+    <!-- ВЕДУЩИЙ -->
+    <section class="host-section" id="host">
+        <div class="host-label">По вопросам и сюрпризам</div>
+        <div class="host-name">Владислав</div>
+        <div class="host-phone">+7 (910) 945-53-96</div>
+        <div class="host-note">жених</div>
+    </section>
+
+    <!-- ДРЕСС-КОД С ЗВЁЗДАМИ -->
+    <section class="dresscode-section" id="dresscode">
+        <div class="star-left">✦</div>
+        <div class="star-right">✦</div>
+        
+        <div class="dresscode-title">ДРЕСС-КОД</div>
+        <div class="dresscode-text">
+            Нам будет очень приятно видеть<br>
+            <strong>мужчин в белых рубашках</strong>,<br>
+            <strong>дам в красивых нарядах</strong>
+        </div>
+        <div class="dresscode-note">
+            + лавандовые акценты приветствуются +
+        </div>
+    </section>
+
+    <!-- ФОТО НЕВЕСТЫ (ПРОСТОЕ) -->
+    <section class="photo-section" id="bride-section">
+        <img src="bride.jpg" alt="Наталья" class="photo-frame" style="max-width:100%;">
+        <div id="bride-error" style="color:#b89b7b; padding:20px; display:none;">Фото невесты не найдено</div>
+    </section>
+
+    <!-- МЕСТО ВСТРЕЧИ -->
+    <section class="venue-section" id="venue">
+        <h2 class="section-title">Место встречи</h2>
+        <div class="venue-city">Кимовск</div>
+        <div class="venue-name">Усадьба Александрово</div>
+        <a href="https://usadba-alexandrovo.ru/" target="_blank" class="venue-link">usadba-alexandrovo.ru</a>
+        
+        <div class="map-container">
+    <iframe src="https://yandex.ru/map-widget/v1/?from=api-maps&ll=38.520617%2C53.963235&mode=routes&origin=jsapi_2_1_79&rtext=~53.963235%2C38.520617&rtt=auto&ruri=~&utm_source=jsapi&z=15" allowfullscreen="true"></iframe>
+</div>
+<div class="map-hint">
+    🗺️ Нажмите на карту, чтобы построить маршрут
+</div>
+    </section>
+
+    <!-- ФУТЕР -->
+    <footer class="footer" id="footer">
+        <div class="rsvp-title">✉ ПОДТВЕРДИТЕ ПРИСУТСТВИЕ</div>
+        <div class="rsvp-links">
+            <a href="https://vk.com/nataliiiiie" target="_blank" class="rsvp-link">Наталья (VK)</a>
+            <a href="https://vk.com/vladosik_man" target="_blank" class="rsvp-link">Владислав (VK)</a>
+        </div>
+        <div class="contact-info">
+            <div>Наталья <span class="gold">+7 (953) 421-82-93</span></div>
+            <div>Влад <span class="gold">+7 (910) 945-53-96</span></div>
+        </div>
+        <div class="telegram-note">
+            ✦ напишите любому из нас до 1 апреля 2026 ✦<br>
+            * или в Telegram
+        </div>
+    </footer>
+
+    <script>
+        // Простая проверка загрузки фото
+        window.onload = function() {
+            // Главный экран
+            document.getElementById('hero').classList.add('section-visible');
+            
+            // Наблюдатель для остальных секций
+            const sections = [
+                'groom-section', 'question', 'timing', 'host', 
+                'dresscode', 'bride-section', 'venue', 'footer'
+            ];
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('section-visible');
+                    }
+                });
+            }, { threshold: 0.2 });
+            
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) observer.observe(el);
+            });
+            
+            // Проверяем загрузку фото
+            const groomImg = document.querySelector('#groom-section img');
+            const brideImg = document.querySelector('#bride-section img');
+            
+            if (groomImg) {
+                groomImg.onerror = function() {
+                    document.getElementById('groom-error').style.display = 'block';
+                    this.style.display = 'none';
+                };
+            }
+            
+            if (brideImg) {
+                brideImg.onerror = function() {
+                    document.getElementById('bride-error').style.display = 'block';
+                    this.style.display = 'none';
+                };
+            }
+        };
+    </script>
+
+</body>
+</html>
