@@ -88,6 +88,30 @@
             font-size: 1.3rem;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
             transition: transform 0.2s;
+            /* Подсказка при наведении */
+            position: relative;
+        }
+        /* Всплывающая подсказка для печати */
+        .seal::after {
+            content: "✨ Это приглашение создано для Вас ✨";
+            position: absolute;
+            bottom: 55px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #4a2c6d;
+            color: #f0e6d2;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            font-family: inherit;
+            font-weight: normal;
+        }
+        .seal:hover::after {
+            opacity: 1;
         }
 
         .seal:hover {
@@ -100,7 +124,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(0);
-            width: 280px;
+            width: 300px;
             background: #fffef7;
             border-radius: 15px;
             padding: 30px 20px;
@@ -120,13 +144,13 @@
         }
 
         .popup-paper h3 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: #7c5f9e;
             margin-bottom: 15px;
         }
 
         .popup-paper p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #4a2c6d;
             margin-bottom: 20px;
         }
@@ -407,26 +431,8 @@
             margin-top: 10px;
         }
 
-        /* ФОРМА ПОДТВЕРЖДЕНИЯ */
-        .form-group {
-            margin-bottom: 18px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #4a2c6d;
-            font-weight: 500;
-        }
-        select, input {
-            width: 100%;
-            padding: 12px 18px;
-            border-radius: 40px;
-            border: 1px solid #d9c4ff;
-            font-family: inherit;
-            font-size: 1rem;
-            background: #fefbff;
-        }
-        .btn {
+        /* КНОПКА ПОДТВЕРЖДЕНИЯ */
+        .confirm-btn {
             background: #b69ad4;
             color: white;
             padding: 12px 25px;
@@ -437,8 +443,9 @@
             font-weight: 500;
             cursor: pointer;
             transition: 0.3s;
+            margin-top: 10px;
         }
-        .btn:hover {
+        .confirm-btn:hover {
             background: #9b7abf;
             transform: translateY(-2px);
         }
@@ -476,6 +483,13 @@
             .couple-photo { width: 130px; height: 130px; }
             .timer-box { padding: 8px 12px; min-width: 60px; }
             .timer-number { font-size: 1.5rem; }
+            .seal::after {
+                font-size: 0.6rem;
+                white-space: normal;
+                width: 150px;
+                text-align: center;
+                bottom: 50px;
+            }
         }
     </style>
 </head>
@@ -591,7 +605,7 @@
             <div class="map-hint" style="text-align:center; margin-top:8px; font-size:0.8rem; color:#6c4e8f;">🗺️ Нажмите на карту, чтобы построить маршрут</div>
         </div>
 
-        <!-- ВЫБОР ТРАНСФЕРА -->
+        <!-- ВЫБОР ТРАНСФЕРА И ПОДТВЕРЖДЕНИЕ -->
         <div class="section">
             <div class="section-title">🚗 Как вы доберётесь?</div>
             <div class="transfer-buttons">
@@ -599,29 +613,17 @@
                 <button class="transfer-btn" data-transfer="need" id="needBtn">🚌 Нужен трансфер</button>
             </div>
             <div class="transfer-note" id="transferNote">(выберите вариант)</div>
-        </div>
-
-        <!-- ПОДТВЕРЖДЕНИЕ — ФОРМА + УВЕДОМЛЕНИЕ НА ВК НЕВЕСТЕ -->
-        <div class="section">
-            <div class="section-title">💌 Подтвердите присутствие</div>
-            <div class="form-group">
-                <label>Ваше имя</label>
-                <input type="text" id="guestName" placeholder="Напишите, как вас представить">
+            
+            <div style="margin-top: 25px;">
+                <button class="confirm-btn" id="confirmBtn">📨 Подтвердить присутствие</button>
             </div>
-            <div class="form-group">
-                <label>Вы будете?</label>
-                <select id="attendance">
-                    <option value="">Выберите ответ</option>
-                    <option value="yes">✅ Да, буду с радостью!</option>
-                    <option value="no">❌ К сожалению, не смогу</option>
-                </select>
-            </div>
-            <button class="btn" id="sendBtn">📨 Отправить ответ невесте</button>
+            
             <div class="contacts" style="margin-top:15px;">
                 <p>💜 <strong>Как подтвердить?</strong> 💜</p>
-                <p>1️⃣ Заполните форму и нажмите «Отправить ответ»<br>
-                2️⃣ Скопируйте готовый текст<br>
-                3️⃣ Перешлите его <strong>Наталье</strong> в ВК:<br>
+                <p>1️⃣ Выберите вариант трансфера<br>
+                2️⃣ Нажмите «Подтвердить присутствие»<br>
+                3️⃣ Скопируйте готовый текст<br>
+                4️⃣ Отправьте его <strong>Наталье</strong> в ВК:<br>
                 <a href="https://vk.com/nataliiiiie" target="_blank">vk.com/nataliiiiie</a>
                 </p>
                 <div class="vk-note">
@@ -733,35 +735,20 @@
             if (savedChoice === 'need') setActiveTransfer('need');
         }
 
-        // ========== 4. ФОРМА ПОДТВЕРЖДЕНИЯ (уведомление для невесты в ВК) ==========
-        const sendBtn = document.getElementById('sendBtn');
-        const guestName = document.getElementById('guestName');
-        const attendanceSelect = document.getElementById('attendance');
-
-        if (sendBtn) {
-            sendBtn.addEventListener('click', () => {
-                const name = guestName?.value.trim() || 'Гость';
-                const attendance = attendanceSelect?.value;
-                
-                let attendanceText = '';
-                if (attendance === 'yes') attendanceText = '✅ буду с радостью!';
-                else if (attendance === 'no') attendanceText = '❌ не смогу прийти';
-                else attendanceText = '🤔 ещё не решил(а)';
-                
+        // ========== 4. ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ (НИКУДА НЕ ОТПРАВЛЯЕТСЯ) ==========
+        const confirmBtn = document.getElementById('confirmBtn');
+        
+        if (confirmBtn) {
+            confirmBtn.addEventListener('click', () => {
                 const transferChoice = localStorage.getItem('transferChoice');
                 let transferText = '';
                 if (transferChoice === 'self') transferText = '🚙 Приеду сам';
                 else if (transferChoice === 'need') transferText = '🚌 Нужен трансфер';
-                else transferText = '🤔 ещё не выбрал(а) вариант трансфера';
+                else transferText = '🤔 ещё не выбран';
                 
-                const messageForBride = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nИмя: ${name}\nОтвет: ${attendanceText}\nТрансфер: ${transferText}\n\nДата свадьбы: 4 июля 2026\nМесто: Новомосковск, центр (ресторан «Лавандовый хутор»)`;
+                const messageForBride = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nИмя: (напишите своё имя)\nТрансфер: ${transferText}\n\n📅 Дата: 4 июля 2026\n📍 Место: Новомосковск, центр (ресторан «Лавандовый хутор»)\n\n💜 Жду с нетерпением!`;
                 
-                // Показываем уведомление с готовым текстом для отправки невесте
-                alert(`✨ Спасибо, ${name}! ✨\n\nВаш ответ учтён. Пожалуйста, отправьте это сообщение Наталье в ВК:\n\n${messageForBride}\n\n🔗 Ссылка на профиль: vk.com/nataliiiiie`);
-                
-                // Очищаем выбор трансфера после отправки (по желанию можно закомментировать)
-                // localStorage.removeItem('transferChoice');
-                // setActiveTransfer(null);
+                alert(`✨ Подтверждение готово! ✨\n\nСкопируйте это сообщение и отправьте Наталье в ВК:\n\n${messageForBride}\n\n🔗 Ссылка на профиль: vk.com/nataliiiiie`);
             });
         }
     </script>
