@@ -5,19 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Наталья & Влад · Свадебное приглашение</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Cormorant Garamond', 'Georgia', serif;
             background: #f3eaff;
             min-height: 100vh;
             overflow-x: hidden;
         }
-
         /* ЭКРАН-КОНВЕРТ */
         .envelope-screen {
             position: fixed;
@@ -32,7 +26,6 @@
             align-items: center;
             cursor: pointer;
         }
-
         .envelope {
             width: 320px;
             height: 220px;
@@ -41,7 +34,6 @@
             position: relative;
             box-shadow: 0 20px 35px rgba(0,0,0,0.25);
         }
-
         .flap {
             width: 100%;
             height: 100%;
@@ -53,7 +45,6 @@
             border-radius: 12px;
             z-index: 3;
         }
-
         .letter {
             width: 280px;
             background: #fffaf5;
@@ -69,11 +60,7 @@
             z-index: 2;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-
-        .letter span {
-            font-size: 1.5rem;
-        }
-
+        .letter span { font-size: 1.5rem; }
         .seal {
             position: absolute;
             bottom: 15px;
@@ -93,11 +80,7 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
             transition: transform 0.2s;
         }
-
-        .seal:hover {
-            transform: translateX(-50%) scale(1.05);
-        }
-
+        .seal:hover { transform: translateX(-50%) scale(1.05); }
         /* ВСПЛЫВАЮЩАЯ БУМАЖКА */
         .popup-paper {
             position: fixed;
@@ -116,25 +99,13 @@
             transition: all 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
             pointer-events: none;
         }
-
         .popup-paper.show {
             transform: translate(-50%, -50%) scale(1);
             opacity: 1;
             pointer-events: auto;
         }
-
-        .popup-paper h3 {
-            font-size: 1.8rem;
-            color: #7c5f9e;
-            margin-bottom: 15px;
-        }
-
-        .popup-paper p {
-            font-size: 1.1rem;
-            color: #4a2c6d;
-            margin-bottom: 20px;
-        }
-
+        .popup-paper h3 { font-size: 1.8rem; color: #7c5f9e; margin-bottom: 15px; }
+        .popup-paper p { font-size: 1.1rem; color: #4a2c6d; margin-bottom: 20px; }
         .close-popup {
             background: #b69ad4;
             color: white;
@@ -145,8 +116,7 @@
             cursor: pointer;
             font-family: inherit;
         }
-
-        /* КАСТОМНОЕ МОДАЛЬНОЕ ОКНО ДЛЯ ПОДТВЕРЖДЕНИЯ */
+        /* КАСТОМНОЕ МОДАЛЬНОЕ ОКНО */
         .custom-modal {
             position: fixed;
             top: 0;
@@ -162,10 +132,7 @@
             visibility: hidden;
             transition: all 0.3s ease;
         }
-        .custom-modal.show {
-            opacity: 1;
-            visibility: visible;
-        }
+        .custom-modal.show { opacity: 1; visibility: visible; }
         .modal-content {
             background: #fffef7;
             border-radius: 30px;
@@ -177,29 +144,21 @@
             box-shadow: 0 25px 45px rgba(0,0,0,0.3);
             position: relative;
         }
-        .modal-content p {
-            margin: 12px 0;
-            color: #4a2c6d;
-            font-size: 1.1rem;
-        }
-        .modal-content strong {
-            color: #7c5f9e;
-        }
+        .modal-content p { margin: 12px 0; color: #4a2c6d; font-size: 1.1rem; }
+        .modal-content strong { color: #7c5f9e; }
         .modal-link {
             display: inline-block;
             background: #b69ad4;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 40px;
             text-decoration: none;
             margin: 15px 0;
             font-weight: 500;
             transition: 0.3s;
+            font-size: 1rem;
         }
-        .modal-link:hover {
-            background: #9b7abf;
-            transform: translateY(-2px);
-        }
+        .modal-link:hover { background: #9b7abf; transform: translateY(-2px); }
         .copy-text {
             background: #f0e6ff;
             padding: 12px;
@@ -209,6 +168,7 @@
             word-break: break-word;
             margin: 15px 0;
             border: 1px solid #d9c4ff;
+            font-family: monospace;
         }
         .close-modal {
             background: #4a2c6d;
@@ -220,8 +180,6 @@
             font-family: inherit;
             margin-top: 10px;
         }
-
-        /* ОСНОВНОЙ КОНТЕНТ (ВТОРАЯ СТРАНИЦА) */
         .main-content {
             opacity: 0;
             transition: opacity 1s ease;
@@ -230,13 +188,7 @@
             padding: 20px;
             display: none;
         }
-
-        .main-content.visible {
-            opacity: 1;
-            display: block;
-        }
-
-        /* ЛАВАНДОВЫЙ ГЛАВНЫЙ ЭКРАН */
+        .main-content.visible { opacity: 1; display: block; }
         .hero {
             text-align: center;
             padding: 50px 20px;
@@ -245,287 +197,42 @@
             margin-bottom: 30px;
             position: relative;
         }
-
-        .hero::before {
-            content: "✦ ✦ ✦";
-            position: absolute;
-            top: 15px;
-            left: 0;
-            right: 0;
-            font-size: 1rem;
-            color: #ffecb3;
-            opacity: 0.5;
-            letter-spacing: 8px;
-        }
-
-        .avatar-circle {
-            width: 90px;
-            height: 90px;
-            background: linear-gradient(135deg, #efd5ff, #d9bcff);
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            border: 3px solid #ffecb3;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            color: #ffecb3;
-            line-height: 1.2;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .hero-sub {
-            font-size: 1.2rem;
-            color: #f0e6d2;
-            letter-spacing: 4px;
-            margin-top: 10px;
-        }
-
-        /* ТАЙМЕР */
-        .timer {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 25px 0;
-            flex-wrap: wrap;
-        }
-
-        .timer-box {
-            background: rgba(255,255,255,0.95);
-            padding: 12px 18px;
-            border-radius: 20px;
-            text-align: center;
-            min-width: 70px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .timer-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #7c5f9e;
-        }
-
-        .timer-label {
-            font-size: 0.7rem;
-            color: #6c4e8f;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* ОБЩИЕ СЕКЦИИ */
-        .section {
-            background: white;
-            border-radius: 30px;
-            padding: 30px 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            border: 1px solid #e8d9ff;
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            color: #4a2c6d;
-            margin-bottom: 20px;
-            text-align: center;
-            font-weight: 600;
-        }
-
-        .section-title:after {
-            content: "⚘";
-            display: block;
-            font-size: 1.5rem;
-            color: #b69ad4;
-            margin-top: 5px;
-        }
-
-        /* ДЕТСКИЕ ФОТО */
-        .photo-grid {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .photo-card {
-            text-align: center;
-        }
-
-        .photo {
-            width: 140px;
-            height: 140px;
-            object-fit: cover;
-            border-radius: 25px;
-            border: 4px solid #d9c4ff;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-
-        .photo:hover {
-            transform: scale(1.02);
-        }
-
-        .photo-caption {
-            margin-top: 10px;
-            color: #6c4e8f;
-            font-style: italic;
-        }
-
-        /* ТАЙМИНГ */
-        .timing-list {
-            max-width: 350px;
-            margin: 0 auto;
-        }
-
-        .timing-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            padding: 14px 0;
-            border-bottom: 2px dotted #e0d1c0;
-        }
-
-        .timing-item:last-child {
-            border-bottom: none;
-        }
-
-        .timing-event {
-            font-size: 1.2rem;
-            color: #4a2c6d;
-            font-weight: 500;
-        }
-
-        .timing-time {
-            font-size: 1.3rem;
-            color: #b69ad4;
-            font-weight: 600;
-        }
-
-        /* ДРЕСС-КОД */
-        .dresscode-text {
-            text-align: center;
-            line-height: 2;
-            font-size: 1.2rem;
-            color: #4a2c6d;
-        }
-
-        .dresscode-note {
-            text-align: center;
-            margin-top: 20px;
-            padding: 10px;
-            background: #f0e6ff;
-            border-radius: 40px;
-            color: #7c5f9e;
-            font-weight: 500;
-        }
-
-        /* ФОТО ЖЕНИХА И НЕВЕСТЫ */
-        .couple-photos {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .couple-photo {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 30px;
-            border: 4px solid #d9c4ff;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        /* МЕСТО ВСТРЕЧИ */
-        .venue-name {
-            font-size: 1.6rem;
-            color: #b69ad4;
-            font-weight: 600;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        .venue-address {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #4a2c6d;
-            margin-bottom: 10px;
-        }
-
-        /* КНОПКИ ВЫБОРА ТРАНСФЕРА */
-        .transfer-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-        .transfer-btn {
-            background: #f0e6ff;
-            border: 2px solid #d9c4ff;
-            padding: 12px 25px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: #4a2c6d;
-            cursor: pointer;
-            transition: 0.3s;
-            font-family: inherit;
-        }
-        .transfer-btn.active {
-            background: #b69ad4;
-            color: white;
-            border-color: #b69ad4;
-        }
-        .transfer-note {
-            text-align: center;
-            font-size: 0.9rem;
-            color: #7c5f9e;
-            margin-top: 10px;
-        }
-
-        /* КНОПКА ПОДТВЕРЖДЕНИЯ */
-        .confirm-btn {
-            background: #b69ad4;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 40px;
-            width: 100%;
-            font-size: 1.1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: 0.3s;
-            margin-top: 10px;
-        }
-        .confirm-btn:hover {
-            background: #9b7abf;
-            transform: translateY(-2px);
-        }
-
-        .contacts {
-            text-align: center;
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid #e8d9ff;
-        }
-        .vk-note {
-            font-size: 0.9rem;
-            color: #7c5f9e;
-            margin-top: 12px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 25px;
-            color: #6c4e8f;
-            border-top: 1px solid #e8d9ff;
-            margin-top: 20px;
-        }
-
+        .hero::before { content: "✦ ✦ ✦"; position: absolute; top: 15px; left: 0; right: 0; font-size: 1rem; color: #ffecb3; opacity: 0.5; letter-spacing: 8px; }
+        .avatar-circle { width: 90px; height: 90px; background: linear-gradient(135deg, #efd5ff, #d9bcff); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; border: 3px solid #ffecb3; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .hero h1 { font-size: 3rem; color: #ffecb3; line-height: 1.2; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        .hero-sub { font-size: 1.2rem; color: #f0e6d2; letter-spacing: 4px; margin-top: 10px; }
+        .timer { display: flex; justify-content: center; gap: 15px; margin: 25px 0; flex-wrap: wrap; }
+        .timer-box { background: rgba(255,255,255,0.95); padding: 12px 18px; border-radius: 20px; text-align: center; min-width: 70px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .timer-number { font-size: 2rem; font-weight: bold; color: #7c5f9e; }
+        .timer-label { font-size: 0.7rem; color: #6c4e8f; text-transform: uppercase; letter-spacing: 1px; }
+        .section { background: white; border-radius: 30px; padding: 30px 25px; margin-bottom: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #e8d9ff; }
+        .section-title { font-size: 1.8rem; color: #4a2c6d; margin-bottom: 20px; text-align: center; font-weight: 600; }
+        .section-title:after { content: "⚘"; display: block; font-size: 1.5rem; color: #b69ad4; margin-top: 5px; }
+        .photo-grid { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .photo-card { text-align: center; }
+        .photo { width: 140px; height: 140px; object-fit: cover; border-radius: 25px; border: 4px solid #d9c4ff; box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .photo:hover { transform: scale(1.02); }
+        .photo-caption { margin-top: 10px; color: #6c4e8f; font-style: italic; }
+        .timing-list { max-width: 350px; margin: 0 auto; }
+        .timing-item { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 0; border-bottom: 2px dotted #e0d1c0; }
+        .timing-item:last-child { border-bottom: none; }
+        .timing-event { font-size: 1.2rem; color: #4a2c6d; font-weight: 500; }
+        .timing-time { font-size: 1.3rem; color: #b69ad4; font-weight: 600; }
+        .dresscode-text { text-align: center; line-height: 2; font-size: 1.2rem; color: #4a2c6d; }
+        .dresscode-note { text-align: center; margin-top: 20px; padding: 10px; background: #f0e6ff; border-radius: 40px; color: #7c5f9e; font-weight: 500; }
+        .couple-photos { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .couple-photo { width: 150px; height: 150px; object-fit: cover; border-radius: 30px; border: 4px solid #d9c4ff; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .venue-name { font-size: 1.6rem; color: #b69ad4; font-weight: 600; margin-bottom: 15px; text-align: center; }
+        .venue-address { text-align: center; font-size: 1.2rem; color: #4a2c6d; margin-bottom: 10px; }
+        .transfer-buttons { display: flex; gap: 15px; justify-content: center; margin: 20px 0; flex-wrap: wrap; }
+        .transfer-btn { background: #f0e6ff; border: 2px solid #d9c4ff; padding: 12px 25px; border-radius: 50px; font-size: 1.1rem; font-weight: 500; color: #4a2c6d; cursor: pointer; transition: 0.3s; font-family: inherit; }
+        .transfer-btn.active { background: #b69ad4; color: white; border-color: #b69ad4; }
+        .transfer-note { text-align: center; font-size: 0.9rem; color: #7c5f9e; margin-top: 10px; }
+        .confirm-btn { background: #b69ad4; color: white; padding: 12px 25px; border: none; border-radius: 40px; width: 100%; font-size: 1.1rem; font-weight: 500; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+        .confirm-btn:hover { background: #9b7abf; transform: translateY(-2px); }
+        .contacts { text-align: center; margin-top: 20px; padding-top: 15px; border-top: 1px solid #e8d9ff; }
+        .vk-note { font-size: 0.9rem; color: #7c5f9e; margin-top: 12px; }
+        footer { text-align: center; padding: 25px; color: #6c4e8f; border-top: 1px solid #e8d9ff; margin-top: 20px; }
         @media (max-width: 500px) {
             .hero h1 { font-size: 2.2rem; }
             .photo { width: 120px; height: 120px; }
@@ -537,26 +244,20 @@
 </head>
 <body>
 
-    <!-- ЭКРАН-КОНВЕРТ -->
     <div class="envelope-screen" id="envelopeScreen">
         <div class="envelope">
             <div class="flap" id="flap"></div>
-            <div class="letter" id="letter">
-                <span>💌</span><br>
-                Наталья & Влад
-            </div>
+            <div class="letter" id="letter"><span>💌</span><br>Наталья & Влад</div>
             <div class="seal" id="seal">❤️</div>
         </div>
     </div>
 
-    <!-- ВСПЛЫВАЮЩАЯ БУМАЖКА "ПРИГЛАШЕНИЕ ДЛЯ ТЕБЯ" -->
     <div class="popup-paper" id="popupPaper">
         <h3>📜 Приглашение для тебя</h3>
         <p>Дорогой гость!<br>Ты очень важен для нас.<br>Ждём тебя на нашем празднике! 💜</p>
         <button class="close-popup" id="closePopup">Открыть приглашение</button>
     </div>
 
-    <!-- КАСТОМНОЕ МОДАЛЬНОЕ ОКНО ДЛЯ ПОДТВЕРЖДЕНИЯ -->
     <div class="custom-modal" id="confirmModal">
         <div class="modal-content">
             <p><strong>💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜</strong></p>
@@ -581,7 +282,6 @@
         </div>
     </div>
 
-    <!-- ОСНОВНОЙ КОНТЕНТ (ВТОРАЯ СТРАНИЦА) -->
     <div class="main-content" id="mainContent">
         <div class="hero">
             <div class="avatar-circle">👰🤵</div>
@@ -598,14 +298,8 @@
         <div class="section">
             <div class="section-title">💜 Помните эту пару? 💜</div>
             <div class="photo-grid">
-                <div class="photo-card">
-                    <img src="child1.jpg" class="photo" alt="Детское фото Натальи" onerror="this.style.display='none'">
-                    <div class="photo-caption">Наталья</div>
-                </div>
-                <div class="photo-card">
-                    <img src="child2.jpg" class="photo" alt="Детское фото Владислава" onerror="this.style.display='none'">
-                    <div class="photo-caption">Владислав</div>
-                </div>
+                <div class="photo-card"><img src="child1.jpg" class="photo" alt="Детское фото Натальи" onerror="this.style.display='none'"><div class="photo-caption">Наталья</div></div>
+                <div class="photo-card"><img src="child2.jpg" class="photo" alt="Детское фото Владислава" onerror="this.style.display='none'"><div class="photo-caption">Владислав</div></div>
             </div>
             <p style="text-align:center; margin-top:20px; font-style:italic; color:#6c4e8f;">А ведь наша любовь выросла! Ждём вас разделить этот день 💑</p>
         </div>
@@ -632,19 +326,12 @@
 
         <div class="section">
             <div class="section-title">🎤 По вопросам и сюрпризам</div>
-            <div style="text-align:center;">
-                <div style="font-size:2rem;">Владислав</div>
-                <div style="font-size:1.5rem; color:#b69ad4;">+7 (910) 945-53-96</div>
-                <div style="color:#6c4e8f;">жених</div>
-            </div>
+            <div style="text-align:center;"><div style="font-size:2rem;">Владислав</div><div style="font-size:1.5rem; color:#b69ad4;">+7 (910) 945-53-96</div><div style="color:#6c4e8f;">жених</div></div>
         </div>
 
         <div class="section">
             <div class="section-title">👗 Дресс-код</div>
-            <div class="dresscode-text">
-                👨‍💼 <strong>мужчины</strong> — белые рубашки<br>
-                👩‍🎀 <strong>дамы</strong> — красивые наряды
-            </div>
+            <div class="dresscode-text">👨‍💼 <strong>мужчины</strong> — белые рубашки<br>👩‍🎀 <strong>дамы</strong> — красивые наряды</div>
             <div class="dresscode-note">💜 лавандовые акценты приветствуются 💜</div>
         </div>
 
@@ -652,10 +339,10 @@
             <div class="section-title">📍 Место проведения</div>
             <div class="venue-name">Усадьба Александрово</div>
             <div class="venue-address">🌿 Выездная церемония и банкет<br>город Кимовск, Тульская область</div>
-            <div class="map-container" style="margin-top:20px; border-radius:25px; overflow:hidden;">
+            <div style="margin-top:20px; border-radius:25px; overflow:hidden;">
                 <iframe src="https://yandex.ru/map-widget/v1/?from=api-maps&ll=38.520617%2C53.963235&mode=routes&origin=jsapi_2_1_79&rtext=~53.963235%2C38.520617&rtt=auto&ruri=~&utm_source=jsapi&z=15" allowfullscreen="true" style="width:100%; height:250px; border:none;"></iframe>
             </div>
-            <div class="map-hint" style="text-align:center; margin-top:8px; font-size:0.8rem; color:#6c4e8f;">🗺️ Нажмите на карту, чтобы построить маршрут</div>
+            <div style="text-align:center; margin-top:8px; font-size:0.8rem; color:#6c4e8f;">🗺️ Нажмите на карту, чтобы построить маршрут</div>
         </div>
 
         <div class="section">
@@ -673,22 +360,17 @@
             </div>
         </div>
 
-        <footer>
-            <p>💜 С любовью, Наталья и Влад 💜</p>
-            <p>+7 (953) 421-82-93 | +7 (910) 945-53-96</p>
-        </footer>
+        <footer><p>💜 С любовью, Наталья и Влад 💜</p><p>+7 (953) 421-82-93 | +7 (910) 945-53-96</p></footer>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script>
-        // АНИМАЦИЯ КОНВЕРТА
         const sealBtn = document.getElementById('seal');
         const envelopeScreenDiv = document.getElementById('envelopeScreen');
         const popupPaper = document.getElementById('popupPaper');
         const mainContentDiv = document.getElementById('mainContent');
         const closePopupBtn = document.getElementById('closePopup');
         let envelopeOpened = false;
-
         if (sealBtn && envelopeScreenDiv && popupPaper && mainContentDiv) {
             sealBtn.addEventListener('click', () => {
                 if (envelopeOpened) return;
@@ -706,65 +388,51 @@
             });
         }
 
-        // ТАЙМЕР
         const weddingDate = new Date("2026-07-04T00:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
             const distance = weddingDate - now;
-            document.getElementById('days') && (document.getElementById('days').innerHTML = Math.floor(distance / (1000*60*60*24)));
-            document.getElementById('hours') && (document.getElementById('hours').innerHTML = Math.floor((distance % (1000*60*60*24)) / (1000*60*60)));
-            document.getElementById('minutes') && (document.getElementById('minutes').innerHTML = Math.floor((distance % (1000*60*60)) / (1000*60)));
-            document.getElementById('seconds') && (document.getElementById('seconds').innerHTML = Math.floor((distance % (1000*60)) / 1000));
+            if(document.getElementById('days')) document.getElementById('days').innerHTML = Math.floor(distance / (1000*60*60*24));
+            if(document.getElementById('hours')) document.getElementById('hours').innerHTML = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+            if(document.getElementById('minutes')) document.getElementById('minutes').innerHTML = Math.floor((distance % (1000*60*60)) / (1000*60));
+            if(document.getElementById('seconds')) document.getElementById('seconds').innerHTML = Math.floor((distance % (1000*60)) / 1000);
         }, 1000);
 
-        // ВЫБОР ТРАНСФЕРА
         const selfBtn = document.getElementById('selfBtn');
         const needBtn = document.getElementById('needBtn');
         const transferNote = document.getElementById('transferNote');
         let currentTransfer = '';
-
         function setActiveTransfer(selected) {
             currentTransfer = selected;
-            if (selected === 'self') {
-                selfBtn.classList.add('active');
-                needBtn.classList.remove('active');
-                transferNote.innerHTML = '✅ Вы выбрали: Приеду сам. Ждём вас! 🚙';
-            } else if (selected === 'need') {
-                needBtn.classList.add('active');
-                selfBtn.classList.remove('active');
-                transferNote.innerHTML = '✅ Вы выбрали: Нужен трансфер. Мы организуем! 🚌';
-            }
+            if (selected === 'self') { selfBtn.classList.add('active'); needBtn.classList.remove('active'); transferNote.innerHTML = '✅ Вы выбрали: Приеду сам. Ждём вас! 🚙'; }
+            else if (selected === 'need') { needBtn.classList.add('active'); selfBtn.classList.remove('active'); transferNote.innerHTML = '✅ Вы выбрали: Нужен трансфер. Мы организуем! 🚌'; }
             localStorage.setItem('transferChoice', selected);
         }
-        selfBtn.addEventListener('click', () => setActiveTransfer('self'));
-        needBtn.addEventListener('click', () => setActiveTransfer('need'));
+        if(selfBtn) selfBtn.addEventListener('click', () => setActiveTransfer('self'));
+        if(needBtn) needBtn.addEventListener('click', () => setActiveTransfer('need'));
         const savedChoice = localStorage.getItem('transferChoice');
         if (savedChoice === 'self') setActiveTransfer('self');
         if (savedChoice === 'need') setActiveTransfer('need');
 
-        // КАСТОМНОЕ МОДАЛЬНОЕ ОКНО
         const confirmModal = document.getElementById('confirmModal');
         const closeModalBtn = document.getElementById('closeModalBtn');
         const modalTransferText = document.getElementById('modalTransferText');
         const copyTransferText = document.getElementById('copyTransferText');
-
-        document.getElementById('confirmBtn').addEventListener('click', () => {
-            let transferText = '';
-            if (currentTransfer === 'self') transferText = '🚙 Приеду сам';
-            else if (currentTransfer === 'need') transferText = '🚌 Нужен трансфер';
-            else transferText = '🤔 ещё не выбран';
-            
-            modalTransferText.innerText = transferText;
-            copyTransferText.innerText = transferText;
-            confirmModal.classList.add('show');
-        });
+        const confirmBtn = document.getElementById('confirmBtn');
         
-        closeModalBtn.addEventListener('click', () => {
-            confirmModal.classList.remove('show');
-        });
-        confirmModal.addEventListener('click', (e) => {
-            if (e.target === confirmModal) confirmModal.classList.remove('show');
-        });
+        if(confirmBtn) {
+            confirmBtn.addEventListener('click', () => {
+                let transferText = '';
+                if (currentTransfer === 'self') transferText = '🚙 Приеду сам';
+                else if (currentTransfer === 'need') transferText = '🚌 Нужен трансфер';
+                else transferText = '🤔 ещё не выбран';
+                if(modalTransferText) modalTransferText.innerText = transferText;
+                if(copyTransferText) copyTransferText.innerText = transferText;
+                if(confirmModal) confirmModal.classList.add('show');
+            });
+        }
+        if(closeModalBtn) closeModalBtn.addEventListener('click', () => confirmModal.classList.remove('show'));
+        if(confirmModal) confirmModal.addEventListener('click', (e) => { if (e.target === confirmModal) confirmModal.classList.remove('show'); });
     </script>
 </body>
 </html>
