@@ -70,6 +70,10 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
+        .letter span {
+            font-size: 1.5rem;
+        }
+
         .seal {
             position: absolute;
             bottom: 15px;
@@ -88,30 +92,6 @@
             font-size: 1.3rem;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
             transition: transform 0.2s;
-            /* Подсказка при наведении */
-            position: relative;
-        }
-        /* Всплывающая подсказка для печати */
-        .seal::after {
-            content: "✨ Это приглашение создано для Вас ✨";
-            position: absolute;
-            bottom: 55px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #4a2c6d;
-            color: #f0e6d2;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
-            font-family: inherit;
-            font-weight: normal;
-        }
-        .seal:hover::after {
-            opacity: 1;
         }
 
         .seal:hover {
@@ -388,15 +368,21 @@
         /* МЕСТО ВСТРЕЧИ */
         .venue-address {
             text-align: center;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: #4a2c6d;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         .venue-name {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: #b69ad4;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .venue-detail {
+            text-align: center;
+            font-size: 1rem;
+            color: #6c4e8f;
+            margin-top: 5px;
         }
 
         /* КНОПКИ ВЫБОРА ТРАНСФЕРА */
@@ -483,13 +469,6 @@
             .couple-photo { width: 130px; height: 130px; }
             .timer-box { padding: 8px 12px; min-width: 60px; }
             .timer-number { font-size: 1.5rem; }
-            .seal::after {
-                font-size: 0.6rem;
-                white-space: normal;
-                width: 150px;
-                text-align: center;
-                bottom: 50px;
-            }
         }
     </style>
 </head>
@@ -501,8 +480,7 @@
             <div class="flap" id="flap"></div>
             <div class="letter" id="letter">
                 <span>💌</span><br>
-                Наталья & Влад<br>
-                <small>нажмите на печать</small>
+                Наталья & Влад
             </div>
             <div class="seal" id="seal">❤️</div>
         </div>
@@ -590,16 +568,23 @@
             </div>
         </div>
 
-        <!-- МЕСТО ВСТРЕЧИ — ЦЕНТР НОВОМОСКОВСКА -->
+        <!-- МЕСТО ВСТРЕЧИ — НОВОМОСКОВСК (центр) и УСАДЬБА АЛЕКСАНДРОВО (Кимовск) -->
         <div class="section">
             <div class="section-title">📍 Место встречи</div>
-            <div class="venue-name">Новомосковск, центр</div>
+            <div class="venue-name">Новомосковск, центр города</div>
             <div class="venue-address">
-                🏛️ Ресторан «Лавандовый хутор»<br>
-                ул. Московская, 15<br>
-                (в центре города)
+                🏛️ Сбор гостей и выездная церемония<br>
+                <strong>центр Новомосковска</strong>
             </div>
-            <div class="map-container" style="margin-top:15px; border-radius:25px; overflow:hidden;">
+            <div class="venue-detail">
+                ⬇️
+            </div>
+            <div class="venue-name" style="margin-top:15px;">Усадьба Александрово</div>
+            <div class="venue-address">
+                🌿 Банкет и основное торжество<br>
+                <strong>город Кимовск, Тульская область</strong>
+            </div>
+            <div class="map-container" style="margin-top:20px; border-radius:25px; overflow:hidden;">
                 <iframe src="https://yandex.ru/map-widget/v1/?from=api-maps&ll=38.520617%2C53.963235&mode=routes&origin=jsapi_2_1_79&rtext=~53.963235%2C38.520617&rtt=auto&ruri=~&utm_source=jsapi&z=15" allowfullscreen="true" style="width:100%; height:250px; border:none;"></iframe>
             </div>
             <div class="map-hint" style="text-align:center; margin-top:8px; font-size:0.8rem; color:#6c4e8f;">🗺️ Нажмите на карту, чтобы построить маршрут</div>
@@ -623,9 +608,7 @@
                 <p>1️⃣ Выберите вариант трансфера<br>
                 2️⃣ Нажмите «Подтвердить присутствие»<br>
                 3️⃣ Скопируйте готовый текст<br>
-                4️⃣ Отправьте его <strong>Наталье</strong> в ВК:<br>
-                <a href="https://vk.com/nataliiiiie" target="_blank">vk.com/nataliiiiie</a>
-                </p>
+                4️⃣ Отправьте его <strong>Наталье</strong> в ВК</p>
                 <div class="vk-note">
                     ✦ ответьте до <strong>1 июня 2026</strong> ✦
                 </div>
@@ -735,7 +718,7 @@
             if (savedChoice === 'need') setActiveTransfer('need');
         }
 
-        // ========== 4. ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ (НИКУДА НЕ ОТПРАВЛЯЕТСЯ) ==========
+        // ========== 4. ПОДТВЕРЖДЕНИЕ С АКТИВНОЙ ССЫЛКОЙ ВК ==========
         const confirmBtn = document.getElementById('confirmBtn');
         
         if (confirmBtn) {
@@ -746,9 +729,28 @@
                 else if (transferChoice === 'need') transferText = '🚌 Нужен трансфер';
                 else transferText = '🤔 ещё не выбран';
                 
-                const messageForBride = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nИмя: (напишите своё имя)\nТрансфер: ${transferText}\n\n📅 Дата: 4 июля 2026\n📍 Место: Новомосковск, центр (ресторан «Лавандовый хутор»)\n\n💜 Жду с нетерпением!`;
+                // Создаём HTML-сообщение с активной ссылкой
+                const messageHtml = `
+                    <div style="font-family: inherit;">
+                        <p><strong>💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜</strong></p>
+                        <p>Имя: (напишите своё имя)</p>
+                        <p>Трансфер: ${transferText}</p>
+                        <p>📅 Дата: 4 июля 2026</p>
+                        <p>📍 Место: Новомосковск (центр) → Усадьба Александрово (Кимовск)</p>
+                        <p>💜 Жду с нетерпением!</p>
+                        <hr>
+                        <p>✏️ Скопируйте этот текст и отправьте мне:</p>
+                        <p>🔗 <a href="https://vk.com/nataliiiiie" target="_blank" style="color: #b69ad4;">vk.com/nataliiiiie</a></p>
+                    </div>
+                `;
                 
-                alert(`✨ Подтверждение готово! ✨\n\nСкопируйте это сообщение и отправьте Наталье в ВК:\n\n${messageForBride}\n\n🔗 Ссылка на профиль: vk.com/nataliiiiie`);
+                // Создаём временный div для копирования текста без HTML-тегов
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = messageHtml;
+                const plainText = tempDiv.textContent || tempDiv.innerText;
+                
+                // Показываем красивое уведомление
+                alert(`✨ Подтверждение готово! ✨\n\nСкопируйте это сообщение и отправьте Наталье в ВК:\n\n${plainText}\n\n🔗 Ссылка на профиль: vk.com/nataliiiiie`);
             });
         }
     </script>
