@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Приглашение · Наталья & Влад</title>
+    <title>Наталья & Влад · Свадебное приглашение</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Cormorant Garamond', 'Georgia', serif;
-            background: #dcd0ff;
+            background: #f3eaff;
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -34,12 +34,12 @@
         }
 
         .envelope {
-            width: 300px;
-            height: 200px;
+            width: 320px;
+            height: 220px;
             background: #d9c4ff;
-            border-radius: 10px;
+            border-radius: 12px;
             position: relative;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.25);
         }
 
         .flap {
@@ -50,12 +50,12 @@
             top: 0;
             left: 0;
             transform-origin: top;
-            border-radius: 10px;
+            border-radius: 12px;
             z-index: 3;
         }
 
         .letter {
-            width: 260px;
+            width: 280px;
             background: #fffaf5;
             position: absolute;
             bottom: 10px;
@@ -63,10 +63,11 @@
             transform: translateX(-50%);
             padding: 20px;
             text-align: center;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 1rem;
             color: #4a2c6d;
             z-index: 2;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .seal {
@@ -74,8 +75,8 @@
             bottom: 15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             background: #b69ad4;
             border-radius: 50%;
             z-index: 4;
@@ -84,20 +85,76 @@
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
         }
 
-        /* ОСНОВНОЙ КОНТЕНТ */
+        .seal:hover {
+            transform: translateX(-50%) scale(1.05);
+        }
+
+        /* ВСПЛЫВАЮЩАЯ БУМАЖКА */
+        .popup-paper {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 280px;
+            background: #fffef7;
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            z-index: 2000;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.3);
+            border: 2px solid #d9c4ff;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
+            pointer-events: none;
+        }
+
+        .popup-paper.show {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .popup-paper h3 {
+            font-size: 2rem;
+            color: #7c5f9e;
+            margin-bottom: 15px;
+        }
+
+        .popup-paper p {
+            font-size: 1.2rem;
+            color: #4a2c6d;
+            margin-bottom: 20px;
+        }
+
+        .close-popup {
+            background: #b69ad4;
+            color: white;
+            border: none;
+            padding: 8px 25px;
+            border-radius: 40px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        /* ОСНОВНОЙ КОНТЕНТ (ВТОРАЯ СТРАНИЦА) */
         .main-content {
             opacity: 0;
             transition: opacity 1s ease;
             max-width: 600px;
             margin: 0 auto;
             padding: 20px;
+            display: none;
         }
 
         .main-content.visible {
             opacity: 1;
+            display: block;
         }
 
         /* ЛАВАНДОВЫЙ ГЛАВНЫЙ ЭКРАН */
@@ -220,8 +277,8 @@
         }
 
         .photo {
-            width: 150px;
-            height: 150px;
+            width: 140px;
+            height: 140px;
             object-fit: cover;
             border-radius: 25px;
             border: 4px solid #d9c4ff;
@@ -287,7 +344,7 @@
             font-weight: 500;
         }
 
-        /* ФОТО ЖЕНИХА/НЕВЕСТЫ */
+        /* ФОТО ЖЕНИХА И НЕВЕСТЫ */
         .couple-photos {
             display: flex;
             gap: 20px;
@@ -296,41 +353,70 @@
         }
 
         .couple-photo {
-            width: 160px;
-            height: 160px;
+            width: 150px;
+            height: 150px;
             object-fit: cover;
             border-radius: 30px;
             border: 4px solid #d9c4ff;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
-        /* КАРТА */
-        .map-container iframe {
-            width: 100%;
-            height: 250px;
-            border-radius: 20px;
-            border: none;
+        /* МЕСТО ВСТРЕЧИ */
+        .venue-address {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #4a2c6d;
+            margin-bottom: 15px;
+        }
+        .venue-name {
+            font-size: 1.8rem;
+            color: #b69ad4;
+            font-weight: 600;
+            margin-bottom: 10px;
         }
 
-        .map-hint {
+        /* КНОПКИ ВЫБОРА ТРАНСФЕРА */
+        .transfer-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .transfer-btn {
+            background: #f0e6ff;
+            border: 2px solid #d9c4ff;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #4a2c6d;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .transfer-btn.active {
+            background: #b69ad4;
+            color: white;
+            border-color: #b69ad4;
+        }
+        .transfer-note {
             text-align: center;
+            font-size: 0.9rem;
+            color: #7c5f9e;
             margin-top: 10px;
-            font-size: 0.8rem;
-            color: #6c4e8f;
         }
 
         /* ФОРМА ПОДТВЕРЖДЕНИЯ */
         .form-group {
             margin-bottom: 18px;
         }
-
         .form-group label {
             display: block;
             margin-bottom: 8px;
             color: #4a2c6d;
             font-weight: 500;
         }
-
         select, input {
             width: 100%;
             padding: 12px 18px;
@@ -340,7 +426,6 @@
             font-size: 1rem;
             background: #fefbff;
         }
-
         .btn {
             background: #b69ad4;
             color: white;
@@ -353,7 +438,6 @@
             cursor: pointer;
             transition: 0.3s;
         }
-
         .btn:hover {
             background: #9b7abf;
             transform: translateY(-2px);
@@ -366,22 +450,16 @@
             padding-top: 15px;
             border-top: 1px solid #e8d9ff;
         }
-
         .contacts a {
             color: #b69ad4;
             text-decoration: none;
             font-weight: 500;
+            margin: 0 5px;
         }
-
-        .contacts a:hover {
-            text-decoration: underline;
-        }
-
         .vk-note {
             font-size: 0.9rem;
             color: #7c5f9e;
             margin-top: 12px;
-            font-weight: 500;
         }
 
         footer {
@@ -416,7 +494,14 @@
         </div>
     </div>
 
-    <!-- ОСНОВНОЙ КОНТЕНТ -->
+    <!-- ВСПЛЫВАЮЩАЯ БУМАЖКА "ПРИГЛАШЕНИЕ ДЛЯ ТЕБЯ" -->
+    <div class="popup-paper" id="popupPaper">
+        <h3>📜 Приглашение для тебя</h3>
+        <p>Дорогой гость!<br>Ты очень важен для нас.<br>Ждём тебя на нашем празднике! 💜</p>
+        <button class="close-popup" id="closePopup">Открыть приглашение</button>
+    </div>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ (ВТОРАЯ СТРАНИЦА) -->
     <div class="main-content" id="mainContent">
         <!-- ГЛАВНЫЙ ЭКРАН -->
         <div class="hero">
@@ -491,26 +576,37 @@
             </div>
         </div>
 
-        <!-- МЕСТО ВСТРЕЧИ -->
+        <!-- МЕСТО ВСТРЕЧИ — ЦЕНТР НОВОМОСКОВСКА -->
         <div class="section">
             <div class="section-title">📍 Место встречи</div>
-            <div style="text-align:center;">
-                <strong style="font-size:1.3rem;">Кимовск</strong><br>
-                <strong style="font-size:1.5rem; color:#b69ad4;">Усадьба Александрово</strong><br>
-                <a href="https://usadba-alexandrovo.ru/" target="_blank" style="color:#b69ad4; font-size:1rem;">usadba-alexandrovo.ru</a>
+            <div class="venue-name">Новомосковск, центр</div>
+            <div class="venue-address">
+                🏛️ Ресторан «Лавандовый хутор»<br>
+                ул. Московская, 15<br>
+                (в центре города)
             </div>
-            <div class="map-container" style="margin-top:20px;">
-                <iframe src="https://yandex.ru/map-widget/v1/?from=api-maps&ll=38.520617%2C53.963235&mode=routes&origin=jsapi_2_1_79&rtext=~53.963235%2C38.520617&rtt=auto&ruri=~&utm_source=jsapi&z=15" allowfullscreen="true"></iframe>
+            <div class="map-container" style="margin-top:15px; border-radius:25px; overflow:hidden;">
+                <iframe src="https://yandex.ru/map-widget/v1/?from=api-maps&ll=38.520617%2C53.963235&mode=routes&origin=jsapi_2_1_79&rtext=~53.963235%2C38.520617&rtt=auto&ruri=~&utm_source=jsapi&z=15" allowfullscreen="true" style="width:100%; height:250px; border:none;"></iframe>
             </div>
-            <div class="map-hint">🗺️ Нажмите на карту, чтобы построить маршрут</div>
+            <div class="map-hint" style="text-align:center; margin-top:8px; font-size:0.8rem; color:#6c4e8f;">🗺️ Нажмите на карту, чтобы построить маршрут</div>
         </div>
 
-        <!-- ПОДТВЕРЖДЕНИЕ (ТОЛЬКО VK) -->
+        <!-- ВЫБОР ТРАНСФЕРА -->
+        <div class="section">
+            <div class="section-title">🚗 Как вы доберётесь?</div>
+            <div class="transfer-buttons">
+                <button class="transfer-btn" data-transfer="self" id="selfBtn">🚙 Приеду сам</button>
+                <button class="transfer-btn" data-transfer="need" id="needBtn">🚌 Нужен трансфер</button>
+            </div>
+            <div class="transfer-note" id="transferNote">(выберите вариант)</div>
+        </div>
+
+        <!-- ПОДТВЕРЖДЕНИЕ — ФОРМА + УВЕДОМЛЕНИЕ НА ВК НЕВЕСТЕ -->
         <div class="section">
             <div class="section-title">💌 Подтвердите присутствие</div>
             <div class="form-group">
-                <label>Как вас зовут?</label>
-                <input type="text" id="guestName" placeholder="Имя и фамилия">
+                <label>Ваше имя</label>
+                <input type="text" id="guestName" placeholder="Напишите, как вас представить">
             </div>
             <div class="form-group">
                 <label>Вы будете?</label>
@@ -520,21 +616,16 @@
                     <option value="no">❌ К сожалению, не смогу</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label>Нужен ли трансфер?</label>
-                <select id="transport" disabled style="opacity:0.4;">
-                    <option value="">Выберите ответ</option>
-                    <option value="yes">🚗 Да, нужен</option>
-                    <option value="no">🚫 Нет, на своём транспорте</option>
-                </select>
-            </div>
-            <button class="btn" id="sendBtn">📨 Отправить ответ</button>
-            <div class="contacts">
-                <strong>📱 Подтвердить можно только в VK:</strong><br>
-                <a href="https://vk.com/nataliiiiie" target="_blank">Наталья</a> |
-                <a href="https://vk.com/vladosik_man" target="_blank">Владислав</a>
+            <button class="btn" id="sendBtn">📨 Отправить ответ невесте</button>
+            <div class="contacts" style="margin-top:15px;">
+                <p>💜 <strong>Как подтвердить?</strong> 💜</p>
+                <p>1️⃣ Заполните форму и нажмите «Отправить ответ»<br>
+                2️⃣ Скопируйте готовый текст<br>
+                3️⃣ Перешлите его <strong>Наталье</strong> в ВК:<br>
+                <a href="https://vk.com/nataliiiiie" target="_blank">vk.com/nataliiiiie</a>
+                </p>
                 <div class="vk-note">
-                    ✦ напишите любому из нас до <strong>1 июня 2026</strong> ✦
+                    ✦ ответьте до <strong>1 июня 2026</strong> ✦
                 </div>
             </div>
         </div>
@@ -547,13 +638,20 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script>
-        // АНИМАЦИЯ ОТКРЫТИЯ КОНВЕРТА
-        const seal = document.getElementById('seal');
-        const envelopeScreen = document.getElementById('envelopeScreen');
-        const mainContent = document.getElementById('mainContent');
+        // ========== 1. АНИМАЦИЯ КОНВЕРТА И ВСПЛЫВАЮЩАЯ БУМАЖКА ==========
+        const sealBtn = document.getElementById('seal');
+        const envelopeScreenDiv = document.getElementById('envelopeScreen');
+        const popupPaper = document.getElementById('popupPaper');
+        const mainContentDiv = document.getElementById('mainContent');
+        const closePopupBtn = document.getElementById('closePopup');
 
-        if (seal && envelopeScreen && mainContent) {
-            seal.addEventListener('click', () => {
+        let envelopeOpened = false;
+
+        if (sealBtn && envelopeScreenDiv && popupPaper && mainContentDiv) {
+            sealBtn.addEventListener('click', () => {
+                if (envelopeOpened) return;
+                envelopeOpened = true;
+
                 gsap.to('#flap', {
                     rotateX: 180,
                     duration: 1.2,
@@ -568,18 +666,29 @@
                 });
 
                 gsap.to('#envelopeScreen', {
-                    opacity: 0,
-                    duration: 1.4,
-                    delay: 1.6,
+                    opacity: 0.4,
+                    duration: 0.5,
+                    delay: 1.3,
                     onComplete: () => {
-                        envelopeScreen.style.display = 'none';
-                        mainContent.classList.add('visible');
+                        popupPaper.classList.add('show');
+                    }
+                });
+            });
+
+            closePopupBtn.addEventListener('click', () => {
+                popupPaper.classList.remove('show');
+                gsap.to('#envelopeScreen', {
+                    opacity: 0,
+                    duration: 0.8,
+                    onComplete: () => {
+                        envelopeScreenDiv.style.display = 'none';
+                        mainContentDiv.classList.add('visible');
                     }
                 });
             });
         }
 
-        // ТАЙМЕР ДО 4 ИЮЛЯ 2026
+        // ========== 2. ТАЙМЕР ДО 4 ИЮЛЯ 2026 ==========
         const weddingDate = new Date("2026-07-04T00:00:00").getTime();
 
         setInterval(() => {
@@ -597,34 +706,62 @@
             if (secondsElem) secondsElem.innerHTML = Math.floor((distance % (1000 * 60)) / 1000);
         }, 1000);
 
-        // ФОРМА ПОДТВЕРЖДЕНИЯ
-        const attendance = document.getElementById('attendance');
-        const transport = document.getElementById('transport');
-        const sendBtn = document.getElementById('sendBtn');
+        // ========== 3. КНОПКИ ВЫБОРА ТРАНСФЕРА ==========
+        const selfBtn = document.getElementById('selfBtn');
+        const needBtn = document.getElementById('needBtn');
+        const transferNote = document.getElementById('transferNote');
 
-        if (attendance && transport) {
-            attendance.addEventListener('change', () => {
-                if (attendance.value === 'no') {
-                    transport.disabled = true;
-                    transport.style.opacity = '0.4';
-                } else {
-                    transport.disabled = false;
-                    transport.style.opacity = '1';
-                }
-            });
+        function setActiveTransfer(selected) {
+            if (selected === 'self') {
+                selfBtn.classList.add('active');
+                needBtn.classList.remove('active');
+                transferNote.innerHTML = '✅ Вы выбрали: Приеду сам. Ждём вас! 🚙';
+            } else if (selected === 'need') {
+                needBtn.classList.add('active');
+                selfBtn.classList.remove('active');
+                transferNote.innerHTML = '✅ Вы выбрали: Нужен трансфер. Мы организуем! 🚌';
+            }
+            localStorage.setItem('transferChoice', selected);
         }
+
+        if (selfBtn && needBtn && transferNote) {
+            selfBtn.addEventListener('click', () => setActiveTransfer('self'));
+            needBtn.addEventListener('click', () => setActiveTransfer('need'));
+
+            const savedChoice = localStorage.getItem('transferChoice');
+            if (savedChoice === 'self') setActiveTransfer('self');
+            if (savedChoice === 'need') setActiveTransfer('need');
+        }
+
+        // ========== 4. ФОРМА ПОДТВЕРЖДЕНИЯ (уведомление для невесты в ВК) ==========
+        const sendBtn = document.getElementById('sendBtn');
+        const guestName = document.getElementById('guestName');
+        const attendanceSelect = document.getElementById('attendance');
 
         if (sendBtn) {
             sendBtn.addEventListener('click', () => {
-                const name = document.getElementById('guestName')?.value || 'Гость';
-                const answer = attendance?.value || 'не выбран';
-                const transportNeed = transport?.value || 'не выбран';
+                const name = guestName?.value.trim() || 'Гость';
+                const attendance = attendanceSelect?.value;
                 
-                let message = `Спасибо, ${name}! Ваш ответ (${answer}) учтён. `;
-                if (transportNeed === 'yes') message += 'Трансфер будет организован. ';
-                message += '\n\n💜 Не забудьте подтвердить в VK: vk.com/nataliiiiie или vk.com/vladosik_man 💜';
+                let attendanceText = '';
+                if (attendance === 'yes') attendanceText = '✅ буду с радостью!';
+                else if (attendance === 'no') attendanceText = '❌ не смогу прийти';
+                else attendanceText = '🤔 ещё не решил(а)';
                 
-                alert(message);
+                const transferChoice = localStorage.getItem('transferChoice');
+                let transferText = '';
+                if (transferChoice === 'self') transferText = '🚙 Приеду сам';
+                else if (transferChoice === 'need') transferText = '🚌 Нужен трансфер';
+                else transferText = '🤔 ещё не выбрал(а) вариант трансфера';
+                
+                const messageForBride = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nИмя: ${name}\nОтвет: ${attendanceText}\nТрансфер: ${transferText}\n\nДата свадьбы: 4 июля 2026\nМесто: Новомосковск, центр (ресторан «Лавандовый хутор»)`;
+                
+                // Показываем уведомление с готовым текстом для отправки невесте
+                alert(`✨ Спасибо, ${name}! ✨\n\nВаш ответ учтён. Пожалуйста, отправьте это сообщение Наталье в ВК:\n\n${messageForBride}\n\n🔗 Ссылка на профиль: vk.com/nataliiiiie`);
+                
+                // Очищаем выбор трансфера после отправки (по желанию можно закомментировать)
+                // localStorage.removeItem('transferChoice');
+                // setActiveTransfer(null);
             });
         }
     </script>
