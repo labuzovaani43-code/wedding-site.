@@ -161,7 +161,7 @@
         .modal-link:hover { background: #9b7abf; transform: translateY(-2px); }
         .copy-text {
             background: #f0e6ff;
-            padding: 12px;
+            padding: 15px;
             border-radius: 15px;
             font-size: 0.9rem;
             text-align: left;
@@ -169,6 +169,7 @@
             margin: 15px 0;
             border: 1px solid #d9c4ff;
             font-family: monospace;
+            line-height: 1.6;
         }
         .close-modal {
             background: #4a2c6d;
@@ -261,19 +262,17 @@
     <div class="custom-modal" id="confirmModal">
         <div class="modal-content">
             <p><strong>💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜</strong></p>
-            <p><strong>Имя:</strong> (напишите своё имя)</p>
-            <p><strong>Трансфер:</strong> <span id="modalTransferText">—</span></p>
-            <p><strong>📅 Дата:</strong> 4 июля 2026</p>
-            <p><strong>📍 Место:</strong> Усадьба Александрово (Кимовск)</p>
-            <p>💜 Жду с нетерпением!</p>
             
+            <!-- Единый блок для копирования (без дублирования) -->
             <div class="copy-text" id="copyTextBlock">
-                💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜<br><br>
-                Имя: (напишите своё имя)<br>
-                Трансфер: <span id="copyTransferText">—</span><br>
-                📅 Дата: 4 июля 2026<br>
-                📍 Место: Усадьба Александрово (Кимовск)<br><br>
-                💜 Жду с нетерпением!
+💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜
+
+Имя: (напишите своё имя)
+Трансфер: <span id="copyTransferText">—</span>
+📅 Дата: 4 июля 2026
+📍 Место: Усадьба Александрово (Кимовск)
+
+💜 Жду с нетерпением!
             </div>
             
             <a href="https://vk.com/nataliiiiie" target="_blank" class="modal-link">📱 Написать Наталье в ВК</a>
@@ -416,7 +415,6 @@
 
         const confirmModal = document.getElementById('confirmModal');
         const closeModalBtn = document.getElementById('closeModalBtn');
-        const modalTransferText = document.getElementById('modalTransferText');
         const copyTransferText = document.getElementById('copyTransferText');
         const confirmBtn = document.getElementById('confirmBtn');
         
@@ -426,7 +424,6 @@
                 if (currentTransfer === 'self') transferText = '🚙 Приеду сам';
                 else if (currentTransfer === 'need') transferText = '🚌 Нужен трансфер';
                 else transferText = '🤔 ещё не выбран';
-                if(modalTransferText) modalTransferText.innerText = transferText;
                 if(copyTransferText) copyTransferText.innerText = transferText;
                 if(confirmModal) confirmModal.classList.add('show');
             });
