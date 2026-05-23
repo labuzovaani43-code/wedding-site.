@@ -146,6 +146,81 @@
             font-family: inherit;
         }
 
+        /* КАСТОМНОЕ МОДАЛЬНОЕ ОКНО ДЛЯ ПОДТВЕРЖДЕНИЯ */
+        .custom-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 3000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .custom-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background: #fffef7;
+            border-radius: 30px;
+            padding: 30px 25px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            border: 2px solid #d9c4ff;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .modal-content p {
+            margin: 12px 0;
+            color: #4a2c6d;
+            font-size: 1.1rem;
+        }
+        .modal-content strong {
+            color: #7c5f9e;
+        }
+        .modal-link {
+            display: inline-block;
+            background: #b69ad4;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 40px;
+            text-decoration: none;
+            margin: 15px 0;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .modal-link:hover {
+            background: #9b7abf;
+            transform: translateY(-2px);
+        }
+        .copy-text {
+            background: #f0e6ff;
+            padding: 12px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            text-align: left;
+            word-break: break-word;
+            margin: 15px 0;
+            border: 1px solid #d9c4ff;
+        }
+        .close-modal {
+            background: #4a2c6d;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-family: inherit;
+            margin-top: 10px;
+        }
+
         /* ОСНОВНОЙ КОНТЕНТ (ВТОРАЯ СТРАНИЦА) */
         .main-content {
             opacity: 0;
@@ -366,23 +441,18 @@
         }
 
         /* МЕСТО ВСТРЕЧИ */
-        .venue-address {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #4a2c6d;
-            margin-bottom: 10px;
-        }
         .venue-name {
             font-size: 1.6rem;
             color: #b69ad4;
             font-weight: 600;
             margin-bottom: 15px;
-        }
-        .venue-detail {
             text-align: center;
-            font-size: 1rem;
-            color: #6c4e8f;
-            margin-top: 5px;
+        }
+        .venue-address {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #4a2c6d;
+            margin-bottom: 10px;
         }
 
         /* КНОПКИ ВЫБОРА ТРАНСФЕРА */
@@ -436,18 +506,11 @@
             transform: translateY(-2px);
         }
 
-        /* КОНТАКТЫ */
         .contacts {
             text-align: center;
             margin-top: 20px;
             padding-top: 15px;
             border-top: 1px solid #e8d9ff;
-        }
-        .contacts a {
-            color: #b69ad4;
-            text-decoration: none;
-            font-weight: 500;
-            margin: 0 5px;
         }
         .vk-note {
             font-size: 0.9rem;
@@ -461,13 +524,6 @@
             color: #6c4e8f;
             border-top: 1px solid #e8d9ff;
             margin-top: 20px;
-        }
-
-        /* Стиль для активной ссылки в модальном окне */
-        .active-link {
-            color: #b69ad4;
-            text-decoration: underline;
-            font-weight: bold;
         }
 
         @media (max-width: 500px) {
@@ -500,9 +556,33 @@
         <button class="close-popup" id="closePopup">Открыть приглашение</button>
     </div>
 
+    <!-- КАСТОМНОЕ МОДАЛЬНОЕ ОКНО ДЛЯ ПОДТВЕРЖДЕНИЯ -->
+    <div class="custom-modal" id="confirmModal">
+        <div class="modal-content">
+            <p><strong>💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜</strong></p>
+            <p><strong>Имя:</strong> (напишите своё имя)</p>
+            <p><strong>Трансфер:</strong> <span id="modalTransferText">—</span></p>
+            <p><strong>📅 Дата:</strong> 4 июля 2026</p>
+            <p><strong>📍 Место:</strong> Усадьба Александрово (Кимовск)</p>
+            <p>💜 Жду с нетерпением!</p>
+            
+            <div class="copy-text" id="copyTextBlock">
+                💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜<br><br>
+                Имя: (напишите своё имя)<br>
+                Трансфер: <span id="copyTransferText">—</span><br>
+                📅 Дата: 4 июля 2026<br>
+                📍 Место: Усадьба Александрово (Кимовск)<br><br>
+                💜 Жду с нетерпением!
+            </div>
+            
+            <a href="https://vk.com/nataliiiiie" target="_blank" class="modal-link">📱 Написать Наталье в ВК</a>
+            
+            <button class="close-modal" id="closeModalBtn">✖️ Закрыть</button>
+        </div>
+    </div>
+
     <!-- ОСНОВНОЙ КОНТЕНТ (ВТОРАЯ СТРАНИЦА) -->
     <div class="main-content" id="mainContent">
-        <!-- ГЛАВНЫЙ ЭКРАН -->
         <div class="hero">
             <div class="avatar-circle">👰🤵</div>
             <h1>Наталья & Влад</h1>
@@ -515,7 +595,6 @@
             </div>
         </div>
 
-        <!-- ДЕТСКИЕ ФОТО -->
         <div class="section">
             <div class="section-title">💜 Помните эту пару? 💜</div>
             <div class="photo-grid">
@@ -531,7 +610,6 @@
             <p style="text-align:center; margin-top:20px; font-style:italic; color:#6c4e8f;">А ведь наша любовь выросла! Ждём вас разделить этот день 💑</p>
         </div>
 
-        <!-- ФОТО ЖЕНИХА И НЕВЕСТЫ -->
         <div class="section">
             <div class="section-title">✨ А сегодня ✨</div>
             <div class="couple-photos">
@@ -540,7 +618,6 @@
             </div>
         </div>
 
-        <!-- ТАЙМИНГ -->
         <div class="section">
             <div class="section-title">📅 Тайминг дня</div>
             <div class="timing-list">
@@ -553,7 +630,6 @@
             </div>
         </div>
 
-        <!-- ВЕДУЩИЙ -->
         <div class="section">
             <div class="section-title">🎤 По вопросам и сюрпризам</div>
             <div style="text-align:center;">
@@ -563,54 +639,37 @@
             </div>
         </div>
 
-        <!-- ДРЕСС-КОД -->
         <div class="section">
             <div class="section-title">👗 Дресс-код</div>
             <div class="dresscode-text">
                 👨‍💼 <strong>мужчины</strong> — белые рубашки<br>
                 👩‍🎀 <strong>дамы</strong> — красивые наряды
             </div>
-            <div class="dresscode-note">
-                💜 лавандовые акценты приветствуются 💜
-            </div>
+            <div class="dresscode-note">💜 лавандовые акценты приветствуются 💜</div>
         </div>
 
-        <!-- МЕСТО ВСТРЕЧИ — УСАДЬБА АЛЕКСАНДРОВО (Кимовск) -->
         <div class="section">
             <div class="section-title">📍 Место проведения</div>
             <div class="venue-name">Усадьба Александрово</div>
-            <div class="venue-address">
-                🌿 Выездная церемония и банкет<br>
-                <strong>город Кимовск, Тульская область</strong>
-            </div>
+            <div class="venue-address">🌿 Выездная церемония и банкет<br>город Кимовск, Тульская область</div>
             <div class="map-container" style="margin-top:20px; border-radius:25px; overflow:hidden;">
                 <iframe src="https://yandex.ru/map-widget/v1/?from=api-maps&ll=38.520617%2C53.963235&mode=routes&origin=jsapi_2_1_79&rtext=~53.963235%2C38.520617&rtt=auto&ruri=~&utm_source=jsapi&z=15" allowfullscreen="true" style="width:100%; height:250px; border:none;"></iframe>
             </div>
             <div class="map-hint" style="text-align:center; margin-top:8px; font-size:0.8rem; color:#6c4e8f;">🗺️ Нажмите на карту, чтобы построить маршрут</div>
         </div>
 
-        <!-- ВЫБОР ТРАНСФЕРА И ПОДТВЕРЖДЕНИЕ -->
         <div class="section">
             <div class="section-title">🚗 Как вы доберётесь?</div>
             <div class="transfer-buttons">
-                <button class="transfer-btn" data-transfer="self" id="selfBtn">🚙 Приеду сам</button>
-                <button class="transfer-btn" data-transfer="need" id="needBtn">🚌 Нужен трансфер</button>
+                <button class="transfer-btn" id="selfBtn">🚙 Приеду сам</button>
+                <button class="transfer-btn" id="needBtn">🚌 Нужен трансфер</button>
             </div>
             <div class="transfer-note" id="transferNote">(выберите вариант)</div>
-            
-            <div style="margin-top: 25px;">
-                <button class="confirm-btn" id="confirmBtn">📨 Подтвердить присутствие</button>
-            </div>
-            
+            <button class="confirm-btn" id="confirmBtn">📨 Подтвердить присутствие</button>
             <div class="contacts" style="margin-top:15px;">
                 <p>💜 <strong>Как подтвердить?</strong> 💜</p>
-                <p>1️⃣ Выберите вариант трансфера<br>
-                2️⃣ Нажмите «Подтвердить присутствие»<br>
-                3️⃣ Скопируйте готовый текст<br>
-                4️⃣ Отправьте его <strong>Наталье</strong> в ВК</p>
-                <div class="vk-note">
-                    ✦ ответьте до <strong>1 июня 2026</strong> ✦
-                </div>
+                <p>1️⃣ Выберите вариант трансфера<br>2️⃣ Нажмите «Подтвердить присутствие»<br>3️⃣ Скопируйте готовый текст<br>4️⃣ Отправьте его Наталье в ВК</p>
+                <div class="vk-note">✦ ответьте до <strong>1 июня 2026</strong> ✦</div>
             </div>
         </div>
 
@@ -622,80 +681,50 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script>
-        // ========== 1. АНИМАЦИЯ КОНВЕРТА И ВСПЛЫВАЮЩАЯ БУМАЖКА ==========
+        // АНИМАЦИЯ КОНВЕРТА
         const sealBtn = document.getElementById('seal');
         const envelopeScreenDiv = document.getElementById('envelopeScreen');
         const popupPaper = document.getElementById('popupPaper');
         const mainContentDiv = document.getElementById('mainContent');
         const closePopupBtn = document.getElementById('closePopup');
-
         let envelopeOpened = false;
 
         if (sealBtn && envelopeScreenDiv && popupPaper && mainContentDiv) {
             sealBtn.addEventListener('click', () => {
                 if (envelopeOpened) return;
                 envelopeOpened = true;
-
-                gsap.to('#flap', {
-                    rotateX: 180,
-                    duration: 1.2,
-                    ease: 'power2.inOut'
-                });
-
-                gsap.to('#letter', {
-                    y: -120,
-                    duration: 1.4,
-                    delay: 0.5,
-                    ease: 'power3.out'
-                });
-
-                gsap.to('#envelopeScreen', {
-                    opacity: 0.4,
-                    duration: 0.5,
-                    delay: 1.3,
-                    onComplete: () => {
-                        popupPaper.classList.add('show');
-                    }
-                });
+                gsap.to('#flap', { rotateX: 180, duration: 1.2, ease: 'power2.inOut' });
+                gsap.to('#letter', { y: -120, duration: 1.4, delay: 0.5, ease: 'power3.out' });
+                gsap.to('#envelopeScreen', { opacity: 0.4, duration: 0.5, delay: 1.3, onComplete: () => popupPaper.classList.add('show') });
             });
-
             closePopupBtn.addEventListener('click', () => {
                 popupPaper.classList.remove('show');
-                gsap.to('#envelopeScreen', {
-                    opacity: 0,
-                    duration: 0.8,
-                    onComplete: () => {
-                        envelopeScreenDiv.style.display = 'none';
-                        mainContentDiv.classList.add('visible');
-                    }
-                });
+                gsap.to('#envelopeScreen', { opacity: 0, duration: 0.8, onComplete: () => {
+                    envelopeScreenDiv.style.display = 'none';
+                    mainContentDiv.classList.add('visible');
+                }});
             });
         }
 
-        // ========== 2. ТАЙМЕР ДО 4 ИЮЛЯ 2026 ==========
+        // ТАЙМЕР
         const weddingDate = new Date("2026-07-04T00:00:00").getTime();
-
         setInterval(() => {
             const now = new Date().getTime();
             const distance = weddingDate - now;
-
-            const daysElem = document.getElementById('days');
-            const hoursElem = document.getElementById('hours');
-            const minutesElem = document.getElementById('minutes');
-            const secondsElem = document.getElementById('seconds');
-
-            if (daysElem) daysElem.innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24));
-            if (hoursElem) hoursElem.innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            if (minutesElem) minutesElem.innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            if (secondsElem) secondsElem.innerHTML = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById('days') && (document.getElementById('days').innerHTML = Math.floor(distance / (1000*60*60*24)));
+            document.getElementById('hours') && (document.getElementById('hours').innerHTML = Math.floor((distance % (1000*60*60*24)) / (1000*60*60)));
+            document.getElementById('minutes') && (document.getElementById('minutes').innerHTML = Math.floor((distance % (1000*60*60)) / (1000*60)));
+            document.getElementById('seconds') && (document.getElementById('seconds').innerHTML = Math.floor((distance % (1000*60)) / 1000));
         }, 1000);
 
-        // ========== 3. КНОПКИ ВЫБОРА ТРАНСФЕРА ==========
+        // ВЫБОР ТРАНСФЕРА
         const selfBtn = document.getElementById('selfBtn');
         const needBtn = document.getElementById('needBtn');
         const transferNote = document.getElementById('transferNote');
+        let currentTransfer = '';
 
         function setActiveTransfer(selected) {
+            currentTransfer = selected;
             if (selected === 'self') {
                 selfBtn.classList.add('active');
                 needBtn.classList.remove('active');
@@ -707,52 +736,35 @@
             }
             localStorage.setItem('transferChoice', selected);
         }
+        selfBtn.addEventListener('click', () => setActiveTransfer('self'));
+        needBtn.addEventListener('click', () => setActiveTransfer('need'));
+        const savedChoice = localStorage.getItem('transferChoice');
+        if (savedChoice === 'self') setActiveTransfer('self');
+        if (savedChoice === 'need') setActiveTransfer('need');
 
-        if (selfBtn && needBtn && transferNote) {
-            selfBtn.addEventListener('click', () => setActiveTransfer('self'));
-            needBtn.addEventListener('click', () => setActiveTransfer('need'));
+        // КАСТОМНОЕ МОДАЛЬНОЕ ОКНО
+        const confirmModal = document.getElementById('confirmModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const modalTransferText = document.getElementById('modalTransferText');
+        const copyTransferText = document.getElementById('copyTransferText');
 
-            const savedChoice = localStorage.getItem('transferChoice');
-            if (savedChoice === 'self') setActiveTransfer('self');
-            if (savedChoice === 'need') setActiveTransfer('need');
-        }
-
-        // ========== 4. ПОДТВЕРЖДЕНИЕ С АКТИВНОЙ ССЫЛКОЙ ВК ==========
-        const confirmBtn = document.getElementById('confirmBtn');
+        document.getElementById('confirmBtn').addEventListener('click', () => {
+            let transferText = '';
+            if (currentTransfer === 'self') transferText = '🚙 Приеду сам';
+            else if (currentTransfer === 'need') transferText = '🚌 Нужен трансфер';
+            else transferText = '🤔 ещё не выбран';
+            
+            modalTransferText.innerText = transferText;
+            copyTransferText.innerText = transferText;
+            confirmModal.classList.add('show');
+        });
         
-        if (confirmBtn) {
-            confirmBtn.addEventListener('click', () => {
-                const transferChoice = localStorage.getItem('transferChoice');
-                let transferText = '';
-                if (transferChoice === 'self') transferText = '🚙 Приеду сам';
-                else if (transferChoice === 'need') transferText = '🚌 Нужен трансфер';
-                else transferText = '🤔 ещё не выбран';
-                
-                // Создаём HTML-сообщение с активной ссылкой
-                const messageHtml = `
-                    <div style="font-family: inherit; line-height: 1.6;">
-                        <strong>💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜</strong><br><br>
-                        <strong>Имя:</strong> (напишите своё имя)<br>
-                        <strong>Трансфер:</strong> ${transferText}<br>
-                        <strong>📅 Дата:</strong> 4 июля 2026<br>
-                        <strong>📍 Место:</strong> Усадьба Александрово (Кимовск)<br><br>
-                        💜 Жду с нетерпением!<br><br>
-                        <hr style="margin: 12px 0; border-color: #d9c4ff;"><br>
-                        ✏️ Скопируйте этот текст и отправьте мне:<br>
-                        🔗 <a href="https://vk.com/nataliiiiie" target="_blank" style="color: #b69ad4; text-decoration: underline; font-weight: bold;">vk.com/nataliiiiie</a><br><br>
-                        <small style="color: #6c4e8f;">✨ Нажмите на ссылку, чтобы открыть профиль ✨</small>
-                    </div>
-                `;
-                
-                // Создаём временный div для копирования текста без HTML-тегов
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = messageHtml;
-                const plainText = tempDiv.textContent || tempDiv.innerText;
-                
-                // Показываем красивое уведомление
-                alert(`✨ Подтверждение готово! ✨\n\nСкопируйте это сообщение и отправьте Наталье в ВК:\n\n${plainText}\n\n🔗 Ссылка на профиль: vk.com/nataliiiiie`);
-            });
-        }
+        closeModalBtn.addEventListener('click', () => {
+            confirmModal.classList.remove('show');
+        });
+        confirmModal.addEventListener('click', (e) => {
+            if (e.target === confirmModal) confirmModal.classList.remove('show');
+        });
     </script>
 </body>
 </html>
