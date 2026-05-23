@@ -463,6 +463,13 @@
             margin-top: 20px;
         }
 
+        /* Стиль для активной ссылки в модальном окне */
+        .active-link {
+            color: #b69ad4;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
         @media (max-width: 500px) {
             .hero h1 { font-size: 2.2rem; }
             .photo { width: 120px; height: 120px; }
@@ -538,7 +545,7 @@
             <div class="section-title">📅 Тайминг дня</div>
             <div class="timing-list">
                 <div class="timing-item"><span class="timing-event">Сбор гостей</span><span class="timing-time">15:00</span></div>
-                <div class="timing-item"><span class="timing-event">Церемония бракосочетания</span><span class="timing-time">15:30</span></div>
+                <div class="timing-item"><span class="timing-event">Выездная церемония</span><span class="timing-time">15:30</span></div>
                 <div class="timing-item"><span class="timing-event">Прогулка, фотосессия</span><span class="timing-time">16:20</span></div>
                 <div class="timing-item"><span class="timing-event">Праздничный банкет</span><span class="timing-time">17:00</span></div>
                 <div class="timing-item"><span class="timing-event">Развлекательная программа</span><span class="timing-time">19:00</span></div>
@@ -568,20 +575,12 @@
             </div>
         </div>
 
-        <!-- МЕСТО ВСТРЕЧИ — НОВОМОСКОВСК (центр) и УСАДЬБА АЛЕКСАНДРОВО (Кимовск) -->
+        <!-- МЕСТО ВСТРЕЧИ — УСАДЬБА АЛЕКСАНДРОВО (Кимовск) -->
         <div class="section">
-            <div class="section-title">📍 Место встречи</div>
-            <div class="venue-name">Новомосковск, центр города</div>
+            <div class="section-title">📍 Место проведения</div>
+            <div class="venue-name">Усадьба Александрово</div>
             <div class="venue-address">
-                🏛️ Сбор гостей и выездная церемония<br>
-                <strong>центр Новомосковска</strong>
-            </div>
-            <div class="venue-detail">
-                ⬇️
-            </div>
-            <div class="venue-name" style="margin-top:15px;">Усадьба Александрово</div>
-            <div class="venue-address">
-                🌿 Банкет и основное торжество<br>
+                🌿 Выездная церемония и банкет<br>
                 <strong>город Кимовск, Тульская область</strong>
             </div>
             <div class="map-container" style="margin-top:20px; border-radius:25px; overflow:hidden;">
@@ -731,16 +730,17 @@
                 
                 // Создаём HTML-сообщение с активной ссылкой
                 const messageHtml = `
-                    <div style="font-family: inherit;">
-                        <p><strong>💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜</strong></p>
-                        <p>Имя: (напишите своё имя)</p>
-                        <p>Трансфер: ${transferText}</p>
-                        <p>📅 Дата: 4 июля 2026</p>
-                        <p>📍 Место: Новомосковск (центр) → Усадьба Александрово (Кимовск)</p>
-                        <p>💜 Жду с нетерпением!</p>
-                        <hr>
-                        <p>✏️ Скопируйте этот текст и отправьте мне:</p>
-                        <p>🔗 <a href="https://vk.com/nataliiiiie" target="_blank" style="color: #b69ad4;">vk.com/nataliiiiie</a></p>
+                    <div style="font-family: inherit; line-height: 1.6;">
+                        <strong>💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜</strong><br><br>
+                        <strong>Имя:</strong> (напишите своё имя)<br>
+                        <strong>Трансфер:</strong> ${transferText}<br>
+                        <strong>📅 Дата:</strong> 4 июля 2026<br>
+                        <strong>📍 Место:</strong> Усадьба Александрово (Кимовск)<br><br>
+                        💜 Жду с нетерпением!<br><br>
+                        <hr style="margin: 12px 0; border-color: #d9c4ff;"><br>
+                        ✏️ Скопируйте этот текст и отправьте мне:<br>
+                        🔗 <a href="https://vk.com/nataliiiiie" target="_blank" style="color: #b69ad4; text-decoration: underline; font-weight: bold;">vk.com/nataliiiiie</a><br><br>
+                        <small style="color: #6c4e8f;">✨ Нажмите на ссылку, чтобы открыть профиль ✨</small>
                     </div>
                 `;
                 
