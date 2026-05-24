@@ -420,25 +420,32 @@
         <button class="close-popup" id="closePopup">Открыть приглашение</button>
     </div>
 
-    <!-- МОДАЛЬНЫЕ ОКНА -->
+    <!-- МОДАЛЬНОЕ ОКНО ДЛЯ ПОДТВЕРЖДЕНИЯ (НЕВЕСТА) — ИСПРАВЛЕНО -->
     <div class="custom-modal" id="confirmModal">
         <div class="modal-content">
             <strong>💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜</strong>
             <div class="copy-text" id="copyTextBlock"></div>
             <button class="copy-btn" id="copyMessageBtn">📋 Копировать текст</button>
-            <a href="https://vk.com/write277437328" target="_blank" class="modal-link">💬 Открыть ВК (если установлено)</a>
-            <div class="manual-note">✨ Если диалог не открывается — скопируйте текст выше и отправьте вручную ✨</div>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
+                <a href="https://vk.com/write277437328" target="_blank" class="modal-link">💬 Написать невесте (мессенджер)</a>
+                <a href="https://vk.com/id277437328" target="_blank" class="modal-link" style="background: #9370db;">👤 Открыть профиль невесты</a>
+            </div>
+            <div class="manual-note">✨ Если диалог не открывается — нажмите «Открыть профиль», а затем «Написать сообщение» ✨</div>
             <button class="close-modal" id="closeModalBtn" style="margin-top:10px; background:#4a2c6d; color:white; padding:8px 20px; border-radius:40px; border:none;">Закрыть</button>
         </div>
     </div>
 
+    <!-- МОДАЛЬНОЕ ОКНО ДЛЯ ВОПРОСОВ К ЖЕНИХУ -->
     <div class="custom-modal" id="askGroomModal">
         <div class="modal-content">
             <strong>💜 ВОПРОС ИЛИ ПОЖЕЛАНИЕ ДЛЯ ЖЕНИХА 💜</strong>
             <div class="copy-text" id="askGroomTextBlock"></div>
             <button class="copy-btn" id="copyGroomMsgBtn">📋 Копировать текст</button>
-            <a href="https://vk.com/write80427230" target="_blank" class="modal-link">💬 Открыть ВК (если установлено)</a>
-            <div class="manual-note">✨ Если диалог не открывается — скопируйте текст выше и отправьте вручную ✨</div>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
+                <a href="https://vk.com/write80427230" target="_blank" class="modal-link">💬 Написать жениху (мессенджер)</a>
+                <a href="https://vk.com/id80427230" target="_blank" class="modal-link" style="background: #9370db;">👤 Открыть профиль жениха</a>
+            </div>
+            <div class="manual-note">✨ Если диалог не открывается — нажмите «Открыть профиль», а затем «Написать сообщение» ✨</div>
             <button class="close-modal" id="closeGroomModalBtn" style="margin-top:10px; background:#4a2c6d; color:white; padding:8px 20px; border-radius:40px; border:none;">Закрыть</button>
         </div>
     </div>
