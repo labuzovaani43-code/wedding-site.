@@ -36,8 +36,21 @@
         .main-content { opacity: 0; transition: opacity 0.8s ease; max-width: 1200px; margin: 0 auto; display: none; }
         .main-content.visible { opacity: 1; display: block; }
 
-        /* ГЛАВНЫЙ ЭКРАН */
-        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px; background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('bride.jpg'); background-size: cover; background-position: center; color: white; }
+        /* ГЛАВНЫЙ ЭКРАН — ФОТО bride.jpg (С ЗАГЛУШКОЙ) */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('bride.jpg');
+            background-size: cover;
+            background-position: center;
+            background-color: #7c5f9e; /* цвет-заглушка если фото не загрузится */
+            color: white;
+        }
         .wedding-day { font-family: 'Montserrat', sans-serif; font-size: 1rem; letter-spacing: 8px; color: #ffecb3; margin-bottom: 15px; }
         .hero h1 { font-size: 4rem; font-weight: 400; letter-spacing: 4px; margin-bottom: 20px; text-shadow: 2px 2px 8px rgba(0,0,0,0.3); color: #d9c4ff; }
         .hero-subtitle { font-size: 1.2rem; max-width: 500px; margin: 20px auto; line-height: 1.5; text-shadow: 1px 1px 4px rgba(0,0,0,0.3); color: #f0e6d2; }
@@ -55,13 +68,14 @@
         .child-card p { margin-top: 15px; font-size: 1.3rem; color: #4a2c6d; }
         .love-story { margin-top: 35px; font-size: 1.15rem; color: #4a2c6d; font-style: italic; }
 
-        /* ТАЙМЕР НА ФОНЕ */
+        /* ТАЙМЕР НА ФОНЕ — ФОТО groom.jpg (С ЗАГЛУШКОЙ) */
         .timer-bg-section {
             min-height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('groom.jpg');
             background-size: cover;
             background-position: center 45%;
             background-repeat: no-repeat;
+            background-color: #7c5f9e;
             padding: 80px 20px 40px 20px;
             display: flex;
             flex-direction: column;
@@ -185,7 +199,7 @@
         .thankyou-text { max-width: 550px; margin: 30px auto 20px; font-size: 1.1rem; line-height: 1.5; color: #4a2c6d; }
         .rsvp-note { margin-top: 20px; font-size: 1.1rem; color: #7c5f9e; }
 
-        /* СПИСОК ГОСТЕЙ — ВИДЕН ВЕЗДЕ */
+        /* СПИСОК ГОСТЕЙ */
         .guestlist-section {
             background: #f3eaff;
             padding: 60px 20px;
@@ -469,7 +483,7 @@
             <div class="rsvp-note">💜 Ответьте до <strong>1 июня 2026</strong></div>
         </div>
 
-        <!-- СПИСОК ГОСТЕЙ — ВИДЕН НА ВСЕХ УСТРОЙСТВАХ -->
+        <!-- СПИСОК ГОСТЕЙ -->
         <div class="fade-section guestlist-section">
             <div class="guestlist-container">
                 <h2>📋 Список гостей</h2>
@@ -688,7 +702,6 @@
             });
         }
 
-        // Делаем функции глобальными для onclick
         window.editGuest = editGuest;
         window.deleteGuest = deleteGuest;
 
