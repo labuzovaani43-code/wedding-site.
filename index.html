@@ -103,7 +103,7 @@
         .timing-time { font-weight: 600; color: #b69ad4; font-family: monospace; font-size: 1.2rem; }
         .timing-note { font-size: 0.85rem; margin-top: 8px; margin-bottom: 12px; color: #6c4e8f; padding-left: 15px; border-left: 3px solid #d9c4ff; width: 100%; }
 
-        /* ДРЕСС-КОД */
+        /* ДРЕСС-КОД — С ПОДСКАЗКАМИ ПРИ НАВЕДЕНИИ И КЛИКЕ */
         .dresscode-section { padding: 70px 20px; background: #faf7f2; text-align: center; }
         .dresscode-section h2 { font-size: 2.2rem; color: #4a2c6d; margin-bottom: 25px; letter-spacing: 2px; }
         .dresscode-row { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; align-items: flex-start; margin-bottom: 35px; }
@@ -113,8 +113,44 @@
         .men-card { padding-bottom: 20px; }
         .dresscode-card h3 { font-size: 1.5rem; color: #b69ad4; margin-bottom: 15px; font-weight: 500; }
         .color-list { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
-        .color-item { display: flex; align-items: center; gap: 12px; cursor: pointer; transition: transform 0.2s ease; padding: 5px 10px; border-radius: 40px; }
-        .color-item:active { transform: scale(0.98); background: #f3eaff; }
+        .color-item { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            cursor: pointer; 
+            transition: transform 0.2s ease; 
+            padding: 5px 10px; 
+            border-radius: 40px;
+            position: relative;
+        }
+        .color-item:hover { 
+            transform: translateX(8px); 
+            background: #f3eaff; 
+        }
+        /* Всплывающая подсказка для компьютера (при наведении) */
+        .color-item .tooltip {
+            visibility: hidden;
+            position: absolute;
+            left: 70px;
+            top: -30px;
+            background: #4a2c6d;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            font-family: 'Montserrat', sans-serif;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.2s;
+            transform: translateY(5px);
+            pointer-events: none;
+        }
+        .color-item:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
         .paint-swatch { width: 45px; height: 45px; border-radius: 25px; box-shadow: 0 3px 8px rgba(0,0,0,0.1); transition: transform 0.2s; pointer-events: none; }
         .color-label { font-size: 0.9rem; color: #4a2c6d; font-family: 'Montserrat', sans-serif; pointer-events: none; }
         .dresscode-card p { font-size: 1rem; color: #4a2c6d; margin-top: 15px; line-height: 1.4; }
@@ -174,6 +210,7 @@
             .timing-item { flex-direction: column; gap: 5px; text-align: left; }
             .dresscode-card { width: 300px; }
             .color-label { font-size: 0.8rem; }
+            .color-item .tooltip { display: none; } /* на телефоне скрываем тултип */
         }
     </style>
 </head>
@@ -269,22 +306,22 @@
                 <div class="dresscode-card women-card">
                     <h3>🌸 ДЛЯ ЖЕНЩИН</h3>
                     <div class="color-list">
-                        <div class="color-item" data-tip="Нежное пудровое платье-миди с кружевом"><div class="paint-swatch" style="background: #FADADD;"></div><span class="color-label">🌷 Пудровый</span></div>
-                        <div class="color-item" data-tip="Розовое струящееся платье в пол"><div class="paint-swatch" style="background: #F5C6CB;"></div><span class="color-label">💖 Розовый</span></div>
-                        <div class="color-item" data-tip="Персиковое платье-футляр"><div class="paint-swatch" style="background: #FFE0B2;"></div><span class="color-label">🍑 Персиковый</span></div>
-                        <div class="color-item" data-tip="Лавандовое платье с цветочным принтом"><div class="paint-swatch" style="background: #E6E6FA;"></div><span class="color-label">💜 Лавандовый</span></div>
-                        <div class="color-item" data-tip="Свежее мятное платье-макси"><div class="paint-swatch" style="background: #C8E6C9;"></div><span class="color-label">🍃 Мятный</span></div>
-                        <div class="color-item" data-tip="Элегантное бежевое платье-комбинация"><div class="paint-swatch" style="background: #FFF3E0;"></div><span class="color-label">🧸 Бежевый</span></div>
+                        <div class="color-item" data-tip="Нежное пудровое платье-миди с кружевом"><div class="paint-swatch" style="background: #FADADD;"></div><span class="color-label">🌷 Пудровый</span><span class="tooltip">Нежное пудровое платье-миди с кружевом</span></div>
+                        <div class="color-item" data-tip="Розовое струящееся платье в пол"><div class="paint-swatch" style="background: #F5C6CB;"></div><span class="color-label">💖 Розовый</span><span class="tooltip">Розовое струящееся платье в пол</span></div>
+                        <div class="color-item" data-tip="Персиковое платье-футляр"><div class="paint-swatch" style="background: #FFE0B2;"></div><span class="color-label">🍑 Персиковый</span><span class="tooltip">Персиковое платье-футляр</span></div>
+                        <div class="color-item" data-tip="Лавандовое платье с цветочным принтом"><div class="paint-swatch" style="background: #E6E6FA;"></div><span class="color-label">💜 Лавандовый</span><span class="tooltip">Лавандовое платье с цветочным принтом</span></div>
+                        <div class="color-item" data-tip="Свежее мятное платье-макси"><div class="paint-swatch" style="background: #C8E6C9;"></div><span class="color-label">🍃 Мятный</span><span class="tooltip">Свежее мятное платье-макси</span></div>
+                        <div class="color-item" data-tip="Элегантное бежевое платье-комбинация"><div class="paint-swatch" style="background: #FFF3E0;"></div><span class="color-label">🧸 Бежевый</span><span class="tooltip">Элегантное бежевое платье-комбинация</span></div>
                     </div>
                     <p><strong>Платья и костюмы в пастельных оттенках</strong></p>
                 </div>
                 <div class="dresscode-card men-card">
                     <h3>👔 ДЛЯ МУЖЧИН</h3>
                     <div class="color-list">
-                        <div class="color-item" data-tip="Классический чёрный костюм-двойка"><div class="paint-swatch" style="background: #2C2C2C;"></div><span class="color-label">⚫ Чёрный</span></div>
-                        <div class="color-item" data-tip="Элегантный серый костюм в тонкую полоску"><div class="paint-swatch" style="background: #9E9E9E;"></div><span class="color-label">⚪ Серый</span></div>
-                        <div class="color-item" data-tip="Благородный коричневый костюм-тройка"><div class="paint-swatch" style="background: #8D6E63;"></div><span class="color-label">🤎 Коричневый</span></div>
-                        <div class="color-item" data-tip="Стильный белый льняной костюм"><div class="paint-swatch" style="background: #FFFFFF;"></div><span class="color-label">🤍 Белый</span></div>
+                        <div class="color-item" data-tip="Классический чёрный костюм-двойка"><div class="paint-swatch" style="background: #2C2C2C;"></div><span class="color-label">⚫ Чёрный</span><span class="tooltip">Классический чёрный костюм-двойка</span></div>
+                        <div class="color-item" data-tip="Элегантный серый костюм в тонкую полоску"><div class="paint-swatch" style="background: #9E9E9E;"></div><span class="color-label">⚪ Серый</span><span class="tooltip">Элегантный серый костюм в тонкую полоску</span></div>
+                        <div class="color-item" data-tip="Благородный коричневый костюм-тройка"><div class="paint-swatch" style="background: #8D6E63;"></div><span class="color-label">🤎 Коричневый</span><span class="tooltip">Благородный коричневый костюм-тройка</span></div>
+                        <div class="color-item" data-tip="Стильный белый льняной костюм"><div class="paint-swatch" style="background: #FFFFFF;"></div><span class="color-label">🤍 Белый</span><span class="tooltip">Стильный белый льняной костюм</span></div>
                     </div>
                     <p><strong>Классические костюмы и спокойные благородные оттенки</strong></p>
                 </div>
@@ -511,13 +548,19 @@
             });
         });
         
-        // Подсказки при клике на цвета для телефона
+        // ПОДСКАЗКИ ДЛЯ ЦВЕТОВ: на телефоне — клик, на компьютере — наведение уже есть
         const colorItems = document.querySelectorAll('.color-item');
+        // Проверяем, телефон ли это (по ширине экрана или наличию touch)
+        const isMobile = window.matchMedia('(max-width: 768px)').matches || ('ontouchstart' in window);
+        
         colorItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const tip = item.getAttribute('data-tip');
-                if (tip) alert(tip);
-            });
+            // На телефоне добавляем обработчик клика
+            if (isMobile) {
+                item.addEventListener('click', (e) => {
+                    const tip = item.getAttribute('data-tip');
+                    if (tip) alert(tip);
+                });
+            }
         });
     </script>
 </body>
