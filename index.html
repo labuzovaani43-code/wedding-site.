@@ -60,7 +60,7 @@
             min-height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('groom.jpg');
             background-size: cover;
-            background-position: center 30%;
+            background-position: center 40%;
             background-repeat: no-repeat;
             padding: 80px 20px;
             display: flex;
@@ -75,7 +75,7 @@
             font-weight: 400;
             margin-bottom: 20px;
             max-width: 600px;
-            margin-top: -50px;
+            margin-top: -80px;
         }
         .timer {
             display: flex;
@@ -87,7 +87,7 @@
             padding: 25px 35px;
             border-radius: 60px;
             margin-top: 30px;
-            margin-bottom: -50px;
+            margin-bottom: -80px;
         }
         .timer-box { text-align: center; background: rgba(255,255,255,0.15); padding: 15px 25px; border-radius: 20px; min-width: 100px; transition: transform 0.3s ease; }
         .timer-box:hover { transform: scale(1.05); }
@@ -104,7 +104,7 @@
         .timing-time { font-weight: 600; color: #b69ad4; font-family: monospace; font-size: 1.2rem; }
         .timing-note { font-size: 0.85rem; margin-top: 8px; margin-bottom: 12px; color: #6c4e8f; padding-left: 15px; border-left: 3px solid #d9c4ff; width: 100%; }
 
-        /* ДРЕСС-КОД — ДЛЯ КОМПЬЮТЕРА (HOVER) И ТЕЛЕФОНА (КЛИК) */
+        /* ДРЕСС-КОД */
         .dresscode-section { padding: 70px 20px; background: #faf7f2; text-align: center; }
         .dresscode-section h2 { font-size: 2.2rem; color: #4a2c6d; margin-bottom: 25px; letter-spacing: 2px; }
         .dresscode-row { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; align-items: flex-start; margin-bottom: 35px; }
@@ -128,7 +128,6 @@
             transform: translateX(8px); 
             background: #f3eaff; 
         }
-        /* Всплывающая подсказка для компьютера (при наведении) */
         .color-item .tooltip {
             visibility: hidden;
             position: absolute;
@@ -202,7 +201,6 @@
         footer { background: #2e1f3d; color: #b89b7b; text-align: center; padding: 30px 20px; }
         footer p { margin: 5px 0; font-size: 1.1rem; }
 
-        /* СКРЫВАЕМ ТУЛТИП НА ТЕЛЕФОНЕ */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
             .timer-number { font-size: 2rem; }
@@ -212,7 +210,7 @@
             .timing-item { flex-direction: column; gap: 5px; text-align: left; }
             .dresscode-card { width: 300px; }
             .color-label { font-size: 0.8rem; }
-            .color-item .tooltip { display: none; } /* на телефоне скрываем тултип */
+            .color-item .tooltip { display: none; }
         }
     </style>
 </head>
@@ -345,12 +343,11 @@
             </div>
         </div>
 
-        <!-- БЛОК ДЛЯ ЖЕНИХА С ФОРМОЙ -->
+        <!-- БЛОК ДЛЯ ЖЕНИХА С ФОРМОЙ (ТЕЛЕФОН УБРАН) -->
         <div class="fade-section venue-section" style="background:#faf7f2;">
             <div class="venue-card">
                 <h2 style="font-size:1.8rem;">🎤 По вопросам и подаркам</h2>
                 <p style="font-size:2rem; color:#4a2c6d;">Владислав</p>
-                <p style="font-size:1.4rem; color:#b69ad4;">+7 (910) 945-53-96</p>
                 <p style="color:#6c4e8f;">жених</p>
                 
                 <div style="margin-top: 25px;">
@@ -365,7 +362,7 @@
             </div>
         </div>
 
-        <!-- БЛОК ДЛЯ НЕВЕСТЫ С ФОРМОЙ -->
+        <!-- БЛОК ДЛЯ НЕВЕСТЫ С ФОРМОЙ (ТЕКСТ УКОРОЧЕН) -->
         <div class="fade-section rsvp-section">
             <h2>💌 Подтвердите присутствие</h2>
             <div class="form-group"><input type="text" id="guestName" placeholder="Ваше имя"></div>
@@ -373,7 +370,7 @@
             <div id="transferNote" style="margin-bottom:15px; color:#7c5f9e;"></div>
             <button class="confirm-btn" id="confirmBtn">📨 Подтвердить присутствие</button>
             <div class="thankyou-text"><p>Спасибо, что разделите этот день вместе с нами.</p><p style="font-size:1.3rem; margin:15px 0;">💜 С любовью, Наталья и Влад 💜</p></div>
-            <div class="rsvp-note">💜 Нажмите «Подтвердить», скопируйте текст и отправьте невесте в ВК<br>Ответьте до <strong>1 июня 2026</strong></div>
+            <div class="rsvp-note">💜 Ответьте до <strong>1 июня 2026</strong></div>
         </div>
 
         <footer><p>Владислав & Наталья 💜</p><p>+7 (953) 421-82-93 | +7 (910) 945-53-96</p></footer>
