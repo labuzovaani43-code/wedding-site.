@@ -17,7 +17,6 @@
         .stagger-item { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
         .stagger-item.visible { opacity: 1; transform: translateY(0); }
 
-        /* КОНВЕРТ */
         .envelope-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #e8d9ff; z-index: 1000; display: flex; justify-content: center; align-items: center; cursor: pointer; animation: fadeInScale 0.6s ease; }
         .envelope { width: 320px; height: 220px; background: #d9c4ff; border-radius: 12px; position: relative; box-shadow: 0 20px 35px rgba(0,0,0,0.25); transition: transform 0.3s ease; }
         .envelope:hover { transform: scale(1.02); }
@@ -36,7 +35,6 @@
         .main-content { opacity: 0; transition: opacity 0.8s ease; max-width: 1200px; margin: 0 auto; display: none; }
         .main-content.visible { opacity: 1; display: block; }
 
-        /* ГЛАВНЫЙ ЭКРАН */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -56,7 +54,6 @@
         .hero-subtitle { font-size: 1.2rem; max-width: 500px; margin: 20px auto; line-height: 1.5; text-shadow: 1px 1px 4px rgba(0,0,0,0.3); color: #f0e6d2; }
         .hero-date { font-size: 1.2rem; margin-top: 25px; letter-spacing: 2px; color: #ffecb3; }
 
-        /* НАША ИСТОРИЯ */
         .story-section { padding: 60px 20px; background: #faf7f2; text-align: center; }
         .story-section h2 { font-size: 2rem; color: #4a2c6d; margin-bottom: 20px; }
         .story-text { max-width: 700px; margin: 0 auto 30px; font-size: 1.15rem; line-height: 1.6; color: #5e4b3c; }
@@ -68,7 +65,6 @@
         .child-card p { margin-top: 15px; font-size: 1.3rem; color: #4a2c6d; }
         .love-story { margin-top: 35px; font-size: 1.15rem; color: #4a2c6d; font-style: italic; }
 
-        /* ТАЙМЕР НА ФОНЕ */
         .timer-bg-section {
             min-height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('groom.jpg');
@@ -108,7 +104,6 @@
         .timer-number { font-size: 2.5rem; font-weight: 600; font-family: 'Montserrat', sans-serif; color: #ffecb3; }
         .timer-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: #f0e6d2; }
 
-        /* ТАЙМИНГ */
         .timing-section { padding: 80px 20px; background: #f3eaff; text-align: center; }
         .timing-section h2 { font-size: 2rem; color: #4a2c6d; margin-bottom: 30px; }
         .timing-list-center { max-width: 700px; margin: 0 auto; background: white; border-radius: 40px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: left; transition: transform 0.3s ease; }
@@ -118,7 +113,6 @@
         .timing-time { font-weight: 600; color: #b69ad4; font-family: monospace; font-size: 1.2rem; }
         .timing-note { font-size: 0.85rem; margin-top: 8px; margin-bottom: 12px; color: #6c4e8f; padding-left: 15px; border-left: 3px solid #d9c4ff; width: 100%; }
 
-        /* ДРЕСС-КОД */
         .dresscode-section { padding: 70px 20px; background: #faf7f2; text-align: center; }
         .dresscode-section h2 { font-size: 2.2rem; color: #4a2c6d; margin-bottom: 25px; letter-spacing: 2px; }
         .dresscode-row { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; align-items: flex-start; margin-bottom: 35px; }
@@ -168,7 +162,6 @@
         .dresscode-text { max-width: 600px; margin: 20px auto 0; font-size: 1.2rem; line-height: 1.6; color: #4a2c6d; }
         .dresscode-note { margin-top: 25px; font-size: 1.2rem; color: #b69ad4; font-weight: 500; background: #f3eaff; display: inline-block; padding: 8px 25px; border-radius: 40px; }
 
-        /* МЕСТО */
         .venue-section { background: #f3eaff; padding: 60px 20px; text-align: center; }
         .venue-card { max-width: 650px; margin: 0 auto; background: white; border-radius: 30px; padding: 35px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
         .venue-card:hover { transform: translateY(-5px); }
@@ -177,13 +170,11 @@
         .map-container iframe { width: 100%; height: 250px; border: none; }
         .map-link { display: inline-block; margin-top: 10px; color: #b69ad4; text-decoration: none; border-bottom: 1px dotted; }
 
-        /* ПЛЕЕР */
         .music-player { position: fixed; bottom: 20px; right: 20px; z-index: 1001; background: rgba(74, 44, 109, 0.85); backdrop-filter: blur(10px); border-radius: 50px; padding: 8px 16px; display: flex; align-items: center; gap: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.3); border: 1px solid #d9c4ff; transition: transform 0.3s ease; }
         .music-player:hover { transform: scale(1.05); }
         .music-btn { background: #b69ad4; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: 0.3s; color: white; }
         .volume-slider { width: 70px; height: 4px; -webkit-appearance: none; background: #d9c4ff; border-radius: 2px; outline: none; }
 
-        /* ФОРМЫ ПОДТВЕРЖДЕНИЯ */
         .rsvp-section { background: #faf7f2; padding: 60px 20px; text-align: center; }
         .rsvp-section h2 { font-size: 2.2rem; color: #4a2c6d; margin-bottom: 20px; }
         .form-group { max-width: 350px; margin: 0 auto 20px; }
@@ -199,7 +190,6 @@
         .thankyou-text { max-width: 550px; margin: 30px auto 20px; font-size: 1.1rem; line-height: 1.5; color: #4a2c6d; }
         .rsvp-note { margin-top: 20px; font-size: 1.1rem; color: #7c5f9e; }
 
-        /* СПИСОК ГОСТЕЙ */
         .guestlist-section {
             background: #f3eaff;
             padding: 60px 20px;
@@ -293,7 +283,6 @@
             transform: translateY(-2px);
         }
 
-        /* МОДАЛЬНЫЕ ОКНА */
         .custom-modal {
             position: fixed;
             top: 0;
@@ -402,14 +391,12 @@
 </head>
 <body>
 
-    <!-- ПЛЕЕР -->
     <div class="music-player">
         <button class="music-btn" id="playPauseBtn">🔊</button>
         <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="30">
     </div>
     <audio id="weddingAudio" loop preload="auto"><source src="wedding-song.mp3" type="audio/mpeg"></audio>
 
-    <!-- КОНВЕРТ -->
     <div class="envelope-screen" id="envelopeScreen">
         <div class="envelope"><div class="flap" id="flap"></div><div class="letter" id="letter"><span>💌</span><br>Наталья & Влад</div><div class="seal" id="seal">❤️</div></div>
     </div>
@@ -493,7 +480,6 @@
             </div>
         </div>
 
-        <!-- ДРЕСС-КОД -->
         <div class="fade-section dresscode-section">
             <h2>👗 ДРЕСС-КОД</h2>
             <div class="dresscode-row">
@@ -537,13 +523,11 @@
             </div>
         </div>
 
-        <!-- БЛОК ДЛЯ ЖЕНИХА -->
         <div class="fade-section venue-section" style="background:#faf7f2;">
             <div class="venue-card">
                 <h2 style="font-size:1.8rem;">🎤 По вопросам и подаркам</h2>
                 <p style="font-size:2rem; color:#4a2c6d;">Владислав</p>
                 <p style="color:#6c4e8f;">жених</p>
-                
                 <div style="margin-top: 25px;">
                     <div class="form-group">
                         <input type="text" id="groomName" placeholder="Ваше имя">
@@ -556,7 +540,6 @@
             </div>
         </div>
 
-        <!-- БЛОК ДЛЯ НЕВЕСТЫ -->
         <div class="fade-section rsvp-section">
             <h2>💌 Подтвердите присутствие</h2>
             <div class="form-group"><input type="text" id="guestName" placeholder="Ваше имя"></div>
@@ -567,22 +550,18 @@
             <div class="rsvp-note">💜 Ответьте до <strong>1 июня 2026</strong></div>
         </div>
 
-        <!-- СПИСОК ГОСТЕЙ -->
         <div class="fade-section guestlist-section">
             <div class="guestlist-container">
                 <h2>📋 Список гостей</h2>
                 <div class="guestlist-sub">* список обновляется автоматически при подтверждении</div>
-                
                 <div class="guest-category">
                     <h3>🚙 Приедут сами</h3>
                     <div id="selfGuestsList"></div>
                 </div>
-                
                 <div class="guest-category">
                     <h3>🚌 Нужен трансфер</h3>
                     <div id="needGuestsList"></div>
                 </div>
-                
                 <div class="guest-stats" id="guestStats"></div>
                 <button class="clear-all-btn" id="clearAllGuestsBtn">🗑️ Очистить список гостей</button>
                 <div style="font-size:0.8rem; color:#7c5f9e; margin-top:15px;">💡 При повторном подтверждении данные обновляются, дубли не создаются</div>
@@ -594,7 +573,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script>
-        // МУЗЫКА
         const audio = document.getElementById('weddingAudio');
         const playPauseBtn = document.getElementById('playPauseBtn');
         const volumeSlider = document.getElementById('volumeSlider');
@@ -613,7 +591,6 @@
         });
         volumeSlider?.addEventListener('input', (e) => { if(audio) audio.volume = e.target.value / 100; });
 
-        // ТАЙМЕР
         function updateTimer() {
             const weddingDate = new Date("2026-07-04T00:00:00").getTime();
             const now = new Date().getTime();
@@ -630,7 +607,6 @@
         }
         updateTimer(); setInterval(updateTimer, 1000);
 
-        // КОНВЕРТ
         const sealBtn = document.getElementById('seal');
         const envelopeScreenDiv = document.getElementById('envelopeScreen');
         const popup = document.getElementById('popupPaper');
@@ -666,7 +642,6 @@
             });
         }
 
-        // УПРАВЛЕНИЕ СПИСКОМ ГОСТЕЙ
         let guests = [];
 
         function loadGuests() {
@@ -789,7 +764,6 @@
         window.editGuest = editGuest;
         window.deleteGuest = deleteGuest;
 
-        // ВЫБОР ТРАНСФЕРА
         const selfBtn = document.getElementById('selfBtn');
         const needBtn = document.getElementById('needBtn');
         const transferNote = document.getElementById('transferNote');
@@ -810,7 +784,6 @@
         if (selfBtn) selfBtn.addEventListener('click', () => setActiveTransfer('self'));
         if (needBtn) needBtn.addEventListener('click', () => setActiveTransfer('need'));
 
-        // МОДАЛЬНОЕ ОКНО ДЛЯ НЕВЕСТЫ
         const confirmModal = document.getElementById('confirmModal');
         const closeConfirmModal = document.getElementById('closeModalBtn');
         const copyBlock = document.getElementById('copyTextBlock');
@@ -847,7 +820,6 @@
         
         if (closeConfirmModal) closeConfirmModal.addEventListener('click', () => confirmModal.classList.remove('show'));
 
-        // МОДАЛЬНОЕ ОКНО ДЛЯ ЖЕНИХА
         const askGroomModal = document.getElementById('askGroomModal');
         const closeGroomModal = document.getElementById('closeGroomModalBtn');
         const askGroomTextBlock = document.getElementById('askGroomTextBlock');
@@ -879,7 +851,6 @@
         
         if (closeGroomModal) closeGroomModal.addEventListener('click', () => askGroomModal.classList.remove('show'));
         
-        // Закрытие модальных окон при клике на фон
         const modals = document.querySelectorAll('.custom-modal');
         modals.forEach(modal => {
             modal.addEventListener('click', (e) => {
@@ -887,7 +858,6 @@
             });
         });
         
-        // ДЛЯ ТЕЛЕФОНА: ПРИ КЛИКЕ НА ЦВЕТ — ПОКАЗЫВАЕМ ПОДСКАЗКУ
         const isMobile = window.matchMedia('(max-width: 768px)').matches || ('ontouchstart' in window);
         const colorItems = document.querySelectorAll('.color-item');
         
@@ -900,13 +870,11 @@
             });
         }
         
-        // Кнопка очистки списка
         const clearAllBtn = document.getElementById('clearAllGuestsBtn');
         if (clearAllBtn) {
             clearAllBtn.addEventListener('click', clearAllGuests);
         }
         
-        // Загружаем список гостей при старте
         loadGuests();
     </script>
 </body>
