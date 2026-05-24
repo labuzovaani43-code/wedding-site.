@@ -116,7 +116,7 @@
             opacity: 1;
             pointer-events: auto;
         }
-        .popup-paper.h3 { font-size: 1.8rem; color: #7c5f9e; margin-bottom: 15px; }
+        .popup-paper h3 { font-size: 1.8rem; color: #7c5f9e; margin-bottom: 15px; }
         .popup-paper p { font-size: 1.1rem; color: #4a2c6d; margin-bottom: 20px; }
         .close-popup {
             background: #b69ad4;
@@ -197,12 +197,6 @@
             color: #4a2c6d;
             margin-bottom: 20px;
             font-weight: 500;
-        }
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: #7c5f9e;
-            margin-bottom: 50px;
-            font-style: italic;
         }
 
         /* ФОТОГРАФИИ */
@@ -316,7 +310,7 @@
             margin-left: auto;
             margin-right: auto;
         }
-        .form-group input, .form-group select {
+        .form-group input {
             width: 100%;
             padding: 15px 20px;
             border-radius: 50px;
@@ -369,6 +363,66 @@
             margin-bottom: 20px;
         }
 
+        /* МОДАЛЬНОЕ ОКНО ДЛЯ ПОДТВЕРЖДЕНИЯ */
+        .custom-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 3000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .custom-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background: #fffef7;
+            border-radius: 30px;
+            padding: 30px 25px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            border: 2px solid #d9c4ff;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.3);
+        }
+        .copy-text {
+            background: #f0e6ff;
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            text-align: left;
+            margin: 15px 0;
+            border: 1px solid #d9c4ff;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .modal-link {
+            display: inline-block;
+            background: #b69ad4;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 40px;
+            text-decoration: none;
+            margin: 15px 0;
+        }
+        .close-modal {
+            background: #4a2c6d;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
         footer {
             background: #2e1f3d;
             color: #b89b7b;
@@ -396,10 +450,18 @@
     </div>
 
     <div class="popup-paper" id="popupPaper">
-        <div class="popup-paper">
-            <h3>📜 Приглашение для тебя</h3>
-            <p>Дорогой гость!<br>Ты очень важен для нас.<br>Ждём тебя на нашем празднике! 💜</p>
-            <button class="close-popup" id="closePopup">Открыть приглашение</button>
+        <h3>📜 Приглашение для тебя</h3>
+        <p>Дорогой гость!<br>Ты очень важен для нас.<br>Ждём тебя на нашем празднике! 💜</p>
+        <button class="close-popup" id="closePopup">Открыть приглашение</button>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО ДЛЯ ПОДТВЕРЖДЕНИЯ -->
+    <div class="custom-modal" id="confirmModal">
+        <div class="modal-content">
+            <p><strong>💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜</strong></p>
+            <div class="copy-text" id="copyTextBlock"></div>
+            <a href="https://vk.com/nataliiiiie" target="_blank" class="modal-link">📱 Написать Наталье в ВК</a>
+            <button class="close-modal" id="closeModalBtn">✖️ Закрыть</button>
         </div>
     </div>
 
@@ -429,7 +491,7 @@
             </div>
         </div>
 
-        <!-- ДЕТСКИЕ ФОТО (БОЛЬШИЕ) -->
+        <!-- ДЕТСКИЕ ФОТО -->
         <div class="section section-lavender">
             <div class="container">
                 <h2 class="section-title">💜 Помните эту пару? 💜</h2>
@@ -510,10 +572,10 @@
                 </div>
                 <div class="transfer-note" id="transferNote"></div>
                 
-                <button class="confirm-btn" id="confirmBtn">📨 Отправить подтверждение</button>
+                <button class="confirm-btn" id="confirmBtn">📨 Подтвердить присутствие</button>
                 
                 <p style="margin-top:30px; font-size:0.9rem; color:#7c5f9e;">
-                    💜 Подтверждение автоматически придёт невесте в ВКонтакте<br>
+                    💜 После нажатия кнопки скопируйте текст и отправьте невесте в ВК<br>
                     <small>Ответьте до <strong>1 июня 2026</strong></small>
                 </p>
             </div>
@@ -578,62 +640,43 @@
         if (savedChoice === 'self') setActiveTransfer('self');
         if (savedChoice === 'need') setActiveTransfer('need');
 
-        // ========== 3. ОТПРАВКА УВЕДОМЛЕНИЯ В ВК ==========
-        // 👇👇👇 НАСТРОЙКИ ДЛЯ НЕВЕСТЫ (ЗАПОЛНИТЬ!) 👇👇👇
-        // Токен сообщества ВКонтакте (получить в управлении группой -> Работа с API)
-        const VK_GROUP_TOKEN = 'YOUR_GROUP_TOKEN_HERE';
-        // ID невесты ВКонтакте (число из адресной строки, например 123456789)
-        const BRIDE_VK_ID = 'YOUR_BRIDE_VK_ID_HERE';
-        
-        async function sendToVK(message) {
-            if (VK_GROUP_TOKEN === 'YOUR_GROUP_TOKEN_HERE' || BRIDE_VK_ID === 'YOUR_BRIDE_VK_ID_HERE') {
-                console.error('❌ Настройки ВК не заполнены!');
-                alert('⚠️ Уведомление не отправлено: не настроен получатель. Невеста, заполните токен и ID в коде!');
-                return false;
-            }
-            
-            const url = `https://api.vk.com/method/messages.send`;
-            const params = new URLSearchParams();
-            params.append('access_token', VK_GROUP_TOKEN);
-            params.append('user_id', BRIDE_VK_ID);
-            params.append('message', message);
-            params.append('random_id', Date.now());
-            params.append('v', '5.131');
-            
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: params
-                });
-                const result = await response.json();
-                if (result.response) {
-                    alert('✅ Подтверждение отправлено невесте! Спасибо! 💜');
-                    return true;
-                } else {
-                    console.error('Ошибка VK API:', result);
-                    throw new Error(result.error?.error_msg || 'Неизвестная ошибка');
-                }
-            } catch (error) {
-                console.error('Ошибка:', error);
-                alert('❌ Не удалось отправить уведомление. Пожалуйста, напишите невесте в ВК: vk.com/nataliiiiie');
-                return false;
-            }
-        }
-        
+        // ========== 3. ПОДТВЕРЖДЕНИЕ (КОПИРОВАНИЕ ТЕКСТА + ВК) ==========
+        const confirmModal = document.getElementById('confirmModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const copyTextBlock = document.getElementById('copyTextBlock');
         const confirmBtn = document.getElementById('confirmBtn');
         
         if (confirmBtn) {
-            confirmBtn.addEventListener('click', async () => {
+            confirmBtn.addEventListener('click', () => {
                 const guestName = document.getElementById('guestName')?.value.trim() || 'Гость';
                 let transferText = '';
                 if (currentTransfer === 'self') transferText = '🚙 Приеду сам';
                 else if (currentTransfer === 'need') transferText = '🚌 Нужен трансфер';
                 else transferText = '❓ Не выбран';
                 
-                const message = `💜 НОВОЕ ПОДТВЕРЖДЕНИЕ! 💜\n\n👤 Имя: ${guestName}\n🚗 Трансфер: ${transferText}\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\nЖду с нетерпением! 💜`;
+                const message = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜
+
+Имя: ${guestName}
+Трансфер: ${transferText}
+📅 Дата: 4 июля 2026
+📍 Место: Усадьба Александрово (Кимовск)
+
+💜 Жду с нетерпением!`;
                 
-                await sendToVK(message);
+                if (copyTextBlock) copyTextBlock.innerText = message;
+                if (confirmModal) confirmModal.classList.add('show');
+            });
+        }
+        
+        if (closeModalBtn) {
+            closeModalBtn.addEventListener('click', () => {
+                confirmModal.classList.remove('show');
+            });
+        }
+        
+        if (confirmModal) {
+            confirmModal.addEventListener('click', (e) => {
+                if (e.target === confirmModal) confirmModal.classList.remove('show');
             });
         }
     </script>
