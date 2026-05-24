@@ -146,12 +146,17 @@
         .thankyou-text { max-width: 550px; margin: 30px auto 20px; font-size: 1.1rem; line-height: 1.5; color: #4a2c6d; }
         .rsvp-note { margin-top: 20px; font-size: 1.1rem; color: #7c5f9e; }
 
+        /* МОДАЛЬНЫЕ ОКНА */
         .custom-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 3000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
         .custom-modal.show { opacity: 1; visibility: visible; }
         .modal-content { background: white; border-radius: 30px; padding: 30px; max-width: 400px; width: 90%; text-align: center; animation: fadeInScale 0.4s ease; }
         .copy-text { background: #f0e6ff; padding: 15px; border-radius: 15px; font-size: 0.9rem; text-align: left; margin: 15px 0; white-space: pre-wrap; }
+        .copy-btn { background: #b69ad4; color: white; border: none; padding: 10px 20px; border-radius: 40px; cursor: pointer; margin: 5px; font-family: inherit; transition: 0.3s; }
+        .copy-btn:hover { background: #9b7abf; transform: scale(1.02); }
         .modal-link { display: inline-block; background: #b69ad4; color: white; padding: 12px 25px; border-radius: 40px; text-decoration: none; transition: 0.3s; margin-top: 10px; }
         .modal-link:hover { background: #9b7abf; transform: scale(1.02); }
+        .ask-btn { background: #b69ad4; color: white; padding: 12px 25px; border-radius: 50px; border: none; font-size: 1rem; cursor: pointer; margin-top: 15px; transition: 0.3s; font-family: inherit; }
+        .ask-btn:hover { background: #9b7abf; transform: translateY(-2px); }
 
         footer { background: #2e1f3d; color: #b89b7b; text-align: center; padding: 30px 20px; }
         footer p { margin: 5px 0; font-size: 1.1rem; }
@@ -188,12 +193,25 @@
         <button class="close-popup" id="closePopup">Открыть приглашение</button>
     </div>
 
+    <!-- МОДАЛЬНОЕ ОКНО ДЛЯ ПОДТВЕРЖДЕНИЯ (НЕВЕСТА) -->
     <div class="custom-modal" id="confirmModal">
         <div class="modal-content">
-            <strong>💜 ПОДТВЕРЖДЕНИЕ 💜</strong>
+            <strong>💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜</strong>
             <div class="copy-text" id="copyTextBlock"></div>
-            <a href="#" id="vkMessageLink" target="_blank" class="modal-link">💬 Отправить невесте</a>
+            <button class="copy-btn" id="copyMessageBtn">📋 Копировать текст</button>
+            <a href="https://vk.com/im?sel=277437328" target="_blank" class="modal-link">💬 Открыть диалог с невестой</a>
             <button class="close-modal" id="closeModalBtn" style="margin-top:10px; background:#4a2c6d; color:white; padding:8px 20px; border-radius:40px; border:none;">Закрыть</button>
+        </div>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО ДЛЯ ВОПРОСОВ К ЖЕНИХУ -->
+    <div class="custom-modal" id="askGroomModal">
+        <div class="modal-content">
+            <strong>💜 ВОПРОСЫ И ПОДАРКИ 💜</strong>
+            <div class="copy-text" id="askGroomTextBlock"></div>
+            <button class="copy-btn" id="copyGroomMsgBtn">📋 Копировать текст</button>
+            <a href="https://vk.com/im?sel=80427230" target="_blank" class="modal-link">💬 Открыть диалог с женихом</a>
+            <button class="close-modal" id="closeGroomModalBtn" style="margin-top:10px; background:#4a2c6d; color:white; padding:8px 20px; border-radius:40px; border:none;">Закрыть</button>
         </div>
     </div>
 
@@ -283,16 +301,14 @@
             </div>
         </div>
 
-        <!-- ВЕДУЩИЙ — ТЕПЕРЬ "ПО ВОПРОСАМ К ЖЕНИХУ" -->
+        <!-- ВЕДУЩИЙ — ПО ВОПРОСАМ К ЖЕНИХУ С КНОПКОЙ -->
         <div class="fade-section venue-section" style="background:#faf7f2;">
             <div class="venue-card">
-                <h2 style="font-size:1.8rem;">🎤 По вопросам к жениху</h2>
+                <h2 style="font-size:1.8rem;">🎤 По вопросам и подаркам</h2>
                 <p style="font-size:2rem; color:#4a2c6d;">Владислав</p>
                 <p style="font-size:1.4rem; color:#b69ad4;">+7 (910) 945-53-96</p>
                 <p style="color:#6c4e8f;">жених</p>
-                <p style="margin-top:10px;">
-                    <a href="https://vk.com/im?sel=80427230" target="_blank" style="color:#b69ad4; text-decoration:none; border-bottom:1px dotted;">💬 Написать в ВК</a>
-                </p>
+                <button class="ask-btn" id="askGroomBtn">📝 Задать вопрос</button>
             </div>
         </div>
 
@@ -303,7 +319,7 @@
             <div id="transferNote" style="margin-bottom:15px; color:#7c5f9e;"></div>
             <button class="confirm-btn" id="confirmBtn">📨 Подтвердить присутствие</button>
             <div class="thankyou-text"><p>Спасибо, что разделите этот день вместе с нами.</p><p style="font-size:1.3rem; margin:15px 0;">💜 С любовью, Наталья и Влад 💜</p></div>
-            <div class="rsvp-note">💜 После нажатия кнопки откроется диалог с невестой с готовым текстом<br>Ответьте до <strong>1 июня 2026</strong></div>
+            <div class="rsvp-note">💜 Нажмите «Подтвердить», скопируйте текст и отправьте невесте в ВК<br>Ответьте до <strong>1 июня 2026</strong></div>
         </div>
 
         <footer><p>Владислав & Наталья 💜</p><p>+7 (953) 421-82-93 | +7 (910) 945-53-96</p></footer>
@@ -409,29 +425,72 @@
         if (savedChoice === 'self') setActiveTransfer('self');
         if (savedChoice === 'need') setActiveTransfer('need');
 
-        // ПОДТВЕРЖДЕНИЕ С АВТОМАТИЧЕСКОЙ ВСТАВКОЙ ТЕКСТА
-        const modal = document.getElementById('confirmModal');
-        const closeModal = document.getElementById('closeModalBtn');
+        // МОДАЛЬНОЕ ОКНО ДЛЯ НЕВЕСТЫ
+        const confirmModal = document.getElementById('confirmModal');
+        const closeConfirmModal = document.getElementById('closeModalBtn');
         const copyBlock = document.getElementById('copyTextBlock');
-        const vkLink = document.getElementById('vkMessageLink');
+        const copyBtn = document.getElementById('copyMessageBtn');
         const confirmBtn = document.getElementById('confirmBtn');
         const guestNameInput = document.getElementById('guestName');
 
         if (confirmBtn) {
             confirmBtn.addEventListener('click', () => {
                 const guestName = guestNameInput?.value.trim() || 'Гость';
-                let transferText = currentTransfer === 'self' ? 'Приеду сам' : (currentTransfer === 'need' ? 'Нужен трансфер' : 'Не выбран');
+                let transferText = currentTransfer === 'self' ? '🚙 Приеду сам' : (currentTransfer === 'need' ? '🚌 Нужен трансфер' : '❓ Не выбран');
                 const msg = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nИмя: ${guestName}\nТрансфер: ${transferText}\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
                 copyBlock.innerText = msg;
-                // Кодируем текст для URL
-                const encodedMsg = encodeURIComponent(msg);
-                vkLink.href = `https://vk.com/im?sel=277437328&text=${encodedMsg}`;
-                modal.classList.add('show');
+                confirmModal.classList.add('show');
             });
         }
         
-        if (closeModal) closeModal.addEventListener('click', () => modal.classList.remove('show'));
-        if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('show'); });
+        if (copyBtn) {
+            copyBtn.addEventListener('click', () => {
+                const text = copyBlock.innerText;
+                navigator.clipboard.writeText(text).then(() => {
+                    alert('✅ Текст скопирован! Теперь отправьте его невесте в ВК');
+                }).catch(() => {
+                    alert('❌ Не удалось скопировать, выделите текст вручную');
+                });
+            });
+        }
+        
+        if (closeConfirmModal) closeConfirmModal.addEventListener('click', () => confirmModal.classList.remove('show'));
+
+        // МОДАЛЬНОЕ ОКНО ДЛЯ ЖЕНИХА
+        const askGroomModal = document.getElementById('askGroomModal');
+        const closeGroomModal = document.getElementById('closeGroomModalBtn');
+        const askGroomTextBlock = document.getElementById('askGroomTextBlock');
+        const copyGroomBtn = document.getElementById('copyGroomMsgBtn');
+        const askGroomBtn = document.getElementById('askGroomBtn');
+
+        if (askGroomBtn) {
+            askGroomBtn.addEventListener('click', () => {
+                const msg = `💜 ВОПРОС ПО СВАДЬБЕ / ПОДАРОК 💜\n\nИмя: (напишите своё имя)\nВопрос/Пожелание: (напишите свой вопрос или пожелание)\n\n💜 Заранее спасибо! Буду рад помочь!`;
+                askGroomTextBlock.innerText = msg;
+                askGroomModal.classList.add('show');
+            });
+        }
+        
+        if (copyGroomBtn) {
+            copyGroomBtn.addEventListener('click', () => {
+                const text = askGroomTextBlock.innerText;
+                navigator.clipboard.writeText(text).then(() => {
+                    alert('✅ Текст скопирован! Теперь отправьте его жениху в ВК');
+                }).catch(() => {
+                    alert('❌ Не удалось скопировать, выделите текст вручную');
+                });
+            });
+        }
+        
+        if (closeGroomModal) closeGroomModal.addEventListener('click', () => askGroomModal.classList.remove('show'));
+        
+        // Закрытие модальных окон при клике на фон
+        const modals = document.querySelectorAll('.custom-modal');
+        modals.forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) modal.classList.remove('show');
+            });
+        });
     </script>
 </body>
 </html>
