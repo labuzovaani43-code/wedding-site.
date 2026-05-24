@@ -55,17 +55,17 @@
         .child-card p { margin-top: 15px; font-size: 1.3rem; color: #4a2c6d; }
         .love-story { margin-top: 35px; font-size: 1.15rem; color: #4a2c6d; font-style: italic; }
 
-        /* ТАЙМЕР НА ФОНЕ — ОПУЩЕН, ЧТОБЫ ЛИЦА БЫЛИ ВИДНЫ */
+        /* ТАЙМЕР НА ФОНЕ — ТЕКСТ ВВЕРХУ, ТАЙМЕР ВНИЗУ (ДЛЯ КОМПЬЮТЕРА) */
         .timer-bg-section {
             min-height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('groom.jpg');
             background-size: cover;
             background-position: center 45%;
             background-repeat: no-repeat;
-            padding: 100px 20px 60px 20px;
+            padding: 80px 20px 40px 20px;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
+            justify-content: space-between;
             align-items: center;
             text-align: center;
             color: white;
@@ -73,8 +73,9 @@
         .timer-bg-section h2 {
             font-size: 1.6rem;
             font-weight: 400;
-            margin-bottom: 40px;
             max-width: 600px;
+            margin-top: 20px;
+            margin-bottom: auto;
         }
         .timer {
             display: flex;
@@ -85,7 +86,8 @@
             backdrop-filter: blur(5px);
             padding: 20px 30px;
             border-radius: 50px;
-            margin-bottom: 20px;
+            margin-top: auto;
+            margin-bottom: 40px;
         }
         .timer-box { text-align: center; background: rgba(255,255,255,0.15); padding: 10px 20px; border-radius: 20px; min-width: 80px; transition: transform 0.3s ease; }
         .timer-box:hover { transform: scale(1.05); }
@@ -206,6 +208,19 @@
             .dresscode-card { width: 300px; }
             .color-label { font-size: 0.8rem; }
             .color-item .tooltip { display: none; }
+            /* На телефоне вертикальное расположение */
+            .timer-bg-section {
+                justify-content: center;
+                padding: 60px 20px;
+            }
+            .timer-bg-section h2 {
+                margin-bottom: 40px;
+                margin-top: 0;
+            }
+            .timer {
+                margin-top: 0;
+                margin-bottom: 0;
+            }
         }
     </style>
 </head>
@@ -270,7 +285,7 @@
             <div class="stagger-item love-story">А ведь наша любовь выросла! Ждём вас разделить этот день 💑</div>
         </div>
 
-        <!-- ТАЙМЕР ОПУЩЕН, ЧТОБЫ ЛИЦА БЫЛИ ВИДНЫ -->
+        <!-- ТАЙМЕР — ТЕКСТ ВВЕРХУ, ТАЙМЕР ВНИЗУ -->
         <div class="fade-section timer-bg-section">
             <h2>Мы будем счастливы, если вы разделите с нами этот особенный день</h2>
             <div class="timer">
@@ -339,7 +354,7 @@
             </div>
         </div>
 
-        <!-- БЛОК ДЛЯ ЖЕНИХА (БЕЗ ТЕЛЕФОНА) -->
+        <!-- БЛОК ДЛЯ ЖЕНИХА -->
         <div class="fade-section venue-section" style="background:#faf7f2;">
             <div class="venue-card">
                 <h2 style="font-size:1.8rem;">🎤 По вопросам и подаркам</h2>
@@ -358,7 +373,7 @@
             </div>
         </div>
 
-        <!-- БЛОК ДЛЯ НЕВЕСТЫ (БЕЗ ЛИШНЕГО ТЕКСТА) -->
+        <!-- БЛОК ДЛЯ НЕВЕСТЫ -->
         <div class="fade-section rsvp-section">
             <h2>💌 Подтвердите присутствие</h2>
             <div class="form-group"><input type="text" id="guestName" placeholder="Ваше имя"></div>
