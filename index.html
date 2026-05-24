@@ -363,6 +363,11 @@
             background: #9b7abf;
             transform: scale(1.02);
         }
+        .manual-note {
+            font-size: 0.75rem;
+            color: #7c5f9e;
+            margin-top: 10px;
+        }
 
         footer { background: #2e1f3d; color: #b89b7b; text-align: center; padding: 30px 20px; }
         footer p { margin: 5px 0; font-size: 1.1rem; }
@@ -421,7 +426,8 @@
             <strong>💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜</strong>
             <div class="copy-text" id="copyTextBlock"></div>
             <button class="copy-btn" id="copyMessageBtn">📋 Копировать текст</button>
-            <a href="https://vk.com/write277437328" target="_blank" class="modal-link">💬 Открыть диалог с невестой</a>
+            <a href="https://vk.com/write277437328" target="_blank" class="modal-link">💬 Открыть ВК (если установлено)</a>
+            <div class="manual-note">✨ Если диалог не открывается — скопируйте текст выше и отправьте вручную ✨</div>
             <button class="close-modal" id="closeModalBtn" style="margin-top:10px; background:#4a2c6d; color:white; padding:8px 20px; border-radius:40px; border:none;">Закрыть</button>
         </div>
     </div>
@@ -431,7 +437,8 @@
             <strong>💜 ВОПРОС ИЛИ ПОЖЕЛАНИЕ ДЛЯ ЖЕНИХА 💜</strong>
             <div class="copy-text" id="askGroomTextBlock"></div>
             <button class="copy-btn" id="copyGroomMsgBtn">📋 Копировать текст</button>
-            <a href="https://vk.com/write80427230" target="_blank" class="modal-link">💬 Открыть диалог с женихом</a>
+            <a href="https://vk.com/write80427230" target="_blank" class="modal-link">💬 Открыть ВК (если установлено)</a>
+            <div class="manual-note">✨ Если диалог не открывается — скопируйте текст выше и отправьте вручную ✨</div>
             <button class="close-modal" id="closeGroomModalBtn" style="margin-top:10px; background:#4a2c6d; color:white; padding:8px 20px; border-radius:40px; border:none;">Закрыть</button>
         </div>
     </div>
@@ -580,7 +587,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script>
-        // ========== МУЗЫКА ==========
+        // МУЗЫКА
         const audio = document.getElementById('weddingAudio');
         const playPauseBtn = document.getElementById('playPauseBtn');
         const volumeSlider = document.getElementById('volumeSlider');
@@ -599,7 +606,7 @@
         });
         volumeSlider?.addEventListener('input', (e) => { if(audio) audio.volume = e.target.value / 100; });
 
-        // ========== ТАЙМЕР ==========
+        // ТАЙМЕР
         function updateTimer() {
             const weddingDate = new Date("2026-07-04T00:00:00").getTime();
             const now = new Date().getTime();
@@ -616,7 +623,7 @@
         }
         updateTimer(); setInterval(updateTimer, 1000);
 
-        // ========== КОНВЕРТ ==========
+        // КОНВЕРТ
         const sealBtn = document.getElementById('seal');
         const envelopeScreenDiv = document.getElementById('envelopeScreen');
         const popup = document.getElementById('popupPaper');
@@ -652,7 +659,7 @@
             });
         }
 
-        // ========== УПРАВЛЕНИЕ СПИСКОМ ГОСТЕЙ ==========
+        // УПРАВЛЕНИЕ СПИСКОМ ГОСТЕЙ
         let guests = [];
 
         function loadGuests() {
@@ -775,7 +782,7 @@
         window.editGuest = editGuest;
         window.deleteGuest = deleteGuest;
 
-        // ========== ВЫБОР ТРАНСФЕРА ==========
+        // ВЫБОР ТРАНСФЕРА
         const selfBtn = document.getElementById('selfBtn');
         const needBtn = document.getElementById('needBtn');
         const transferNote = document.getElementById('transferNote');
@@ -796,7 +803,7 @@
         if (selfBtn) selfBtn.addEventListener('click', () => setActiveTransfer('self'));
         if (needBtn) needBtn.addEventListener('click', () => setActiveTransfer('need'));
 
-        // ========== МОДАЛЬНОЕ ОКНО ДЛЯ НЕВЕСТЫ ==========
+        // МОДАЛЬНОЕ ОКНО ДЛЯ НЕВЕСТЫ
         const confirmModal = document.getElementById('confirmModal');
         const closeConfirmModal = document.getElementById('closeModalBtn');
         const copyBlock = document.getElementById('copyTextBlock');
@@ -833,7 +840,7 @@
         
         if (closeConfirmModal) closeConfirmModal.addEventListener('click', () => confirmModal.classList.remove('show'));
 
-        // ========== МОДАЛЬНОЕ ОКНО ДЛЯ ЖЕНИХА ==========
+        // МОДАЛЬНОЕ ОКНО ДЛЯ ЖЕНИХА
         const askGroomModal = document.getElementById('askGroomModal');
         const closeGroomModal = document.getElementById('closeGroomModalBtn');
         const askGroomTextBlock = document.getElementById('askGroomTextBlock');
