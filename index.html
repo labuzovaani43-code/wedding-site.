@@ -55,7 +55,7 @@
         .child-card p { margin-top: 15px; font-size: 1.3rem; color: #4a2c6d; }
         .love-story { margin-top: 35px; font-size: 1.15rem; color: #4a2c6d; font-style: italic; }
 
-        /* ТАЙМЕР НА ФОНЕ — ТЕКСТ ВВЕРХУ, ТАЙМЕР ВНИЗУ (ДЛЯ КОМПЬЮТЕРА) */
+        /* ТАЙМЕР НА ФОНЕ */
         .timer-bg-section {
             min-height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('groom.jpg');
@@ -185,15 +185,97 @@
         .thankyou-text { max-width: 550px; margin: 30px auto 20px; font-size: 1.1rem; line-height: 1.5; color: #4a2c6d; }
         .rsvp-note { margin-top: 20px; font-size: 1.1rem; color: #7c5f9e; }
 
-        /* МОДАЛЬНЫЕ ОКНА */
-        .custom-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 3000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
-        .custom-modal.show { opacity: 1; visibility: visible; }
-        .modal-content { background: white; border-radius: 30px; padding: 30px; max-width: 400px; width: 90%; text-align: center; animation: fadeInScale 0.4s ease; }
-        .copy-text { background: #f0e6ff; padding: 15px; border-radius: 15px; font-size: 0.85rem; text-align: left; margin: 15px 0; white-space: pre-wrap; word-break: break-word; max-height: 300px; overflow-y: auto; }
-        .copy-btn { background: #b69ad4; color: white; border: none; padding: 10px 20px; border-radius: 40px; cursor: pointer; margin: 5px; font-family: inherit; transition: 0.3s; }
-        .copy-btn:hover { background: #9b7abf; transform: scale(1.02); }
-        .modal-link { display: inline-block; background: #b69ad4; color: white; padding: 12px 25px; border-radius: 40px; text-decoration: none; transition: 0.3s; margin-top: 10px; }
-        .modal-link:hover { background: #9b7abf; transform: scale(1.02); }
+        /* СПИСОК ГОСТЕЙ */
+        .guestlist-section {
+            background: #f3eaff;
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 3px solid #d4af37;
+        }
+        .guestlist-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .guestlist-container h2 {
+            font-size: 1.8rem;
+            color: #4a2c6d;
+            margin-bottom: 10px;
+        }
+        .guestlist-sub {
+            color: #7c5f9e;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+        }
+        .guest-category {
+            margin-bottom: 30px;
+        }
+        .guest-category h3 {
+            font-size: 1.3rem;
+            color: #b69ad4;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8d9ff;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .guest-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            border-bottom: 1px solid #e8d9ff;
+            transition: background 0.2s;
+        }
+        .guest-item:hover {
+            background: #faf5ff;
+        }
+        .guest-name {
+            font-size: 1.1rem;
+            color: #4a2c6d;
+            font-weight: 500;
+        }
+        .guest-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .guest-edit-btn, .guest-delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            padding: 5px 8px;
+            border-radius: 20px;
+            transition: 0.2s;
+        }
+        .guest-edit-btn:hover { background: #e8d9ff; transform: scale(1.05); }
+        .guest-delete-btn:hover { background: #ffe0e0; transform: scale(1.05); }
+        .guest-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px dashed #d9c4ff;
+            font-weight: 600;
+            color: #4a2c6d;
+        }
+        .clear-all-btn {
+            background: #b69ad4;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-family: inherit;
+            transition: 0.3s;
+        }
+        .clear-all-btn:hover {
+            background: #9b7abf;
+            transform: translateY(-2px);
+        }
 
         footer { background: #2e1f3d; color: #b89b7b; text-align: center; padding: 30px 20px; }
         footer p { margin: 5px 0; font-size: 1.1rem; }
@@ -208,19 +290,23 @@
             .dresscode-card { width: 300px; }
             .color-label { font-size: 0.8rem; }
             .color-item .tooltip { display: none; }
-            /* На телефоне вертикальное расположение */
+            
+            /* НА ТЕЛЕФОНЕ: ТЕКСТ ВВЕРХУ, ТАЙМЕР ВНИЗУ */
             .timer-bg-section {
-                justify-content: center;
-                padding: 60px 20px;
+                justify-content: space-between;
+                padding: 100px 20px 60px 20px;
             }
             .timer-bg-section h2 {
-                margin-bottom: 40px;
                 margin-top: 0;
+                margin-bottom: auto;
             }
             .timer {
-                margin-top: 0;
+                margin-top: auto;
                 margin-bottom: 0;
             }
+            
+            .guest-item { flex-wrap: wrap; gap: 10px; }
+            .guest-actions { margin-left: auto; }
         }
     </style>
 </head>
@@ -285,7 +371,6 @@
             <div class="stagger-item love-story">А ведь наша любовь выросла! Ждём вас разделить этот день 💑</div>
         </div>
 
-        <!-- ТАЙМЕР — ТЕКСТ ВВЕРХУ, ТАЙМЕР ВНИЗУ -->
         <div class="fade-section timer-bg-section">
             <h2>Мы будем счастливы, если вы разделите с нами этот особенный день</h2>
             <div class="timer">
@@ -384,12 +469,34 @@
             <div class="rsvp-note">💜 Ответьте до <strong>1 июня 2026</strong></div>
         </div>
 
+        <!-- СПИСОК ГОСТЕЙ -->
+        <div class="fade-section guestlist-section">
+            <div class="guestlist-container">
+                <h2>📋 Список гостей</h2>
+                <div class="guestlist-sub">* список обновляется автоматически при подтверждении</div>
+                
+                <div class="guest-category">
+                    <h3>🚙 Приедут сами</h3>
+                    <div id="selfGuestsList"></div>
+                </div>
+                
+                <div class="guest-category">
+                    <h3>🚌 Нужен трансфер</h3>
+                    <div id="needGuestsList"></div>
+                </div>
+                
+                <div class="guest-stats" id="guestStats"></div>
+                <button class="clear-all-btn" id="clearAllGuestsBtn">🗑️ Очистить список гостей</button>
+                <div style="font-size:0.8rem; color:#7c5f9e; margin-top:15px;">💡 При повторном подтверждении данные обновляются, дубли не создаются</div>
+            </div>
+        </div>
+
         <footer><p>Владислав & Наталья 💜</p><p>+7 (953) 421-82-93 | +7 (910) 945-53-96</p></footer>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script>
-        // МУЗЫКА
+        // ========== МУЗЫКА ==========
         const audio = document.getElementById('weddingAudio');
         const playPauseBtn = document.getElementById('playPauseBtn');
         const volumeSlider = document.getElementById('volumeSlider');
@@ -408,7 +515,7 @@
         });
         volumeSlider?.addEventListener('input', (e) => { if(audio) audio.volume = e.target.value / 100; });
 
-        // ТАЙМЕР
+        // ========== ТАЙМЕР ==========
         function updateTimer() {
             const weddingDate = new Date("2026-07-04T00:00:00").getTime();
             const now = new Date().getTime();
@@ -425,7 +532,7 @@
         }
         updateTimer(); setInterval(updateTimer, 1000);
 
-        // КОНВЕРТ
+        // ========== КОНВЕРТ ==========
         const sealBtn = document.getElementById('seal');
         const envelopeScreenDiv = document.getElementById('envelopeScreen');
         const popup = document.getElementById('popupPaper');
@@ -461,7 +568,136 @@
             });
         }
 
-        // ВЫБОР ТРАНСФЕРА (ДЛЯ НЕВЕСТЫ)
+        // ========== УПРАВЛЕНИЕ СПИСКОМ ГОСТЕЙ ==========
+        let guests = []; // массив гостей { name, transfer }
+
+        // Загрузка из localStorage
+        function loadGuests() {
+            const saved = localStorage.getItem('weddingGuests');
+            if (saved) {
+                try {
+                    guests = JSON.parse(saved);
+                } catch(e) { guests = []; }
+            }
+            renderGuestList();
+        }
+
+        // Сохранение в localStorage
+        function saveGuests() {
+            localStorage.setItem('weddingGuests', JSON.stringify(guests));
+            renderGuestList();
+        }
+
+        // Добавление или обновление гостя
+        function addOrUpdateGuest(name, transfer) {
+            if (!name || name.trim() === '') return false;
+            const normalizedName = name.trim();
+            const existingIndex = guests.findIndex(g => g.name === normalizedName);
+            if (existingIndex !== -1) {
+                // Обновляем существующего
+                guests[existingIndex].transfer = transfer;
+            } else {
+                // Добавляем нового
+                guests.push({ name: normalizedName, transfer: transfer });
+            }
+            saveGuests();
+            return true;
+        }
+
+        // Удаление гостя
+        function deleteGuest(index) {
+            guests.splice(index, 1);
+            saveGuests();
+        }
+
+        // Редактирование гостя
+        function editGuest(index) {
+            const guest = guests[index];
+            const newName = prompt('Введите новое имя гостя:', guest.name);
+            if (newName && newName.trim() !== '') {
+                const newTransfer = confirm('Изменить трансфер?\nOK - Нужен трансфер\nОтмена - Приедет сам') ? 'need' : 'self';
+                guests[index] = { name: newName.trim(), transfer: newTransfer };
+                saveGuests();
+            }
+        }
+
+        // Очистка всего списка
+        function clearAllGuests() {
+            if (confirm('Вы уверены, что хотите удалить ВСЕХ гостей из списка?')) {
+                guests = [];
+                saveGuests();
+            }
+        }
+
+        // Отображение списка
+        function renderGuestList() {
+            const selfGuests = guests.filter(g => g.transfer === 'self');
+            const needGuests = guests.filter(g => g.transfer === 'need');
+            
+            const selfContainer = document.getElementById('selfGuestsList');
+            const needContainer = document.getElementById('needGuestsList');
+            const statsContainer = document.getElementById('guestStats');
+            
+            if (selfContainer) {
+                if (selfGuests.length === 0) {
+                    selfContainer.innerHTML = '<div style="padding:15px; text-align:center; color:#aaa;">— пока никого нет —</div>';
+                } else {
+                    selfContainer.innerHTML = selfGuests.map((guest, idx) => {
+                        const globalIdx = guests.findIndex(g => g.name === guest.name && g.transfer === 'self');
+                        return `
+                            <div class="guest-item">
+                                <span class="guest-name">${escapeHtml(guest.name)}</span>
+                                <div class="guest-actions">
+                                    <button class="guest-edit-btn" onclick="editGuest(${globalIdx})" title="Редактировать">✏️</button>
+                                    <button class="guest-delete-btn" onclick="deleteGuest(${globalIdx})" title="Удалить">🗑️</button>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                }
+            }
+            
+            if (needContainer) {
+                if (needGuests.length === 0) {
+                    needContainer.innerHTML = '<div style="padding:15px; text-align:center; color:#aaa;">— пока никого нет —</div>';
+                } else {
+                    needContainer.innerHTML = needGuests.map((guest, idx) => {
+                        const globalIdx = guests.findIndex(g => g.name === guest.name && g.transfer === 'need');
+                        return `
+                            <div class="guest-item">
+                                <span class="guest-name">${escapeHtml(guest.name)}</span>
+                                <div class="guest-actions">
+                                    <button class="guest-edit-btn" onclick="editGuest(${globalIdx})" title="Редактировать">✏️</button>
+                                    <button class="guest-delete-btn" onclick="deleteGuest(${globalIdx})" title="Удалить">🗑️</button>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                }
+            }
+            
+            if (statsContainer) {
+                const total = guests.length;
+                const selfCount = selfGuests.length;
+                const needCount = needGuests.length;
+                statsContainer.innerHTML = `
+                    <span>👥 Всего: ${total}</span>
+                    <span>🚙 Приедут сами: ${selfCount}</span>
+                    <span>🚌 Нужен трансфер: ${needCount}</span>
+                `;
+            }
+        }
+        
+        function escapeHtml(str) {
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+
+        // ========== ВЫБОР ТРАНСФЕРА (ДЛЯ НЕВЕСТЫ) ==========
         const selfBtn = document.getElementById('selfBtn');
         const needBtn = document.getElementById('needBtn');
         const transferNote = document.getElementById('transferNote');
@@ -478,7 +714,6 @@
                 selfBtn.classList.remove('active');
                 transferNote.innerHTML = '✅ Вы выбрали: Нужен трансфер.';
             }
-            localStorage.setItem('transferChoice', selected);
         }
         if (selfBtn) selfBtn.addEventListener('click', () => setActiveTransfer('self'));
         if (needBtn) needBtn.addEventListener('click', () => setActiveTransfer('need'));
@@ -487,7 +722,7 @@
         if (savedChoice === 'self') setActiveTransfer('self');
         if (savedChoice === 'need') setActiveTransfer('need');
 
-        // МОДАЛЬНОЕ ОКНО ДЛЯ НЕВЕСТЫ
+        // ========== МОДАЛЬНОЕ ОКНО ДЛЯ НЕВЕСТЫ С ДОБАВЛЕНИЕМ В СПИСОК ==========
         const confirmModal = document.getElementById('confirmModal');
         const closeConfirmModal = document.getElementById('closeModalBtn');
         const copyBlock = document.getElementById('copyTextBlock');
@@ -499,6 +734,13 @@
             confirmBtn.addEventListener('click', () => {
                 const guestName = guestNameInput?.value.trim() || 'Гость';
                 let transferText = currentTransfer === 'self' ? 'Приеду сам' : (currentTransfer === 'need' ? 'Нужен трансфер' : 'Не выбран');
+                const transferValue = currentTransfer === 'self' ? 'self' : (currentTransfer === 'need' ? 'need' : 'self');
+                
+                // Добавляем гостя в список
+                if (guestName !== 'Гость') {
+                    addOrUpdateGuest(guestName, transferValue);
+                }
+                
                 const msg = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nИмя: ${guestName}\nТрансфер: ${transferText}\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
                 copyBlock.innerText = msg;
                 confirmModal.classList.add('show');
@@ -518,7 +760,7 @@
         
         if (closeConfirmModal) closeConfirmModal.addEventListener('click', () => confirmModal.classList.remove('show'));
 
-        // МОДАЛЬНОЕ ОКНО ДЛЯ ЖЕНИХА (С ФОРМОЙ)
+        // ========== МОДАЛЬНОЕ ОКНО ДЛЯ ЖЕНИХА ==========
         const askGroomModal = document.getElementById('askGroomModal');
         const closeGroomModal = document.getElementById('closeGroomModalBtn');
         const askGroomTextBlock = document.getElementById('askGroomTextBlock');
@@ -570,6 +812,15 @@
                 });
             });
         }
+        
+        // Кнопка очистки списка
+        const clearAllBtn = document.getElementById('clearAllGuestsBtn');
+        if (clearAllBtn) {
+            clearAllBtn.addEventListener('click', clearAllGuests);
+        }
+        
+        // Загружаем список гостей при старте
+        loadGuests();
     </script>
 </body>
 </html>
