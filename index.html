@@ -1,10 +1,11 @@
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Наталья & Влад | Свадебное приглашение</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -99,10 +100,10 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(0);
-            width: 300px;
+            width: 320px;
             background: #fffef7;
-            border-radius: 15px;
-            padding: 30px 20px;
+            border-radius: 20px;
+            padding: 35px 25px;
             text-align: center;
             z-index: 2000;
             box-shadow: 0 25px 45px rgba(0,0,0,0.3);
@@ -116,13 +117,21 @@
             opacity: 1;
             pointer-events: auto;
         }
-        .popup-paper h3 { font-size: 1.8rem; color: #7c5f9e; margin-bottom: 15px; }
-        .popup-paper p { font-size: 1.1rem; color: #4a2c6d; margin-bottom: 20px; }
+        .popup-paper h3 {
+            font-size: 2rem;
+            color: #7c5f9e;
+            margin-bottom: 15px;
+        }
+        .popup-paper p {
+            font-size: 1.1rem;
+            color: #4a2c6d;
+            margin-bottom: 25px;
+        }
         .close-popup {
             background: #b69ad4;
             color: white;
             border: none;
-            padding: 8px 25px;
+            padding: 10px 30px;
             border-radius: 40px;
             font-size: 1rem;
             cursor: pointer;
@@ -134,16 +143,21 @@
             opacity: 0;
             transition: opacity 1s ease;
             max-width: 1200px;
-            margin: 0 auto;
+            in: 0 auto;
             display: none;
         }
         .main-content.visible { opacity: 1; display: block; }
 
-        /* ГЛАВНЫЙ ЭКРАН */
+        /* ГЛАВНЫЙ ЭКРАН (как на картинке) */
         .hero {
-            text-align: center;
-            padding: 100px 20px;
+            min-height: 100vh;
             background: linear-gradient(135deg, #7c5f9e 0%, #b89bce 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
             position: relative;
         }
         .hero::before {
@@ -153,182 +167,209 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: radial-gradient(circle at 20% 40%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            background-image: radial-gradient(circle at 20% 40%, rgba(255,255,255,0.08) 0%, transparent 60%);
+        }
+        .wedding-day {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 8px;
+            color: #ffecb3;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
         }
         .hero h1 {
-            font-size: 4rem;
+            font-size: 4.5rem;
             color: #ffecb3;
             font-weight: 400;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
             position: relative;
             z-index: 1;
         }
         .hero h1 span {
-            font-size: 2rem;
-            display: block;
-            letter-spacing: 8px;
-        }
-        .date-badge {
+            font-size: 3rem;
             display: inline-block;
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(5px);
-            padding: 15px 40px;
-            border-radius: 50px;
-            margin-top: 30px;
+            margin: 0 10px;
+        }
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #f0e6d2;
+            max-width: 500px;
+            margin: 20px auto;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-date {
             font-size: 1.3rem;
-            color: white;
+            color: #ffecb3;
+            margin-top: 30px;
+            letter-spacing: 2px;
             position: relative;
             z-index: 1;
         }
 
-        /* СЕКЦИИ */
+        /* БОЛЬШОЕ ФОТО ПАРЫ */
+        .big-photo-section {
+            padding: 60px 20px;
+            background: #faf7f2;
+        }
+        .big-photo {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .big-photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ДЕТСКИЕ ФОТО */
+        .child-photos-section {
+            padding: 60px 20px;
+            background: #f3eaff;
+            text-align: center;
+        }
+        .child-photos-section h2 {
+            font-size: 2rem;
+            color: #4a2c6d;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+        .child-photos-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .child-card {
+            text-align: center;
+            flex: 1;
+            min-width: 250px;
+        }
+        .child-card img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #d9c4ff;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        .child-card p {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            color: #4a2c6d;
+            font-weight: 500;
+        }
+
+        /* ТАЙМЕР */
+        .timer-section {
+            background: linear-gradient(135deg, #7c5f9e 0%, #b89bce 100%);
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .timer-section h2 {
+            color: #ffecb3;
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .timer-box {
+            text-align: center;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(5px);
+            padding: 20p
+            x 25px;
+            border-radius: 20px;
+            min-width: 100px;
+        }
+        .timer-number {
+            font-size: 3rem;
+            font-weight: 600;
+            color: #ffecb3;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .timer-label {
+            font-size: 0.8rem;
+            color: #f0e6d2;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* ОБЩИЕ СЕКЦИИ */
         .section {
-            padding: 80px 20px;
+            padding: 60px 20px;
             text-align: center;
         }
         .section-light { background: #faf7f2; }
         .section-lavender { background: #f3eaff; }
         .container {
-            max-width: 1000px;
+            max-width: 800px;
             margin: 0 auto;
         }
         .section-title {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: #4a2c6d;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             font-weight: 500;
         }
 
-        /* ФОТОГРАФИИ */
-        .photos-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
-            margin-top: 40px;
-        }
-        .photo-card {
-            flex: 1;
-            min-width: 280px;
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        .photo-card img {
-            width: 100%;
-            height: 350px;
-            object-fit: cover;
-        }
-        .photo-card .caption {
-            padding: 20px;
-            font-size: 1.3rem;
-            color: #4a2c6d;
-            font-weight: 500;
-        }
-
-        /* ДЕТСКИЕ ФОТО */
-        .child-photos {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-            justify-content: center;
-            margin: 50px 0;
-        }
-        .child-card {
-            flex: 1;
-            min-width: 280px;
-            text-align: center;
-        }
-        .child-card img {
-            width: 280px;
-            height: 280px;
-            object-fit: cover;
-            border-radius: 280px;
-            border: 5px solid #d9c4ff;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            transition: transform 0.3s;
-        }
-        .child-card img:hover {
-            transform: scale(1.03);
-        }
-        .child-card .child-name {
-            margin-top: 20px;
-            font-size: 1.3rem;
-            color: #4a2c6d;
-            font-weight: 500;
-        }
-
-        /* ТАЙМИНГ */
         .timing-list {
-            max-width: 500px;
+            max-width: 400px;
             margin: 0 auto;
         }
         .timing-item {
             display: flex;
             justify-content: space-between;
-            padding: 15px 0;
+            padding: 12px 0;
             border-bottom: 1px solid #e8d9ff;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
         .timing-time {
             color: #b69ad4;
             font-weight: 600;
         }
 
-        /* МЕСТО */
         .venue-card {
             background: white;
             border-radius: 30px;
-            padding: 40px;
-            max-width: 600px;
-            margin: 0 auto;
+            padding: 35px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         .venue-card h3 {
             font-size: 1.8rem;
             color: #b69ad4;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
         .venue-card p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #4a2c6d;
             margin: 10px 0;
         }
-        .map-link {
-            display: inline-block;
-            margin-top: 20px;
-            color: #b69ad4;
-            text-decoration: none;
-            border-bottom: 1px dotted;
-        }
 
-        /* ФОРМА ПОДТВЕРЖДЕНИЯ */
-        .form-group {
-            margin-bottom: 20px;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 15px 20px;
-            border-radius: 50px;
-            border: 1px solid #d9c4ff;
-            font-family: inherit;
-            font-size: 1rem;
-            background: white;
-        }
         .transfer-buttons {
             display: flex;
             gap: 15px;
             justify-content: center;
-            margin-bottom: 20px;
+            margin: 20px 0;
         }
         .transfer-btn {
             background: #f0e6ff;
             border: 2px solid #d9c4ff;
-            padding: 10px 25px;
+            padding: 12px 25px;
             border-radius: 50px;
             font-size: 1rem;
             cursor: pointer;
@@ -343,27 +384,29 @@
         .confirm-btn {
             background: #b69ad4;
             color: white;
-            padding: 15px 30px;
+            padding: 14px 30px;
             border: none;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: 0.3s;
-            width: 100%;
-            max-width: 300px;
-            margin: 20px auto 0;
-            display: block;
+            margin-top: 10px;
         }
         .confirm-btn:hover {
             background: #9b7abf;
             transform: translateY(-2px);
         }
-        .transfer-note {
-            color: #7c5f9e;
+        .form-group input {
+            width: 100%;
+            max-width: 350px;
+            padding: 14px 20px;
+            border-radius: 50px;
+            border: 1px solid #d9c4ff;
+            font-family: inherit;
+            font-size: 1rem;
             margin-bottom: 20px;
         }
 
-        /* МОДАЛЬНОЕ ОКНО ДЛЯ ПОДТВЕРЖДЕНИЯ */
         .custom-modal {
             position: fixed;
             top: 0;
@@ -379,30 +422,25 @@
             visibility: hidden;
             transition: all 0.3s ease;
         }
-        .custom-modal.show {
-            opacity: 1;
-            visibility: visible;
-        }
+        .custom-modal.show { opacity: 1; visibility: visible; }
         .modal-content {
             background: #fffef7;
             border-radius: 30px;
-            padding: 30px 25px;
+            padding: 30px;
             max-width: 400px;
             width: 90%;
             text-align: center;
             border: 2px solid #d9c4ff;
-            box-shadow: 0 25px 45px rgba(0,0,0,0.3);
         }
         .copy-text {
             background: #f0e6ff;
             padding: 15px;
             border-radius: 15px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-align: left;
             margin: 15px 0;
-            border: 1px solid #d9c4ff;
-            font-family: monospace;
             white-space: pre-wrap;
+            font-family: monospace;
         }
         .modal-link {
             display: inline-block;
@@ -411,7 +449,7 @@
             padding: 12px 25px;
             border-radius: 40px;
             text-decoration: none;
-            margin: 15px 0;
+            margin: 10px 0;
         }
         .close-modal {
             background: #4a2c6d;
@@ -420,7 +458,6 @@
             padding: 8px 20px;
             border-radius: 40px;
             cursor: pointer;
-            font-family: inherit;
         }
 
         footer {
@@ -430,11 +467,12 @@
             padding: 40px;
         }
 
-        @media (max-width: 700px) {
-            .hero h1 { font-size: 2.5rem; }
-            .section-title { font-size: 2rem; }
-            .child-card img { width: 200px; height: 200px; }
-            .photo-card img { height: 250px; }
+        max-width: 700px {
+            .hero h1 { font-size: 2.8rem; }
+            .hero h1 span { font-size: 2rem; }
+            .timer-number { font-size: 2rem; }
+            .timer-box { padding: 15px; min-width: 70px; }
+            .child-card img { width: 180px; height: 180px; }
         }
     </style>
 </head>
@@ -444,14 +482,17 @@
     <div class="envelope-screen" id="envelopeScreen">
         <div class="envelope">
             <div class="flap" id="flap"></div>
-            <div class="letter" id="letter"><span>💌</span><br>Наталья & Влад</div>
+            <div class="letter" id="letter"><span>💌</span><
+аталья & Влад</div>
             <div class="seal" id="seal">❤️</div>
         </div>
     </div>
 
     <div class="popup-paper" id="popupPaper">
-        <h3>📜 Приглашение для тебя</h3>
-        <p>Дорогой гость!<br>Ты очень важен для нас.<br>Ждём тебя на нашем празднике! 💜</p>
+        <h3>📜 Приглашение</h3>
+        <p>Дорогой гость!<br
+очень важен для нас.<br
+м тебя на нашем празднике! 💜</p>
         <button class="close-popup" id="closePopup">Открыть приглашение</button>
     </div>
 
@@ -468,44 +509,56 @@
     <!-- ОСНОВНОЙ КОНТЕНТ -->
     <div class="main-content" id="mainContent">
         
-        <!-- ГЛАВНЫЙ ЭКРАН -->
+        <!-- ГЛАВНЫЙ ЭКРАН (как на картинке) -->
         <div class="hero">
-            <h1>Наталья<br><span>&</span><br>Влад</h1>
-            <div class="date-badge">4 июля 2026</div>
+            <div class="wedding-day">WEDDING DAY!</div>
+            <h1>Владислав & Наталья</h1>
+            <div class="hero-subtitle">
+                Родные, с огромной радостью приглашаем вас стать частью самого важного
+дня 
+й жизни
+            </div>
+            <div class="hero-date">4 ИЮЛЯ · УСАДЬБА АЛЕКСАНДРОВО</div>
         </div>
 
-        <!-- БОЛЬШИЕ ФОТО ЖЕНИХА И НЕВЕСТЫ -->
-        <div class="section section-light">
-            <div class="container">
-                <h2 class="section-title">✨ А сегодня ✨</h2>
-                <div class="photos-grid">
-                    <div class="photo-card">
-                        <img src="bride.jpg" alt="Наталья" onerror="this.style.display='none'">
-                        <div class="caption">Наталья</div>
-                    </div>
-                    <div class="photo-card">
-                        <img src="groom.jpg" alt="Владислав" onerror="this.style.display='none'">
-                        <div class="caption">Владислав</div>
-                    </div>
-                </div>
+        <!-- ПЕРВОЕ ФОТО (большое, как вы хотели) -->
+        <div class="big-photo-section">
+            <div class="big-photo">
+                <img src="bride.jpg" alt="Наталья и Влад" onerror="this.style.display='none'">
             </div>
         </div>
 
         <!-- ДЕТСКИЕ ФОТО -->
-        <div class="section section-lavender">
-            <div class="container">
-                <h2 class="section-title">💜 Помните эту пару? 💜</h2>
-                <div class="child-photos">
-                    <div class="child-card">
-                        <img src="child1.jpg" alt="Детское фото Натальи" onerror="this.style.display='none'">
-                        <div class="child-name">Наталья</div>
-                    </div>
-                    <div class="child-card">
-                        <img src="child2.jpg" alt="Детское фото Владислава" onerror="this.style.display='none'">
-                        <div class="child-name">Владислав</div>
-                    </div>
+        <div class="child-photos-section">
+            <h2>💜 Помните эту пару? 💜</h2>
+            <div class="child-photos-grid">
+                <div class="child-card">
+                    <img src="child1.jpg" alt="Детское фото Натальи" onerror="this.style.display='none'">
+                    <p>Наталья</p>
                 </div>
-                <p style="font-style:italic; color:#6c4e8f;">А ведь наша любовь выросла! Ждём вас разделить этот день 💑</p>
+                <div class="child-card">
+                    <img src="child2.jpg" alt="Детское фото Владислава" onerror="this.style.display='none'">
+                    <p>Владислав</p>
+                </div>
+            </div>
+            <p style="margin-top: 30px; font-style: italic; color: #6c4e8f;">А ведь наша любовь выросла! 💑</p>
+        </div>
+
+        <!-- ТАЙМЕР -->
+        <div class="timer-section">
+            <h2>Мы будем счастливы, если вы разделите с нами этот особенный день</h2>
+            <div class="timer">
+                <div class="timer-box"><div class="timer-number" id="days">00</div><div class="timer-label">Days</div></div>
+                <div class="timer-box"><div class="timer-number" id="hours">00</div><div class="timer-label">Hours</div></div>
+                <div class="timer-box"><div class="timer-number" id="minutes">00</div><div class="timer-label">Minutes</div></div>
+                <div class="timer-box"><div class="timer-number" id="seconds">00</div><div class="timer-label">Seconds</div></div>
+            </div>
+            </div>
+
+        <!-- ВТОРОЕ ФОТО (вместо таймера на картинке) -->
+        <div class="big-photo-section" style="padding-top: 0;">
+            <div class="big-photo">
+                <img src="groom.jpg" alt="Наталья и Влад" onerror="this.style.display='none'">
             </div>
         </div>
 
@@ -528,9 +581,9 @@
         <div class="section section-lavender">
             <div class="container">
                 <h2 class="section-title">👗 Дресс-код</h2>
-                <p style="font-size:1.3rem; margin-bottom:20px;">👨‍💼 <strong>мужчины</strong> — белые рубашки</p>
-                <p style="font-size:1.3rem; margin-bottom:20px;">👩‍🎀 <strong>дамы</strong> — красивые наряды</p>
-                <p style="color:#b69ad4; font-size:1.2rem;">💜 лавандовые акценты приветствуются 💜</p>
+                <p style="font-size:1.2rem; margin-bottom:15px;">👨‍💼 <strong>мужчины</strong> — белые рубашки</p>
+                <p style="font-size:1.2rem; margin-bottom:15px;">👩‍🎀 <strong>дамы</strong> — красивые наряды</p>
+                <p style="color:#b69ad4; font-size:1.1rem;">💜 лавандовые акценты приветствуются 💜</p>
             </div>
         </div>
 
@@ -542,7 +595,7 @@
                     <h3>Усадьба Александрово</h3>
                     <p>🌿 Выездная церемония и банкет</p>
                     <p>город Кимовск, Тульская область</p>
-                    <a href="https://yandex.ru/maps/?rtext=~53.963235%2C38.520617&rtt=auto" target="_blank" class="map-link">🗺️ Построить маршрут</a>
+                    <a href="https://yandex.ru/maps/?rtext=~53.963235%2C38.520617&rtt=auto" target="_blank" style="color: #b69ad4; text-decoration: none; border-bottom: 1px dotted;">🗺️ Построить маршрут</a>
                 </div>
             </div>
         </div>
@@ -552,7 +605,7 @@
             <div class="container">
                 <h2 class="section-title">🎤 По вопросам и сюрпризам</h2>
                 <p style="font-size:2rem; color:#4a2c6d;">Владислав</p>
-                <p style="font-size:1.5rem; color:#b69ad4;">+7 (910) 945-53-96</p>
+                <p style="font-size:1.4rem; color:#b69ad4;">+7 (910) 945-53-96</p>
                 <p style="color:#6c4e8f;">жених</p>
             </div>
         </div>
@@ -561,35 +614,34 @@
         <div class="section section-light">
             <div class="container">
                 <h2 class="section-title">💌 Подтвердите присутствие</h2>
-                
                 <div class="form-group">
                     <input type="text" id="guestName" placeholder="Ваше имя">
                 </div>
-                
                 <div class="transfer-buttons">
                     <button class="transfer-btn" id="selfBtn">🚙 Приеду сам</button>
                     <button class="transfer-btn" id="needBtn">🚌 Нужен трансфер</button>
                 </div>
-                <div class="transfer-note" id="transferNote"></div>
-                
+                <div id="transferNote" style="margin-bottom: 15px; color: #7c5f9e;"></div>
                 <button class="confirm-btn" id="confirmBtn">📨 Подтвердить присутствие</button>
-                
-                <p style="margin-top:30px; font-size:0.9rem; color:#7c5f9e;">
-                    💜 После нажатия кнопки скопируйте текст и отправьте невесте в ВК<br>
-                    <small>Ответьте до <strong>1 июня 2026</strong></small>
+                <p style="margin-top: 20px; font-size: 0.85rem; color: #7c5f9e;">
+                    💜 Скопируйте текст и отправьте Наталье в ВК
+
+                    <a href=
+ps://vk.com/nataliiiiie" target="_blank" style="color: #b69ad4;">vk.com/nataliiiiie</a>
                 </p>
             </div>
         </div>
 
         <footer>
             <p>💜 С любовью, Наталья и Влад 💜</p>
-            <p>+7 (953) 421-82-93 | +7 (910) 945-53-96</p>
+            <p>+7 (953) 421-82-93 | +7 (910) 945-53-96<
+                                                          /p>
         </footer>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script>
-        // ========== 1. АНИМАЦИЯ КОНВЕРТА ==========
+        // КОНВЕРТ
         const sealBtn = document.getElementById('seal');
         const envelopeScreenDiv = document.getElementById('envelopeScreen');
         const popupPaper = document.getElementById('popupPaper');
@@ -614,7 +666,31 @@
             });
         }
 
-        // ========== 2. ВЫБОР ТРАНСФЕРА ==========
+        // ТАЙМЕР
+        function updateTimer() {
+            const weddingDate = new Date("2026-07-04T00:00:00").getTime();
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+            
+            const days = Math.floor(distance / (1000*60*60*24));
+            const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+            const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+            const seconds = Math.floor((distance % (1000*60)) / 1000);
+            
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+            
+            if (daysEl) daysEl.innerHTML = days < 10 ? '0' + days : days;
+            if (hoursEl) hoursEl.innerHTML = hours < 10 ? '0' + hours : hours;
+            if (minutesEl) minutesEl.innerHTML = minutes < 10 ? '0' + minutes : minutes;
+            if (secondsEl) secondsEl.innerHTML = seconds < 10 ? '0' + seconds : seconds;
+        }
+        updateTimer();
+        setInterval(updateTimer, 1000);
+
+        // ВЫБОР ТРАНСФЕРА
         const selfBtn = document.getElementById('selfBtn');
         const needBtn = document.getElementById('needBtn');
         const transferNote = document.getElementById('transferNote');
@@ -631,24 +707,19 @@
                 selfBtn.classList.remove('active');
                 transferNote.innerHTML = '✅ Вы выбрали: Нужен трансфер. Мы организуем! 🚌';
             }
-            localStorage.setItem('transferChoice', selected);
         }
         if(selfBtn) selfBtn.addEventListener('click', () => setActiveTransfer('self'));
         if(needBtn) needBtn.addEventListener('click', () => setActiveTransfer('need'));
 
-        const savedChoice = localStorage.getItem('transferChoice');
-        if (savedChoice === 'self') setActiveTransfer('self');
-        if (savedChoice === 'need') setActiveTransfer('need');
-
-        // ========== 3. ПОДТВЕРЖДЕНИЕ (КОПИРОВАНИЕ ТЕКСТА + ВК) ==========
+        // ПОДТВЕРЖДЕНИЕ
         const confirmModal = document.getElementById('confirmModal');
         const closeModalBtn = document.getElementById('closeModalBtn');
         const copyTextBlock = document.getElementById('copyTextBlock');
         const confirmBtn = document.getElementById('confirmBtn');
+        const guestNameInput = document.getElementById('guestName');
         
-        if (confirmBtn) {
-            confirmBtn.addEventListener('click', () => {
-                const guestName = document.getElementById('guestName')?.value.trim() || 'Гость';
+        if (confirmBtn) {confirmBtn.addEventListener('click', () => {
+                const guestName = guestNameInput?.value.trim() || 'Гость';
                 let transferText = '';
                 if (currentTransfer === 'self') transferText = '🚙 Приеду сам';
                 else if (currentTransfer === 'need') transferText = '🚌 Нужен трансфер';
@@ -656,8 +727,8 @@
                 
                 const message = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜
 
-Имя: ${guestName}
-Трансфер: ${transferText}
+👤 Имя: ${guestName}
+🚗 Трансфер: ${transferText}
 📅 Дата: 4 июля 2026
 📍 Место: Усадьба Александрово (Кимовск)
 
@@ -668,17 +739,11 @@
             });
         }
         
-        if (closeModalBtn) {
-            closeModalBtn.addEventListener('click', () => {
-                confirmModal.classList.remove('show');
-            });
-        }
-        
-        if (confirmModal) {
-            confirmModal.addEventListener('click', (e) => {
-                if (e.target === confirmModal) confirmModal.classList.remove('show');
-            });
-        }
+        if (closeModalBtn) closeModalBtn.addEventListener('click', () => confirmModal.classList.remove('show'));
+        if (confirmModal) confirmModal.addEventListener('click', (e) => {
+            if (e.target === confirmModal) confirmModal.classList.remove('show');
+        });
     </script>
 </body>
 </html>
+``` marg
