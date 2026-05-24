@@ -185,7 +185,7 @@
         .thankyou-text { max-width: 550px; margin: 30px auto 20px; font-size: 1.1rem; line-height: 1.5; color: #4a2c6d; }
         .rsvp-note { margin-top: 20px; font-size: 1.1rem; color: #7c5f9e; }
 
-        /* СПИСОК ГОСТЕЙ */
+        /* СПИСОК ГОСТЕЙ — ВИДЕН ВЕЗДЕ */
         .guestlist-section {
             background: #f3eaff;
             padding: 60px 20px;
@@ -260,6 +260,8 @@
             border-top: 2px dashed #d9c4ff;
             font-weight: 600;
             color: #4a2c6d;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         .clear-all-btn {
             background: #b69ad4;
@@ -290,8 +292,6 @@
             .dresscode-card { width: 300px; }
             .color-label { font-size: 0.8rem; }
             .color-item .tooltip { display: none; }
-            
-            /* НА ТЕЛЕФОНЕ: ТЕКСТ ВВЕРХУ, ТАЙМЕР ВНИЗУ */
             .timer-bg-section {
                 justify-content: space-between;
                 padding: 100px 20px 60px 20px;
@@ -304,9 +304,9 @@
                 margin-top: auto;
                 margin-bottom: 0;
             }
-            
             .guest-item { flex-wrap: wrap; gap: 10px; }
             .guest-actions { margin-left: auto; }
+            .guest-stats { flex-direction: column; align-items: center; gap: 5px; }
         }
     </style>
 </head>
@@ -469,7 +469,7 @@
             <div class="rsvp-note">💜 Ответьте до <strong>1 июня 2026</strong></div>
         </div>
 
-        <!-- СПИСОК ГОСТЕЙ -->
+        <!-- СПИСОК ГОСТЕЙ — ВИДЕН НА ВСЕХ УСТРОЙСТВАХ -->
         <div class="fade-section guestlist-section">
             <div class="guestlist-container">
                 <h2>📋 Список гостей</h2>
@@ -569,9 +569,8 @@
         }
 
         // ========== УПРАВЛЕНИЕ СПИСКОМ ГОСТЕЙ ==========
-        let guests = []; // массив гостей { name, transfer }
+        let guests = [];
 
-        // Загрузка из localStorage
         function loadGuests() {
             const saved = localStorage.getItem('weddingGuests');
             if (saved) {
@@ -582,35 +581,29 @@
             renderGuestList();
         }
 
-        // Сохранение в localStorage
         function saveGuests() {
             localStorage.setItem('weddingGuests', JSON.stringify(guests));
             renderGuestList();
         }
 
-        // Добавление или обновление гостя
         function addOrUpdateGuest(name, transfer) {
             if (!name || name.trim() === '') return false;
             const normalizedName = name.trim();
             const existingIndex = guests.findIndex(g => g.name === normalizedName);
             if (existingIndex !== -1) {
-                // Обновляем существующего
                 guests[existingIndex].transfer = transfer;
             } else {
-                // Добавляем нового
                 guests.push({ name: normalizedName, transfer: transfer });
             }
             saveGuests();
             return true;
         }
 
-        // Удаление гостя
         function deleteGuest(index) {
             guests.splice(index, 1);
             saveGuests();
         }
 
-        // Редактирование гостя
         function editGuest(index) {
             const guest = guests[index];
             const newName = prompt('Введите новое имя гостя:', guest.name);
@@ -621,7 +614,6 @@
             }
         }
 
-        // Очистка всего списка
         function clearAllGuests() {
             if (confirm('Вы уверены, что хотите удалить ВСЕХ гостей из списка?')) {
                 guests = [];
@@ -629,7 +621,6 @@
             }
         }
 
-        // Отображение списка
         function renderGuestList() {
             const selfGuests = guests.filter(g => g.transfer === 'self');
             const needGuests = guests.filter(g => g.transfer === 'need');
@@ -697,7 +688,11 @@
             });
         }
 
-        // ========== ВЫБОР ТРАНСФЕРА (ДЛЯ НЕВЕСТЫ) ==========
+        // Делаем функции глобальными для onclick
+        window.editGuest = editGuest;
+        window.deleteGuest = deleteGuest;
+
+        // ========== ВЫБОР ТРАНСФЕРА ==========
         const selfBtn = document.getElementById('selfBtn');
         const needBtn = document.getElementById('needBtn');
         const transferNote = document.getElementById('transferNote');
@@ -718,11 +713,7 @@
         if (selfBtn) selfBtn.addEventListener('click', () => setActiveTransfer('self'));
         if (needBtn) needBtn.addEventListener('click', () => setActiveTransfer('need'));
 
-        const savedChoice = localStorage.getItem('transferChoice');
-        if (savedChoice === 'self') setActiveTransfer('self');
-        if (savedChoice === 'need') setActiveTransfer('need');
-
-        // ========== МОДАЛЬНОЕ ОКНО ДЛЯ НЕВЕСТЫ С ДОБАВЛЕНИЕМ В СПИСОК ==========
+        // ========== МОДАЛЬНОЕ ОКНО ДЛЯ НЕВЕСТЫ ==========
         const confirmModal = document.getElementById('confirmModal');
         const closeConfirmModal = document.getElementById('closeModalBtn');
         const copyBlock = document.getElementById('copyTextBlock');
@@ -736,7 +727,6 @@
                 let transferText = currentTransfer === 'self' ? 'Приеду сам' : (currentTransfer === 'need' ? 'Нужен трансфер' : 'Не выбран');
                 const transferValue = currentTransfer === 'self' ? 'self' : (currentTransfer === 'need' ? 'need' : 'self');
                 
-                // Добавляем гостя в список
                 if (guestName !== 'Гость') {
                     addOrUpdateGuest(guestName, transferValue);
                 }
