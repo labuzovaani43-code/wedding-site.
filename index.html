@@ -55,10 +55,39 @@
         .child-card p { margin-top: 15px; font-size: 1.3rem; color: #4a2c6d; }
         .love-story { margin-top: 35px; font-size: 1.15rem; color: #4a2c6d; font-style: italic; }
 
-        /* ТАЙМЕР */
-        .timer-bg-section { min-height: 100vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('groom.jpg'); background-size: cover; background-position: center; padding: 80px 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; }
-        .timer-bg-section h2 { font-size: 2rem; font-weight: 400; margin-bottom: 40px; max-width: 600px; }
-        .timer { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); padding: 30px 40px; border-radius: 60px; }
+        /* ТАЙМЕР НА ФОНЕ */
+        .timer-bg-section {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('groom.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        .timer-bg-section h2 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin-top: -50px;
+        }
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            padding: 25px 35px;
+            border-radius: 60px;
+            margin-top: 30px;
+            margin-bottom: -50px;
+        }
         .timer-box { text-align: center; background: rgba(255,255,255,0.15); padding: 15px 25px; border-radius: 20px; min-width: 100px; transition: transform 0.3s ease; }
         .timer-box:hover { transform: scale(1.05); }
         .timer-number { font-size: 3rem; font-weight: 600; font-family: 'Montserrat', sans-serif; color: #ffecb3; }
@@ -84,34 +113,10 @@
         .men-card { padding-bottom: 20px; }
         .dresscode-card h3 { font-size: 1.5rem; color: #b69ad4; margin-bottom: 15px; font-weight: 500; }
         .color-list { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
-        .color-item { display: flex; align-items: center; gap: 12px; position: relative; cursor: pointer; transition: transform 0.2s ease; padding: 5px 10px; border-radius: 40px; }
-        .color-item:hover { transform: translateX(8px); background: #f3eaff; }
-        .paint-swatch { width: 45px; height: 45px; border-radius: 25px; box-shadow: 0 3px 8px rgba(0,0,0,0.1); transition: transform 0.2s; }
-        .paint-swatch:hover { transform: scale(1.1); }
-        .color-label { font-size: 0.9rem; color: #4a2c6d; font-family: 'Montserrat', sans-serif; }
-        .color-item .tooltip {
-            visibility: hidden;
-            position: absolute;
-            left: 70px;
-            top: -30px;
-            background: #4a2c6d;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            white-space: nowrap;
-            font-family: 'Montserrat', sans-serif;
-            z-index: 100;
-            opacity: 0;
-            transition: opacity 0.3s, transform 0.2s;
-            transform: translateY(5px);
-            pointer-events: none;
-        }
-        .color-item:hover .tooltip {
-            visibility: visible;
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .color-item { display: flex; align-items: center; gap: 12px; cursor: pointer; transition: transform 0.2s ease; padding: 5px 10px; border-radius: 40px; }
+        .color-item:active { transform: scale(0.98); background: #f3eaff; }
+        .paint-swatch { width: 45px; height: 45px; border-radius: 25px; box-shadow: 0 3px 8px rgba(0,0,0,0.1); transition: transform 0.2s; pointer-events: none; }
+        .color-label { font-size: 0.9rem; color: #4a2c6d; font-family: 'Montserrat', sans-serif; pointer-events: none; }
         .dresscode-card p { font-size: 1rem; color: #4a2c6d; margin-top: 15px; line-height: 1.4; }
         .dresscode-text { max-width: 600px; margin: 20px auto 0; font-size: 1.2rem; line-height: 1.6; color: #4a2c6d; }
         .dresscode-note { margin-top: 25px; font-size: 1.2rem; color: #b69ad4; font-weight: 500; background: #f3eaff; display: inline-block; padding: 8px 25px; border-radius: 40px; }
@@ -131,12 +136,13 @@
         .music-btn { background: #b69ad4; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: 0.3s; color: white; }
         .volume-slider { width: 70px; height: 4px; -webkit-appearance: none; background: #d9c4ff; border-radius: 2px; outline: none; }
 
-        /* ПОДТВЕРЖДЕНИЕ */
+        /* ФОРМЫ ПОДТВЕРЖДЕНИЯ */
         .rsvp-section { background: #faf7f2; padding: 60px 20px; text-align: center; }
         .rsvp-section h2 { font-size: 2.2rem; color: #4a2c6d; margin-bottom: 20px; }
         .form-group { max-width: 350px; margin: 0 auto 20px; }
-        .form-group input { width: 100%; padding: 14px 20px; border-radius: 50px; border: 1px solid #d9c4ff; font-family: inherit; font-size: 1rem; transition: all 0.3s; }
-        .form-group input:focus { outline: none; border-color: #b69ad4; box-shadow: 0 0 5px rgba(182,154,212,0.5); }
+        .form-group input, .form-group textarea { width: 100%; padding: 14px 20px; border-radius: 50px; border: 1px solid #d9c4ff; font-family: inherit; font-size: 1rem; transition: all 0.3s; background: white; }
+        .form-group textarea { border-radius: 25px; resize: vertical; min-height: 80px; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #b69ad4; box-shadow: 0 0 5px rgba(182,154,212,0.5); }
         .transfer-buttons { display: flex; gap: 15px; justify-content: center; margin: 20px auto; }
         .transfer-btn { background: #f0e6ff; border: 2px solid #d9c4ff; padding: 10px 25px; border-radius: 50px; font-size: 1rem; cursor: pointer; transition: 0.3s; }
         .transfer-btn:hover { transform: translateY(-2px); background: #e8d9ff; }
@@ -150,13 +156,11 @@
         .custom-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 3000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
         .custom-modal.show { opacity: 1; visibility: visible; }
         .modal-content { background: white; border-radius: 30px; padding: 30px; max-width: 400px; width: 90%; text-align: center; animation: fadeInScale 0.4s ease; }
-        .copy-text { background: #f0e6ff; padding: 15px; border-radius: 15px; font-size: 0.9rem; text-align: left; margin: 15px 0; white-space: pre-wrap; }
+        .copy-text { background: #f0e6ff; padding: 15px; border-radius: 15px; font-size: 0.85rem; text-align: left; margin: 15px 0; white-space: pre-wrap; word-break: break-word; max-height: 300px; overflow-y: auto; }
         .copy-btn { background: #b69ad4; color: white; border: none; padding: 10px 20px; border-radius: 40px; cursor: pointer; margin: 5px; font-family: inherit; transition: 0.3s; }
         .copy-btn:hover { background: #9b7abf; transform: scale(1.02); }
         .modal-link { display: inline-block; background: #b69ad4; color: white; padding: 12px 25px; border-radius: 40px; text-decoration: none; transition: 0.3s; margin-top: 10px; }
         .modal-link:hover { background: #9b7abf; transform: scale(1.02); }
-        .ask-btn { background: #b69ad4; color: white; padding: 12px 25px; border-radius: 50px; border: none; font-size: 1rem; cursor: pointer; margin-top: 15px; transition: 0.3s; font-family: inherit; }
-        .ask-btn:hover { background: #9b7abf; transform: translateY(-2px); }
 
         footer { background: #2e1f3d; color: #b89b7b; text-align: center; padding: 30px 20px; }
         footer p { margin: 5px 0; font-size: 1.1rem; }
@@ -207,7 +211,7 @@
     <!-- МОДАЛЬНОЕ ОКНО ДЛЯ ВОПРОСОВ К ЖЕНИХУ -->
     <div class="custom-modal" id="askGroomModal">
         <div class="modal-content">
-            <strong>💜 ВОПРОСЫ И ПОДАРКИ 💜</strong>
+            <strong>💜 ВОПРОС ИЛИ ПОЖЕЛАНИЕ ДЛЯ ЖЕНИХА 💜</strong>
             <div class="copy-text" id="askGroomTextBlock"></div>
             <button class="copy-btn" id="copyGroomMsgBtn">📋 Копировать текст</button>
             <a href="https://vk.com/im?sel=80427230" target="_blank" class="modal-link">💬 Открыть диалог с женихом</a>
@@ -258,30 +262,31 @@
             </div>
         </div>
 
+        <!-- ДРЕСС-КОД -->
         <div class="fade-section dresscode-section">
             <h2>👗 ДРЕСС-КОД</h2>
             <div class="dresscode-row">
                 <div class="dresscode-card women-card">
-                    <h3>🌸 ДЛЯ ДАМ</h3>
+                    <h3>🌸 ДЛЯ ЖЕНЩИН</h3>
                     <div class="color-list">
-                        <div class="color-item"><div class="paint-swatch" style="background: #FADADD;"></div><span class="color-label">🌷 Пудровое платье</span><span class="tooltip">Нежное пудровое платье-миди с кружевом</span></div>
-                        <div class="color-item"><div class="paint-swatch" style="background: #F5C6CB;"></div><span class="color-label">💖 Розовое платье</span><span class="tooltip">Розовое струящееся платье в пол</span></div>
-                        <div class="color-item"><div class="paint-swatch" style="background: #FFE0B2;"></div><span class="color-label">🍑 Персиковое платье</span><span class="tooltip">Персиковое платье-футляр</span></div>
-                        <div class="color-item"><div class="paint-swatch" style="background: #E6E6FA;"></div><span class="color-label">💜 Лавандовое платье</span><span class="tooltip">Лавандовое платье с цветочным принтом</span></div>
-                        <div class="color-item"><div class="paint-swatch" style="background: #C8E6C9;"></div><span class="color-label">🍃 Мятное платье</span><span class="tooltip">Свежее мятное платье-макси</span></div>
-                        <div class="color-item"><div class="paint-swatch" style="background: #FFF3E0;"></div><span class="color-label">🧸 Бежевое платье</span><span class="tooltip">Элегантное бежевое платье-комбинация</span></div>
+                        <div class="color-item" data-tip="Нежное пудровое платье-миди с кружевом"><div class="paint-swatch" style="background: #FADADD;"></div><span class="color-label">🌷 Пудровый</span></div>
+                        <div class="color-item" data-tip="Розовое струящееся платье в пол"><div class="paint-swatch" style="background: #F5C6CB;"></div><span class="color-label">💖 Розовый</span></div>
+                        <div class="color-item" data-tip="Персиковое платье-футляр"><div class="paint-swatch" style="background: #FFE0B2;"></div><span class="color-label">🍑 Персиковый</span></div>
+                        <div class="color-item" data-tip="Лавандовое платье с цветочным принтом"><div class="paint-swatch" style="background: #E6E6FA;"></div><span class="color-label">💜 Лавандовый</span></div>
+                        <div class="color-item" data-tip="Свежее мятное платье-макси"><div class="paint-swatch" style="background: #C8E6C9;"></div><span class="color-label">🍃 Мятный</span></div>
+                        <div class="color-item" data-tip="Элегантное бежевое платье-комбинация"><div class="paint-swatch" style="background: #FFF3E0;"></div><span class="color-label">🧸 Бежевый</span></div>
                     </div>
-                    <p>Лучшие платья в нежных тонах: пудровые, розовые, персиковые, лавандовые, мятные, бежевые</p>
+                    <p><strong>Платья и костюмы в пастельных оттенках</strong></p>
                 </div>
                 <div class="dresscode-card men-card">
                     <h3>👔 ДЛЯ МУЖЧИН</h3>
                     <div class="color-list">
-                        <div class="color-item"><div class="paint-swatch" style="background: #2C2C2C;"></div><span class="color-label">⚫ Чёрный костюм</span><span class="tooltip">Классический чёрный костюм-двойка</span></div>
-                        <div class="color-item"><div class="paint-swatch" style="background: #9E9E9E;"></div><span class="color-label">⚪ Серый костюм</span><span class="tooltip">Элегантный серый костюм в тонкую полоску</span></div>
-                        <div class="color-item"><div class="paint-swatch" style="background: #8D6E63;"></div><span class="color-label">🤎 Коричневый костюм</span><span class="tooltip">Благородный коричневый костюм-тройка</span></div>
-                        <div class="color-item"><div class="paint-swatch" style="background: #FFFFFF;"></div><span class="color-label">🤍 Белый костюм</span><span class="tooltip">Стильный белый льняной костюм</span></div>
+                        <div class="color-item" data-tip="Классический чёрный костюм-двойка"><div class="paint-swatch" style="background: #2C2C2C;"></div><span class="color-label">⚫ Чёрный</span></div>
+                        <div class="color-item" data-tip="Элегантный серый костюм в тонкую полоску"><div class="paint-swatch" style="background: #9E9E9E;"></div><span class="color-label">⚪ Серый</span></div>
+                        <div class="color-item" data-tip="Благородный коричневый костюм-тройка"><div class="paint-swatch" style="background: #8D6E63;"></div><span class="color-label">🤎 Коричневый</span></div>
+                        <div class="color-item" data-tip="Стильный белый льняной костюм"><div class="paint-swatch" style="background: #FFFFFF;"></div><span class="color-label">🤍 Белый</span></div>
                     </div>
-                    <p>Классические костюмы: чёрные, серые, коричневые, белые оттенки</p>
+                    <p><strong>Классические костюмы и спокойные благородные оттенки</strong></p>
                 </div>
             </div>
             <div class="dresscode-text">
@@ -301,17 +306,27 @@
             </div>
         </div>
 
-        <!-- ВЕДУЩИЙ — ПО ВОПРОСАМ К ЖЕНИХУ С КНОПКОЙ -->
+        <!-- БЛОК ДЛЯ ЖЕНИХА С ФОРМОЙ -->
         <div class="fade-section venue-section" style="background:#faf7f2;">
             <div class="venue-card">
                 <h2 style="font-size:1.8rem;">🎤 По вопросам и подаркам</h2>
                 <p style="font-size:2rem; color:#4a2c6d;">Владислав</p>
                 <p style="font-size:1.4rem; color:#b69ad4;">+7 (910) 945-53-96</p>
                 <p style="color:#6c4e8f;">жених</p>
-                <button class="ask-btn" id="askGroomBtn">📝 Задать вопрос</button>
+                
+                <div style="margin-top: 25px;">
+                    <div class="form-group">
+                        <input type="text" id="groomName" placeholder="Ваше имя">
+                    </div>
+                    <div class="form-group">
+                        <textarea id="groomQuestion" rows="3" placeholder="Ваш вопрос или пожелание..."></textarea>
+                    </div>
+                    <button class="confirm-btn" id="askGroomBtn">📝 Подготовить вопрос</button>
+                </div>
             </div>
         </div>
 
+        <!-- БЛОК ДЛЯ НЕВЕСТЫ С ФОРМОЙ -->
         <div class="fade-section rsvp-section">
             <h2>💌 Подтвердите присутствие</h2>
             <div class="form-group"><input type="text" id="guestName" placeholder="Ваше имя"></div>
@@ -399,7 +414,7 @@
             });
         }
 
-        // ВЫБОР ТРАНСФЕРА
+        // ВЫБОР ТРАНСФЕРА (ДЛЯ НЕВЕСТЫ)
         const selfBtn = document.getElementById('selfBtn');
         const needBtn = document.getElementById('needBtn');
         const transferNote = document.getElementById('transferNote');
@@ -436,7 +451,7 @@
         if (confirmBtn) {
             confirmBtn.addEventListener('click', () => {
                 const guestName = guestNameInput?.value.trim() || 'Гость';
-                let transferText = currentTransfer === 'self' ? '🚙 Приеду сам' : (currentTransfer === 'need' ? '🚌 Нужен трансфер' : '❓ Не выбран');
+                let transferText = currentTransfer === 'self' ? 'Приеду сам' : (currentTransfer === 'need' ? 'Нужен трансфер' : 'Не выбран');
                 const msg = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nИмя: ${guestName}\nТрансфер: ${transferText}\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
                 copyBlock.innerText = msg;
                 confirmModal.classList.add('show');
@@ -456,16 +471,20 @@
         
         if (closeConfirmModal) closeConfirmModal.addEventListener('click', () => confirmModal.classList.remove('show'));
 
-        // МОДАЛЬНОЕ ОКНО ДЛЯ ЖЕНИХА
+        // МОДАЛЬНОЕ ОКНО ДЛЯ ЖЕНИХА (С ФОРМОЙ)
         const askGroomModal = document.getElementById('askGroomModal');
         const closeGroomModal = document.getElementById('closeGroomModalBtn');
         const askGroomTextBlock = document.getElementById('askGroomTextBlock');
         const copyGroomBtn = document.getElementById('copyGroomMsgBtn');
         const askGroomBtn = document.getElementById('askGroomBtn');
+        const groomNameInput = document.getElementById('groomName');
+        const groomQuestionInput = document.getElementById('groomQuestion');
 
         if (askGroomBtn) {
             askGroomBtn.addEventListener('click', () => {
-                const msg = `💜 ВОПРОС ПО СВАДЬБЕ / ПОДАРОК 💜\n\nИмя: (напишите своё имя)\nВопрос/Пожелание: (напишите свой вопрос или пожелание)\n\n💜 Заранее спасибо! Буду рад помочь!`;
+                const guestName = groomNameInput?.value.trim() || 'Гость';
+                const question = groomQuestionInput?.value.trim() || '(без вопроса)';
+                const msg = `💜 ВОПРОС ИЛИ ПОЖЕЛАНИЕ ДЛЯ ЖЕНИХА 💜\n\nИмя: ${guestName}\nВопрос/Пожелание: ${question}\n\n💜 Спасибо! Жду встречи на свадьбе!`;
                 askGroomTextBlock.innerText = msg;
                 askGroomModal.classList.add('show');
             });
@@ -489,6 +508,15 @@
         modals.forEach(modal => {
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) modal.classList.remove('show');
+            });
+        });
+        
+        // Подсказки при клике на цвета для телефона
+        const colorItems = document.querySelectorAll('.color-item');
+        colorItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const tip = item.getAttribute('data-tip');
+                if (tip) alert(tip);
             });
         });
     </script>
