@@ -9,51 +9,16 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Cormorant Garamond', serif; background: #faf7f2; color: #3d2b1f; overflow-x: hidden; }
 
-        /* === АНИМАЦИИ === */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-40px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(40px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInScale { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 
-        /* БАЗОВЫЕ СТИЛИ ДЛЯ СЕКЦИЙ — СНАЧАЛА СКРЫТЫ */
-        .fade-section {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-        }
-        .fade-section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .fade-section { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
+        .fade-section.visible { opacity: 1; transform: translateY(0); }
+        .stagger-item { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .stagger-item.visible { opacity: 1; transform: translateY(0); }
 
-        /* ДЛЯ ЭЛЕМЕНТОВ ВНУТРИ СЕКЦИЙ — ПОСТЕПЕННОЕ ПОЯВЛЕНИЕ */
-        .stagger-item {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        .stagger-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* === КОНВЕРТ === */
-        .envelope-screen { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #e8d9ff; z-index: 1000; display: flex; justify-content: center; align-items: center; cursor: pointer; 
-            animation: fadeInScale 0.6s ease;
-        }
+        /* КОНВЕРТ */
+        .envelope-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #e8d9ff; z-index: 1000; display: flex; justify-content: center; align-items: center; cursor: pointer; animation: fadeInScale 0.6s ease; }
         .envelope { width: 320px; height: 220px; background: #d9c4ff; border-radius: 12px; position: relative; box-shadow: 0 20px 35px rgba(0,0,0,0.25); transition: transform 0.3s ease; }
         .envelope:hover { transform: scale(1.02); }
         .flap { width: 100%; height: 100%; background: #c4a8e6; position: absolute; top: 0; left: 0; transform-origin: top; border-radius: 12px; z-index: 3; }
@@ -62,100 +27,116 @@
         .seal { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); width: 45px; height: 45px; background: #b69ad4; border-radius: 50%; z-index: 4; cursor: pointer; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.3rem; box-shadow: 0 2px 8px rgba(0,0,0,0.2); transition: transform 0.2s; }
         .seal:hover { transform: translateX(-50%) scale(1.05); }
 
-        /* === ВСПЛЫВАЮЩАЯ БУМАЖКА === */
         .popup-paper { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); width: 320px; background: #fffef7; border-radius: 20px; padding: 35px 25px; text-align: center; z-index: 2000; box-shadow: 0 25px 45px rgba(0,0,0,0.3); border: 2px solid #d9c4ff; opacity: 0; transition: all 0.5s cubic-bezier(0.34, 1.2, 0.64, 1); pointer-events: none; }
         .popup-paper.show { transform: translate(-50%, -50%) scale(1); opacity: 1; pointer-events: auto; }
         .popup-paper h3 { font-size: 1.8rem; color: #7c5f9e; margin-bottom: 15px; }
         .popup-paper p { font-size: 1rem; color: #4a2c6d; margin-bottom: 25px; }
         .close-popup { background: #b69ad4; color: white; border: none; padding: 10px 30px; border-radius: 40px; font-size: 1rem; cursor: pointer; transition: 0.3s; }
-        .close-popup:hover { background: #9b7abf; transform: scale(1.02); }
 
-        /* === ОСНОВНОЙ КОНТЕНТ === */
         .main-content { opacity: 0; transition: opacity 0.8s ease; max-width: 1200px; margin: 0 auto; display: none; }
         .main-content.visible { opacity: 1; display: block; }
 
-        /* === ГЛАВНЫЙ ЭКРАН === */
+        /* ГЛАВНЫЙ ЭКРАН */
         .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px; background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('bride.jpg'); background-size: cover; background-position: center; color: white; }
-        .wedding-day { font-family: 'Montserrat', sans-serif; font-size: 1rem; letter-spacing: 8px; color: #ffecb3; margin-bottom: 15px; animation: slideInLeft 0.8s ease; }
-        .hero h1 { font-size: 4rem; font-weight: 400; letter-spacing: 4px; margin-bottom: 20px; text-shadow: 2px 2px 8px rgba(0,0,0,0.3); color: #d9c4ff; animation: fadeInUp 1s ease 0.2s both; }
-        .hero-subtitle { font-size: 1.2rem; max-width: 500px; margin: 20px auto; line-height: 1.5; text-shadow: 1px 1px 4px rgba(0,0,0,0.3); color: #f0e6d2; animation: fadeInUp 1s ease 0.4s both; }
-        .hero-date { font-size: 1.2rem; margin-top: 25px; letter-spacing: 2px; color: #ffecb3; animation: fadeInUp 1s ease 0.6s both; }
+        .wedding-day { font-family: 'Montserrat', sans-serif; font-size: 1rem; letter-spacing: 8px; color: #ffecb3; margin-bottom: 15px; }
+        .hero h1 { font-size: 4rem; font-weight: 400; letter-spacing: 4px; margin-bottom: 20px; text-shadow: 2px 2px 8px rgba(0,0,0,0.3); color: #d9c4ff; }
+        .hero-subtitle { font-size: 1.2rem; max-width: 500px; margin: 20px auto; line-height: 1.5; text-shadow: 1px 1px 4px rgba(0,0,0,0.3); color: #f0e6d2; }
+        .hero-date { font-size: 1.2rem; margin-top: 25px; letter-spacing: 2px; color: #ffecb3; }
 
-        /* === НАША ИСТОРИЯ === */
+        /* НАША ИСТОРИЯ */
         .story-section { padding: 60px 20px; background: #faf7f2; text-align: center; }
         .story-section h2 { font-size: 2rem; color: #4a2c6d; margin-bottom: 20px; }
         .story-text { max-width: 700px; margin: 0 auto 30px; font-size: 1.15rem; line-height: 1.6; color: #5e4b3c; }
         .child-photos-grid { display: flex; flex-wrap: wrap; gap: 50px; justify-content: center; max-width: 800px; margin: 20px auto 0; }
-        .child-card { text-align: center; flex: 1; min-width: 280px; transition: transform 0.4s ease, opacity 0.6s ease; }
+        .child-card { text-align: center; flex: 1; min-width: 280px; transition: transform 0.4s ease; }
         .child-card:hover { transform: translateY(-10px); }
-        .child-card img { width: 300px; height: 300px; object-fit: cover; border-radius: 50%; border: 6px solid #d9c4ff; box-shadow: 0 20px 30px rgba(0,0,0,0.15); transition: transform 0.4s ease, box-shadow 0.4s ease; }
-        .child-card img:hover { transform: scale(1.03); box-shadow: 0 25px 40px rgba(0,0,0,0.2); }
+        .child-card img { width: 300px; height: 300px; object-fit: cover; border-radius: 50%; border: 6px solid #d9c4ff; box-shadow: 0 20px 30px rgba(0,0,0,0.15); transition: transform 0.4s ease; }
+        .child-card img:hover { transform: scale(1.03); }
         .child-card p { margin-top: 15px; font-size: 1.3rem; color: #4a2c6d; }
         .love-story { margin-top: 35px; font-size: 1.15rem; color: #4a2c6d; font-style: italic; }
 
-        /* === ТАЙМЕР НА ФОНЕ === */
+        /* ТАЙМЕР */
         .timer-bg-section { min-height: 100vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('groom.jpg'); background-size: cover; background-position: center; padding: 80px 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; }
         .timer-bg-section h2 { font-size: 2rem; font-weight: 400; margin-bottom: 40px; max-width: 600px; }
         .timer { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); padding: 30px 40px; border-radius: 60px; }
         .timer-box { text-align: center; background: rgba(255,255,255,0.15); padding: 15px 25px; border-radius: 20px; min-width: 100px; transition: transform 0.3s ease; }
-        .timer-box:hover { transform: scale(1.05); background: rgba(255,255,255,0.25); }
+        .timer-box:hover { transform: scale(1.05); }
         .timer-number { font-size: 3rem; font-weight: 600; font-family: 'Montserrat', sans-serif; color: #ffecb3; }
         .timer-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #f0e6d2; }
 
-        /* === ТАЙМИНГ === */
+        /* ТАЙМИНГ */
         .timing-section { padding: 80px 20px; background: #f3eaff; text-align: center; }
         .timing-section h2 { font-size: 2rem; color: #4a2c6d; margin-bottom: 30px; }
-        .timing-list-center { max-width: 700px; margin: 0 auto; background: white; border-radius: 40px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: left; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .timing-list-center:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.12); }
+        .timing-list-center { max-width: 700px; margin: 0 auto; background: white; border-radius: 40px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: left; transition: transform 0.3s ease; }
+        .timing-list-center:hover { transform: translateY(-5px); }
         .timing-item { display: flex; justify-content: space-between; align-items: baseline; padding: 15px 0; border-bottom: 1px solid #e8d9ff; font-size: 1.1rem; flex-wrap: wrap; transition: all 0.3s ease; }
-        .timing-item:hover { background: #faf5ff; padding-left: 10px; padding-right: 10px; border-radius: 20px; }
+        .timing-item:hover { background: #faf5ff; padding-left: 10px; border-radius: 20px; }
         .timing-time { font-weight: 600; color: #b69ad4; font-family: monospace; font-size: 1.2rem; }
         .timing-note { font-size: 0.85rem; margin-top: 8px; margin-bottom: 12px; color: #6c4e8f; padding-left: 15px; border-left: 3px solid #d9c4ff; width: 100%; }
 
-        /* === ДРЕСС-КОД === */
+        /* ДРЕСС-КОД */
         .dresscode-section { padding: 70px 20px; background: #faf7f2; text-align: center; }
         .dresscode-section h2 { font-size: 2.2rem; color: #4a2c6d; margin-bottom: 25px; letter-spacing: 2px; }
         .dresscode-row { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; align-items: flex-start; margin-bottom: 35px; }
-        .dresscode-card { background: white; border-radius: 30px; padding: 25px 20px; width: 350px; box-shadow: 0 10px 20px rgba(0,0,0,0.08); border: 1px solid #e8d9ff; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .dresscode-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.12); }
+        .dresscode-card { background: white; border-radius: 30px; padding: 25px 20px; width: 350px; box-shadow: 0 10px 20px rgba(0,0,0,0.08); border: 1px solid #e8d9ff; transition: transform 0.3s ease; }
+        .dresscode-card:hover { transform: translateY(-5px); }
         .women-card { padding-bottom: 35px; }
         .men-card { padding-bottom: 20px; }
         .dresscode-card h3 { font-size: 1.5rem; color: #b69ad4; margin-bottom: 15px; font-weight: 500; }
         .color-list { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
-        .color-item { display: flex; align-items: center; gap: 12px; transition: transform 0.2s ease; }
-        .color-item:hover { transform: translateX(8px); }
-        .paint-swatch { width: 45px; height: 45px; border-radius: 25px; box-shadow: 0 3px 8px rgba(0,0,0,0.1); transition: transform 0.2s; cursor: pointer; }
+        .color-item { display: flex; align-items: center; gap: 12px; position: relative; cursor: pointer; transition: transform 0.2s ease; padding: 5px 10px; border-radius: 40px; }
+        .color-item:hover { transform: translateX(8px); background: #f3eaff; }
+        .paint-swatch { width: 45px; height: 45px; border-radius: 25px; box-shadow: 0 3px 8px rgba(0,0,0,0.1); transition: transform 0.2s; }
         .paint-swatch:hover { transform: scale(1.1); }
         .color-label { font-size: 0.9rem; color: #4a2c6d; font-family: 'Montserrat', sans-serif; }
+        .color-item .tooltip {
+            visibility: hidden;
+            position: absolute;
+            left: 70px;
+            top: -30px;
+            background: #4a2c6d;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            font-family: 'Montserrat', sans-serif;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.2s;
+            transform: translateY(5px);
+            pointer-events: none;
+        }
+        .color-item:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
         .dresscode-card p { font-size: 1rem; color: #4a2c6d; margin-top: 15px; line-height: 1.4; }
         .dresscode-text { max-width: 600px; margin: 20px auto 0; font-size: 1.2rem; line-height: 1.6; color: #4a2c6d; }
-        .dresscode-note { margin-top: 25px; font-size: 1.2rem; color: #b69ad4; font-weight: 500; background: #f3eaff; display: inline-block; padding: 8px 25px; border-radius: 40px; transition: transform 0.3s; }
-        .dresscode-note:hover { transform: scale(1.02); }
+        .dresscode-note { margin-top: 25px; font-size: 1.2rem; color: #b69ad4; font-weight: 500; background: #f3eaff; display: inline-block; padding: 8px 25px; border-radius: 40px; }
 
-        /* === МЕСТО === */
+        /* МЕСТО */
         .venue-section { background: #f3eaff; padding: 60px 20px; text-align: center; }
-        .venue-card { max-width: 650px; margin: 0 auto; background: white; border-radius: 30px; padding: 35px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .venue-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
+        .venue-card { max-width: 650px; margin: 0 auto; background: white; border-radius: 30px; padding: 35px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+        .venue-card:hover { transform: translateY(-5px); }
         .venue-card h3 { font-size: 1.8rem; color: #b69ad4; margin-bottom: 10px; }
-        .map-container { margin: 20px 0; border-radius: 20px; overflow: hidden; transition: transform 0.3s ease; }
-        .map-container:hover { transform: scale(1.01); }
+        .map-container { margin: 20px 0; border-radius: 20px; overflow: hidden; }
         .map-container iframe { width: 100%; height: 250px; border: none; }
-        .map-link { display: inline-block; margin-top: 10px; color: #b69ad4; text-decoration: none; border-bottom: 1px dotted; transition: color 0.3s; }
-        .map-link:hover { color: #9b7abf; }
+        .map-link { display: inline-block; margin-top: 10px; color: #b69ad4; text-decoration: none; border-bottom: 1px dotted; }
 
-        /* === ПЛЕЕР === */
+        /* ПЛЕЕР */
         .music-player { position: fixed; bottom: 20px; right: 20px; z-index: 1001; background: rgba(74, 44, 109, 0.85); backdrop-filter: blur(10px); border-radius: 50px; padding: 8px 16px; display: flex; align-items: center; gap: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.3); border: 1px solid #d9c4ff; transition: transform 0.3s ease; }
         .music-player:hover { transform: scale(1.05); }
         .music-btn { background: #b69ad4; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: 0.3s; color: white; }
-        .music-btn:hover { background: #9b7abf; transform: scale(1.05); }
         .volume-slider { width: 70px; height: 4px; -webkit-appearance: none; background: #d9c4ff; border-radius: 2px; outline: none; }
 
-        /* === ПОДТВЕРЖДЕНИЕ === */
+        /* ПОДТВЕРЖДЕНИЕ */
         .rsvp-section { background: #faf7f2; padding: 60px 20px; text-align: center; }
         .rsvp-section h2 { font-size: 2.2rem; color: #4a2c6d; margin-bottom: 20px; }
         .form-group { max-width: 350px; margin: 0 auto 20px; }
         .form-group input { width: 100%; padding: 14px 20px; border-radius: 50px; border: 1px solid #d9c4ff; font-family: inherit; font-size: 1rem; transition: all 0.3s; }
-        .form-group input:focus { outline: none; border-color: #b69ad4; box-shadow: 0 0 5px rgba(182,154,212,0.5); transform: scale(1.02); }
+        .form-group input:focus { outline: none; border-color: #b69ad4; box-shadow: 0 0 5px rgba(182,154,212,0.5); }
         .transfer-buttons { display: flex; gap: 15px; justify-content: center; margin: 20px auto; }
         .transfer-btn { background: #f0e6ff; border: 2px solid #d9c4ff; padding: 10px 25px; border-radius: 50px; font-size: 1rem; cursor: pointer; transition: 0.3s; }
         .transfer-btn:hover { transform: translateY(-2px); background: #e8d9ff; }
@@ -165,12 +146,11 @@
         .thankyou-text { max-width: 550px; margin: 30px auto 20px; font-size: 1.1rem; line-height: 1.5; color: #4a2c6d; }
         .rsvp-note { margin-top: 20px; font-size: 1.1rem; color: #7c5f9e; }
 
-        /* === МОДАЛЬНОЕ ОКНО === */
         .custom-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 3000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
         .custom-modal.show { opacity: 1; visibility: visible; }
         .modal-content { background: white; border-radius: 30px; padding: 30px; max-width: 400px; width: 90%; text-align: center; animation: fadeInScale 0.4s ease; }
         .copy-text { background: #f0e6ff; padding: 15px; border-radius: 15px; font-size: 0.9rem; text-align: left; margin: 15px 0; white-space: pre-wrap; }
-        .modal-link { display: inline-block; background: #b69ad4; color: white; padding: 12px 25px; border-radius: 40px; text-decoration: none; transition: 0.3s; }
+        .modal-link { display: inline-block; background: #b69ad4; color: white; padding: 12px 25px; border-radius: 40px; text-decoration: none; transition: 0.3s; margin-top: 10px; }
         .modal-link:hover { background: #9b7abf; transform: scale(1.02); }
 
         footer { background: #2e1f3d; color: #b89b7b; text-align: center; padding: 30px 20px; }
@@ -212,14 +192,13 @@
         <div class="modal-content">
             <strong>💜 ПОДТВЕРЖДЕНИЕ 💜</strong>
             <div class="copy-text" id="copyTextBlock"></div>
-            <a href="https://vk.com/im?sel=277437328&text=%F0%9F%92%9C%20%D0%9F%D0%9E%D0%94%D0%A2%D0%92%D0%95%D0%A0%D0%96%D0%94%D0%95%D0%9D%D0%98%D0%95%20%D0%9F%D0%A0%D0%98%D0%A1%D0%A3%D0%A2%D0%A1%D0%A2%D0%92%D0%98%D0%AF%20%F0%9F%92%9C%0A%0A%F0%9F%91%A4%20%D0%98%D0%BC%D1%8F%3A%20(%D0%BD%D0%B0%D0%BF%D0%B8%D1%88%D0%B8%D1%82%D0%B5%20%D1%81%D0%B2%D0%BE%D1%91%20%D0%B8%D0%BC%D1%8F)%0A%F0%9F%9A%97%20%D0%A2%D1%80%D0%B0%D0%BD%D1%81%D1%84%D0%B5%D1%80%3A%20(%D0%BD%D0%B0%D0%BF%D0%B8%D1%88%D0%B8%D1%82%D0%B5%20%D0%BF%D1%80%D0%B8%D0%B5%D0%B4%D1%83%20%D1%81%D0%B0%D0%BC%20%D0%B8%D0%BB%D0%B8%20%D0%BD%D1%83%D0%B6%D0%B5%D0%BD%20%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%84%D0%B5%D1%80)%0A%F0%9F%93%85%20%D0%94%D0%B0%D1%82%D0%B0%3A%204%20%D0%B8%D1%8E%D0%BB%D1%8F%202026%0A%F0%9F%93%8D%20%D0%9C%D0%B5%D1%81%D1%82%D0%BE%3A%20%D0%A3%D1%81%D0%B0%D0%B4%D1%8C%D0%B1%D0%B0%20%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80%D0%BE%D0%B2%D0%BE%20(%D0%9A%D0%B8%D0%BC%D0%BE%D0%B2%D1%81%D0%BA)%0A%0A%F0%9F%92%9C%20%D0%96%D0%B4%D1%83%20%D1%81%20%D0%BD%D0%B5%D1%82%D0%B5%D1%80%D0%BF%D0%B5%D0%BD%D0%B8%D0%B5%D0%BC!" target="_blank" class="modal-link">💬 Написать Наталье в ВК</a>
+            <a href="#" id="vkMessageLink" target="_blank" class="modal-link">💬 Написать Наталье в ВК</a>
             <button class="close-modal" id="closeModalBtn" style="margin-top:10px; background:#4a2c6d; color:white; padding:8px 20px; border-radius:40px; border:none;">Закрыть</button>
         </div>
     </div>
 
     <div class="main-content" id="mainContent">
         
-        <!-- ГЛАВНЫЙ ЭКРАН -->
         <div class="hero">
             <div class="wedding-day">W E D D I N G   D A Y !</div>
             <h1>Владислав & Наталья</h1>
@@ -227,7 +206,6 @@
             <div class="hero-date">4 ИЮЛЯ · УСАДЬБА АЛЕКСАНДРОВО</div>
         </div>
 
-        <!-- НАША ИСТОРИЯ -->
         <div class="fade-section story-section">
             <h2>💜 Наша история 💜</h2>
             <div class="story-text">Помните эту пару? Когда-то мы были просто детьми, не подозревая, что однажды наши пути пересекутся. Спустя годы мы нашли друг друга, чтобы вместе написать нашу историю любви.</div>
@@ -238,7 +216,6 @@
             <div class="stagger-item love-story">А ведь наша любовь выросла! Ждём вас разделить этот день 💑</div>
         </div>
 
-        <!-- ТАЙМЕР НА ФОНЕ -->
         <div class="fade-section timer-bg-section">
             <h2>Мы будем счастливы, если вы разделите с нами этот особенный день</h2>
             <div class="timer">
@@ -249,7 +226,6 @@
             </div>
         </div>
 
-        <!-- ТАЙМИНГ -->
         <div class="fade-section timing-section">
             <h2>📅 Тайминг дня</h2>
             <div class="timing-list-center">
@@ -264,29 +240,28 @@
             </div>
         </div>
 
-        <!-- ДРЕСС-КОД -->
         <div class="fade-section dresscode-section">
             <h2>👗 ДРЕСС-КОД</h2>
             <div class="dresscode-row">
                 <div class="dresscode-card women-card">
                     <h3>🌸 ДЛЯ ДАМ</h3>
                     <div class="color-list">
-                        <div class="color-item"><div class="paint-swatch" style="background: #FADADD;"></div><span class="color-label">🌷 Пудровое платье</span></div>
-                        <div class="color-item"><div class="paint-swatch" style="background: #F5C6CB;"></div><span class="color-label">💖 Розовое платье</span></div>
-                        <div class="color-item"><div class="paint-swatch" style="background: #FFE0B2;"></div><span class="color-label">🍑 Персиковое платье</span></div>
-                        <div class="color-item"><div class="paint-swatch" style="background: #E6E6FA;"></div><span class="color-label">💜 Лавандовое платье</span></div>
-                        <div class="color-item"><div class="paint-swatch" style="background: #C8E6C9;"></div><span class="color-label">🍃 Мятное платье</span></div>
-                        <div class="color-item"><div class="paint-swatch" style="background: #FFF3E0;"></div><span class="color-label">🧸 Бежевое платье</span></div>
+                        <div class="color-item"><div class="paint-swatch" style="background: #FADADD;"></div><span class="color-label">🌷 Пудровое платье</span><span class="tooltip">Нежное пудровое платье-миди с кружевом</span></div>
+                        <div class="color-item"><div class="paint-swatch" style="background: #F5C6CB;"></div><span class="color-label">💖 Розовое платье</span><span class="tooltip">Розовое струящееся платье в пол</span></div>
+                        <div class="color-item"><div class="paint-swatch" style="background: #FFE0B2;"></div><span class="color-label">🍑 Персиковое платье</span><span class="tooltip">Персиковое платье-футляр</span></div>
+                        <div class="color-item"><div class="paint-swatch" style="background: #E6E6FA;"></div><span class="color-label">💜 Лавандовое платье</span><span class="tooltip">Лавандовое платье с цветочным принтом</span></div>
+                        <div class="color-item"><div class="paint-swatch" style="background: #C8E6C9;"></div><span class="color-label">🍃 Мятное платье</span><span class="tooltip">Свежее мятное платье-макси</span></div>
+                        <div class="color-item"><div class="paint-swatch" style="background: #FFF3E0;"></div><span class="color-label">🧸 Бежевое платье</span><span class="tooltip">Элегантное бежевое платье-комбинация</span></div>
                     </div>
                     <p>Лучшие платья в нежных тонах: пудровые, розовые, персиковые, лавандовые, мятные, бежевые</p>
                 </div>
                 <div class="dresscode-card men-card">
                     <h3>👔 ДЛЯ МУЖЧИН</h3>
                     <div class="color-list">
-                        <div class="color-item"><div class="paint-swatch" style="background: #2C2C2C;"></div><span class="color-label">⚫ Чёрный костюм</span></div>
-                        <div class="color-item"><div class="paint-swatch" style="background: #9E9E9E;"></div><span class="color-label">⚪ Серый костюм</span></div>
-                        <div class="color-item"><div class="paint-swatch" style="background: #8D6E63;"></div><span class="color-label">🤎 Коричневый костюм</span></div>
-                        <div class="color-item"><div class="paint-swatch" style="background: #FFFFFF;"></div><span class="color-label">🤍 Белый костюм</span></div>
+                        <div class="color-item"><div class="paint-swatch" style="background: #2C2C2C;"></div><span class="color-label">⚫ Чёрный костюм</span><span class="tooltip">Классический чёрный костюм-двойка</span></div>
+                        <div class="color-item"><div class="paint-swatch" style="background: #9E9E9E;"></div><span class="color-label">⚪ Серый костюм</span><span class="tooltip">Элегантный серый костюм в тонкую полоску</span></div>
+                        <div class="color-item"><div class="paint-swatch" style="background: #8D6E63;"></div><span class="color-label">🤎 Коричневый костюм</span><span class="tooltip">Благородный коричневый костюм-тройка</span></div>
+                        <div class="color-item"><div class="paint-swatch" style="background: #FFFFFF;"></div><span class="color-label">🤍 Белый костюм</span><span class="tooltip">Стильный белый льняной костюм</span></div>
                     </div>
                     <p>Классические костюмы: чёрные, серые, коричневые, белые оттенки</p>
                 </div>
@@ -298,7 +273,6 @@
             <div class="dresscode-note">💜 лавандовые и золотистые акценты приветствуются 💛</div>
         </div>
 
-        <!-- МЕСТО ПРОВЕДЕНИЯ -->
         <div class="fade-section venue-section">
             <div class="venue-card">
                 <h3>📍 Усадьба Александрово</h3>
@@ -309,21 +283,20 @@
             </div>
         </div>
 
-        <!-- ВЕДУЩИЙ -->
+        <!-- ВЕДУЩИЙ — ИСПРАВЛЕНО: "ПО ВОПРОСАМ И ПОДАРКАМ" -->
         <div class="fade-section venue-section" style="background:#faf7f2;">
             <div class="venue-card">
-                <h2 style="font-size:1.8rem;">🎤 По вопросам и сюрпризам</h2>
+                <h2 style="font-size:1.8rem;">🎤 По вопросам и подаркам</h2>
                 <p style="font-size:2rem; color:#4a2c6d;">Владислав</p>
                 <p style="font-size:1.4rem; color:#b69ad4;">+7 (910) 945-53-96</p>
                 <p style="color:#6c4e8f;">жених</p>
                 <p style="margin-top:10px;">
-                    <a href="https://vk.com/im?sel=80427230&text=%F0%9F%92%9C%20%D0%92%D0%BE%D0%BF%D1%80%D0%BE%D1%81%20%D0%BF%D0%BE%20%D1%81%D0%B2%D0%B0%D0%B4%D1%8C%D0%B1%D0%B5%20%F0%9F%92%9C%0A%0A%F0%9F%91%A4%20%D0%98%D0%BC%D1%8F%3A%20(%D0%BD%D0%B0%D0%BF%D0%B8%D1%88%D0%B8%D1%82%D0%B5)%0A%F0%9F%93%8D%20%D0%92%D0%BE%D0%BF%D1%80%D0%BE%D1%81%3A%20(%D0%BD%D0%B0%D0%BF%D0%B8%D1%88%D0%B8%D1%82%D0%B5%20%D1%81%D0%B2%D0%BE%D0%B9%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81)%0A%0A%F0%9F%92%9C%20%D0%91%D1%83%D0%B4%D1%83%20%D1%80%D0%B0%D0%B4%20%D0%BF%D0%BE%D0%BC%D0%BE%D1%87%D1%8C!" target="_blank" style="color:#b69ad4; text-decoration:none; border-bottom:1px dotted;">💬 Написать в ВК</a>
+                    <a href="https://vk.com/im?sel=80427230" target="_blank" style="color:#b69ad4; text-decoration:none; border-bottom:1px dotted;">💬 Написать в ВК</a>
                 </p>
                 <p style="margin-top:25px;">Очень ждем и будем рады видеть вас на нашей свадьбе!<br>Подтвердите, если сможете прийти</p>
             </div>
         </div>
 
-        <!-- ПОДТВЕРЖДЕНИЕ -->
         <div class="fade-section rsvp-section">
             <h2>💌 Подтвердите присутствие</h2>
             <div class="form-group"><input type="text" id="guestName" placeholder="Ваше имя"></div>
@@ -375,7 +348,7 @@
         }
         updateTimer(); setInterval(updateTimer, 1000);
 
-        // КОНВЕРТ И ПОПАП
+        // КОНВЕРТ
         const sealBtn = document.getElementById('seal');
         const envelopeScreenDiv = document.getElementById('envelopeScreen');
         const popup = document.getElementById('popupPaper');
@@ -397,26 +370,14 @@
                 gsap.to('#envelopeScreen', { opacity: 0, duration: 0.8, onComplete: () => {
                     envelopeScreenDiv.style.display = 'none';
                     mainContentDiv.classList.add('visible');
-                    // ЗАПУСКАЕМ АНИМАЦИИ ПОЯВЛЕНИЯ СЕКЦИЙ
                     const fadeSections = document.querySelectorAll('.fade-section');
                     const staggerItems = document.querySelectorAll('.stagger-item');
                     const observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                entry.target.classList.add('visible');
-                            }
-                        });
+                        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
                     }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
                     fadeSections.forEach(el => observer.observe(el));
-                    // Для элементов с задержкой
                     const staggerObserver = new IntersectionObserver((entries) => {
-                        entries.forEach((entry, index) => {
-                            if (entry.isIntersecting) {
-                                setTimeout(() => {
-                                    entry.target.classList.add('visible');
-                                }, index * 100);
-                            }
-                        });
+                        entries.forEach((entry, index) => { if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), index * 100); });
                     }, { threshold: 0.15 });
                     staggerItems.forEach(el => staggerObserver.observe(el));
                 }});
@@ -449,10 +410,11 @@
         if (savedChoice === 'self') setActiveTransfer('self');
         if (savedChoice === 'need') setActiveTransfer('need');
 
-        // ПОДТВЕРЖДЕНИЕ
+        // ПОДТВЕРЖДЕНИЕ С АВТОМАТИЧЕСКОЙ ВСТАВКОЙ ТЕКСТА В ССЫЛКУ
         const modal = document.getElementById('confirmModal');
         const closeModal = document.getElementById('closeModalBtn');
         const copyBlock = document.getElementById('copyTextBlock');
+        const vkLink = document.getElementById('vkMessageLink');
         const confirmBtn = document.getElementById('confirmBtn');
         const guestNameInput = document.getElementById('guestName');
 
@@ -462,9 +424,13 @@
                 let transferText = currentTransfer === 'self' ? '🚙 Приеду сам' : (currentTransfer === 'need' ? '🚌 Нужен трансфер' : '❓ Не выбран');
                 const msg = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nИмя: ${guestName}\nТрансфер: ${transferText}\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
                 copyBlock.innerText = msg;
+                // Кодируем текст для URL и вставляем в ссылку
+                const encodedMsg = encodeURIComponent(msg);
+                vkLink.href = `https://vk.com/im?sel=277437328&text=${encodedMsg}`;
                 modal.classList.add('show');
             });
         }
+        
         if (closeModal) closeModal.addEventListener('click', () => modal.classList.remove('show'));
         if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('show'); });
     </script>
