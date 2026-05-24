@@ -117,12 +117,12 @@
             pointer-events: auto;
         }
         .popup-paper h3 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: #7c5f9e;
             margin-bottom: 15px;
         }
         .popup-paper p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #4a2c6d;
             margin-bottom: 25px;
         }
@@ -147,7 +147,7 @@
         }
         .main-content.visible { opacity: 1; display: block; }
 
-        /* ГЛАВНЫЙ ЭКРАН С ФОТО НА ФОНЕ */
+        /* ГЛАВНЫЙ ЭКРАН — НАДПИСЬ НА ФОТО */
         .hero {
             min-height: 100vh;
             position: relative;
@@ -157,7 +157,7 @@
             align-items: center;
             text-align: center;
             padding: 40px 20px;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('couple-bg.jpg');
+            background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('couple-bg.jpg');
             background-size: cover;
             background-position: center;
             color: white;
@@ -167,17 +167,17 @@
             font-size: 1rem;
             letter-spacing: 8px;
             color: #ffecb3;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         .hero h1 {
-            font-size: 4.5rem;
+            font-size: 4rem;
             font-weight: 400;
             letter-spacing: 4px;
             margin-bottom: 20px;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
         }
         .hero h1 span {
-            font-size: 3rem;
+            font-size: 2.5rem;
             display: inline-block;
             margin: 0 10px;
         }
@@ -185,12 +185,12 @@
             font-size: 1.2rem;
             max-width: 500px;
             margin: 20px auto;
-            line-height: 1.6;
+            line-height: 1.5;
             text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
         }
         .hero-date {
-            font-size: 1.3rem;
-            margin-top: 30px;
+            font-size: 1.2rem;
+            margin-top: 25px;
             letter-spacing: 2px;
         }
 
@@ -207,11 +207,10 @@
         }
         .story-text {
             max-width: 700px;
-            margin: 0 auto 40px;
-            font-size: 1.2rem;
+            margin: 0 auto 30px;
+            font-size: 1.15rem;
             line-height: 1.6;
             color: #5e4b3c;
-            font-style: italic;
         }
         .child-photos-grid {
             display: flex;
@@ -219,16 +218,16 @@
             gap: 40px;
             justify-content: center;
             max-width: 600px;
-            margin: 0 auto;
+            margin: 20px auto 0;
         }
         .child-card {
             text-align: center;
             flex: 1;
-            min-width: 200px;
+            min-width: 180px;
         }
         .child-card img {
-            width: 200px;
-            height: 200px;
+            width: 180px;
+            height: 180px;
             object-fit: cover;
             border-radius: 50%;
             border: 4px solid #d9c4ff;
@@ -239,8 +238,14 @@
             font-size: 1.1rem;
             color: #4a2c6d;
         }
+        .love-story {
+            margin-top: 35px;
+            font-size: 1.15rem;
+            color: #4a2c6d;
+            font-style: italic;
+        }
 
-        /* ТАЙМИНГ НА ФОНЕ ДРУГОГО ФОТО */
+        /* ТАЙМИНГ НА ФОНЕ ВТОРОГО ФОТО */
         .timing-bg-section {
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('couple-bg2.jpg');
             background-size: cover;
@@ -252,13 +257,13 @@
         .timing-bg-section h2 {
             font-size: 1.8rem;
             font-weight: 400;
-            margin-bottom: 40px;
-            letter-spacing: 2px;
+            margin-bottom: 35px;
+            letter-spacing: 1px;
         }
         .timing-list-center {
-            max-width: 500px;
+            max-width: 550px;
             margin: 0 auto;
-            background: rgba(0,0,0,0.4);
+            background: rgba(0,0,0,0.45);
             backdrop-filter: blur(5px);
             padding: 30px;
             border-radius: 30px;
@@ -267,13 +272,15 @@
             display: flex;
             justify-content: space-between;
             padding: 12px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.3);
+            border-bottom: 1px solid rgba(255,255,255,0.25);
             font-size: 1.1rem;
         }
         .timing-note {
-            font-size: 0.9rem;
-            margin-top: 20px;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            margin-bottom: 15px;
             opacity: 0.9;
+            text-align: left;
         }
         .timing-note a {
             color: #ffecb3;
@@ -302,9 +309,10 @@
             height: 60px;
             border-radius: 50%;
             box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            border: 2px solid white;
         }
         .dresscode-text {
-            max-width: 500px;
+            max-width: 550px;
             margin: 0 auto;
             font-size: 1.1rem;
             line-height: 1.6;
@@ -318,7 +326,7 @@
             text-align: center;
         }
         .venue-card {
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto;
             background: white;
             border-radius: 30px;
@@ -348,11 +356,16 @@
             border-bottom: 1px dotted;
         }
 
-        /* ПОДТВЕРЖДЕНИЕ */
+        /* ПОДТВЕРЖДЕНИЕ + ФИНАЛЬНЫЙ ТЕКСТ */
         .rsvp-section {
             background: #f3eaff;
             padding: 60px 20px;
             text-align: center;
+        }
+        .rsvp-section h2 {
+            font-size: 2rem;
+            color: #4a2c6d;
+            margin-bottom: 20px;
         }
         .form-group {
             max-width: 350px;
@@ -371,11 +384,12 @@
             gap: 15px;
             justify-content: center;
             margin: 20px auto;
+            flex-wrap: wrap;
         }
         .transfer-btn {
             background: #f0e6ff;
             border: 2px solid #d9c4ff;
-            padding: 12px 25px;
+            padding: 10px 25px;
             border-radius: 50px;
             font-size: 1rem;
             cursor: pointer;
@@ -396,6 +410,14 @@
             cursor: pointer;
             margin-top: 10px;
         }
+        .thankyou-text {
+            max-width: 550px;
+            margin: 30px auto 20px;
+            font-size: 1.05rem;
+            line-height: 1.5;
+            color: #4a2c6d;
+        }
+
         .custom-modal {
             position: fixed;
             top: 0;
@@ -442,14 +464,17 @@
             background: #2e1f3d;
             color: #b89b7b;
             text-align: center;
-            padding: 40px;
+            padding: 30px 20px;
+        }
+        footer p {
+            margin: 5px 0;
         }
 
         @media (max-width: 700px) {
             .hero h1 { font-size: 2.5rem; }
             .hero h1 span { font-size: 1.8rem; }
-            .child-card img { width: 150px; height: 150px; }
             .timing-item { flex-direction: column; gap: 5px; text-align: center; }
+            .child-card img { width: 140px; height: 140px; }
         }
     </style>
 </head>
@@ -481,18 +506,18 @@
 
     <div class="main-content" id="mainContent">
         
-        <!-- ГЛАВНЫЙ ЭКРАН С ФОТО НА ФОНЕ -->
+        <!-- ГЛАВНЫЙ ЭКРАН — ТЕКСТ ПОВЕРХ ФОТО -->
         <div class="hero">
-            <div class="wedding-day">WEDDING DAY!</div>
+            <div class="wedding-day">W E D D I N G   D A Y !</div>
             <h1>Владислав & Наталья</h1>
             <div class="hero-subtitle">Родные, с огромной радостью приглашаем вас стать частью самого важного дня нашей жизни</div>
             <div class="hero-date">4 ИЮЛЯ · УСАДЬБА АЛЕКСАНДРОВО</div>
         </div>
 
-        <!-- НАША ИСТОРИЯ И ДЕТСКИЕ ФОТО -->
+        <!-- НАША ИСТОРИЯ + ДЕТСКИЕ ФОТО + ТЕКСТ -->
         <div class="story-section">
             <h2>💜 Наша история 💜</h2>
-            <div class="story-text">Помните эту пару? Когда-то мы были просто детьми, не подозревая, что однажды наши пути пересекутся. Спустя годы мы нашли друг друга, чтобы вместе написать нашу историю любви. А ведь наша любовь выросла! Ждём вас разделить этот день 💑</div>
+            <div class="story-text">Помните эту пару? Когда-то мы были просто детьми, не подозревая, что однажды наши пути пересекутся. Спустя годы мы нашли друг друга, чтобы вместе написать нашу историю любви.</div>
             <div class="child-photos-grid">
                 <div class="child-card">
                     <img src="child1.jpg" alt="Детское фото Натальи" onerror="this.style.display='none'">
@@ -503,9 +528,10 @@
                     <p>Владислав</p>
                 </div>
             </div>
+            <div class="love-story">А ведь наша любовь выросла! Ждём вас разделить этот день 💑</div>
         </div>
 
-        <!-- ТАЙМИНГ НА ФОНЕ ФОТО -->
+        <!-- ТАЙМИНГ ПОВЕРХ ВТОРОГО ФОТО -->
         <div class="timing-bg-section">
             <h2>Мы будем счастливы, если вы разделите с нами этот особенный день</h2>
             <div class="timing-list-center">
@@ -520,7 +546,7 @@
             </div>
         </div>
 
-        <!-- ДРЕСС-КОД С ПАЛИТРОЙ -->
+        <!-- ДРЕСС-КОД + ПАЛИТРА -->
         <div class="dresscode-section">
             <h2>👗 ДРЕСС-КОД</h2>
             <div class="palette">
@@ -532,8 +558,8 @@
             </div>
             <div class="dresscode-text">
                 <p>Тематика свадьбы — <strong>лавандовые тона</strong>.</p>
-                <p>👨‍💼 мужчины — белые рубашки, костюмы и жилетки<br>
-                👩‍🎀 дамы — красивые наряды</p>
+                <p>👨‍💼 <strong>мужчины</strong> — белые рубашки, костюмы и жилетки<br>
+                👩‍🎀 <strong>дамы</strong> — красивые наряды</p>
                 <p>Если есть сомнения, будьте минималистичны и дополните образ аксессуаром фиолетовых оттенков.</p>
                 <p>💜 лавандовые акценты приветствуются 💜</p>
             </div>
@@ -552,20 +578,20 @@
             </div>
         </div>
 
-        <!-- ВЕДУЩИЙ И ТЕКСТ -->
+        <!-- ВЕДУЩИЙ И ФРАЗА ОЖИДАНИЯ -->
         <div class="venue-section" style="background:#faf7f2;">
             <div class="venue-card">
                 <h2 style="font-size:1.8rem;">🎤 По вопросам и сюрпризам</h2>
                 <p style="font-size:2rem; color:#4a2c6d;">Владислав</p>
                 <p style="font-size:1.4rem; color:#b69ad4;">+7 (910) 945-53-96</p>
                 <p style="color:#6c4e8f;">жених</p>
-                <p style="margin-top:20px;">Очень ждем и будем рады видеть вас на нашей свадьбе!<br>Подтвердите, если сможете прийти 💜</p>
+                <p style="margin-top:25px;">Очень ждем и будем рады видеть вас на нашей свадьбе!<br>Подтвердите, если сможете прийти</p>
             </div>
         </div>
 
-        <!-- ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ -->
+        <!-- ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ + БЛАГОДАРНОСТЬ -->
         <div class="rsvp-section">
-            <h2 style="font-size:2rem; color:#4a2c6d;">💌 Подтвердите присутствие</h2>
+            <h2>💌 Подтвердите присутствие</h2>
             <div class="form-group">
                 <input type="text" id="guestName" placeholder="Ваше имя">
             </div>
@@ -575,7 +601,12 @@
             </div>
             <div id="transferNote" style="margin-bottom:15px; color:#7c5f9e;"></div>
             <button class="confirm-btn" id="confirmBtn">📨 Подтвердить присутствие</button>
-            <p style="margin-top:20px; font-size:0.85rem; color:#7c5f9e;">
+            <div class="thankyou-text">
+                <p>Спасибо, что разделите этот день вместе с нами.</p>
+                <p>💜 С любовью, Наталья и Влад 💜</p>
+                <p>+7 (953) 421-82-93 | +7 (910) 945-53-96</p>
+            </div>
+            <p style="margin-top:15px; font-size:0.85rem; color:#7c5f9e;">
                 💜 После нажатия кнопки скопируйте текст и отправьте невесте в ВК<br>
                 <a href="https://vk.com/nataliiiiie" target="_blank" style="color:#b69ad4;">vk.com/nataliiiiie</a><br>
                 Ответьте до <strong>1 июня 2026</strong>
@@ -583,7 +614,7 @@
         </div>
 
         <footer>
-            <p>💜 С любовью, Наталья и Влад 💜</p>
+            <p>Владислав & Наталья 💜</p>
             <p>+7 (953) 421-82-93 | +7 (910) 945-53-96</p>
         </footer>
     </div>
@@ -595,7 +626,7 @@
         const envelopeScreen = document.getElementById('envelopeScreen');
         const popup = document.getElementById('popupPaper');
         const mainContent = document.getElementById('mainContent');
-        const closePopup = document.getElementById('closePopup');
+        const closePopupBtn = document.getElementById('closePopup');
         let opened = false;
 
         if (seal && envelopeScreen && popup && mainContent) {
@@ -606,7 +637,7 @@
                 gsap.to('#letter', { y: -120, duration: 1.4, delay: 0.5, ease: 'power3.out' });
                 gsap.to('#envelopeScreen', { opacity: 0.4, duration: 0.5, delay: 1.3, onComplete: () => popup.classList.add('show') });
             });
-            closePopup.addEventListener('click', () => {
+            closePopupBtn.addEventListener('click', () => {
                 popup.classList.remove('show');
                 gsap.to('#envelopeScreen', { opacity: 0, duration: 0.8, onComplete: () => {
                     envelopeScreen.style.display = 'none';
@@ -615,28 +646,28 @@
             });
         }
 
-        // ТРАНСФЕР
+        // ВЫБОР ТРАНСФЕРА
         const selfBtn = document.getElementById('selfBtn');
         const needBtn = document.getElementById('needBtn');
         const transferNote = document.getElementById('transferNote');
         let currentTransfer = '';
 
-        function setActive(selected) {
+        function setActiveTransfer(selected) {
             currentTransfer = selected;
             if (selected === 'self') {
                 selfBtn.classList.add('active');
                 needBtn.classList.remove('active');
                 transferNote.innerHTML = '✅ Вы выбрали: Приеду сам. Ждём вас! 🚙';
-            } else {
+            } else if (selected === 'need') {
                 needBtn.classList.add('active');
                 selfBtn.classList.remove('active');
                 transferNote.innerHTML = '✅ Вы выбрали: Нужен трансфер. Мы организуем! 🚌';
             }
         }
-        if (selfBtn) selfBtn.addEventListener('click', () => setActive('self'));
-        if (needBtn) needBtn.addEventListener('click', () => setActive('need'));
+        if(selfBtn) selfBtn.addEventListener('click', () => setActiveTransfer('self'));
+        if(needBtn) needBtn.addEventListener('click', () => setActiveTransfer('need'));
 
-        // МОДАЛКА С ТЕКСТОМ
+        // ПОДТВЕРЖДЕНИЕ С КОПИРОВАНИЕМ ТЕКСТА
         const modal = document.getElementById('confirmModal');
         const closeModal = document.getElementById('closeModalBtn');
         const copyBlock = document.getElementById('copyTextBlock');
@@ -645,12 +676,12 @@
 
         if (confirmBtn) {
             confirmBtn.addEventListener('click', () => {
-                const name = guestNameInput?.value.trim() || 'Гость';
-                let transfer = '';
-                if (currentTransfer === 'self') transfer = '🚙 Приеду сам';
-                else if (currentTransfer === 'need') transfer = '🚌 Нужен трансфер';
-                else transfer = '❓ Не выбран';
-                const msg = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nИмя: ${name}\nТрансфер: ${transfer}\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Жду с нетерпением!`;
+                const guestName = guestNameInput?.value.trim() || 'Гость';
+                let transferText = '';
+                if (currentTransfer === 'self') transferText = '🚙 Приеду сам';
+                else if (currentTransfer === 'need') transferText = '🚌 Нужен трансфер';
+                else transferText = '❓ Не выбран';
+                const msg = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nИмя: ${guestName}\nТрансфер: ${transferText}\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
                 if (copyBlock) copyBlock.innerText = msg;
                 if (modal) modal.classList.add('show');
             });
