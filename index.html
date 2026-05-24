@@ -17,7 +17,7 @@
             color: #3d2b1f;
         }
 
-        /* ОСНОВНЫЕ СТИЛИ */
+        /* ОСНОВНЫЕ СТИЛИ (КОНВЕРТ) */
         .envelope-screen {
             position: fixed;
             top: 0;
@@ -126,22 +126,32 @@
         .timing-time { font-weight: 600; color: #b69ad4; font-family: monospace; font-size: 1.2rem; }
         .timing-note { font-size: 0.85rem; margin-top: 8px; margin-bottom: 12px; color: #6c4e8f; padding-left: 15px; border-left: 3px solid #d9c4ff; width: 100%; }
 
-        /* ДРЕСС-КОД С МАЗКАМИ (ИСПРАВЛЕНО) */
-        .dresscode-section { padding: 60px 20px; background: #faf7f2; text-align: center; }
+        /* ДРЕСС-КОД С МАЗКАМИ (КАК НА КАРТИНКЕ) */
+        .dresscode-section { padding: 70px 20px; background: #faf7f2; text-align: center; }
         .dresscode-section h2 { font-size: 2.2rem; color: #4a2c6d; margin-bottom: 20px; letter-spacing: 2px; }
-        .palette { display: flex; justify-content: center; gap: 15px; margin: 30px 0; flex-wrap: wrap; }
-        /* Стиль "художественный мазок" */
-        .swatch {
-            width: 70px;
-            height: 70px;
-            border-radius: 40% 60% 30% 70% / 50% 40% 60% 50%;
-            transform: rotate(-5deg);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        .palette {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        /* МАЗКИ КИСТИ */
+        .paint-swatch {
+            width: 85px;
+            height: 85px;
+            background: #d8bfd8;
+            border-radius: 65% 35% 70% 30% / 40% 55% 45% 60%;
+            transform: rotate(-4deg);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
         }
-        .swatch:hover { transform: rotate(0deg) scale(1.05); border-radius: 50%; }
+        .paint-swatch:hover {
+            transform: rotate(0deg) scale(1.05);
+            border-radius: 50%;
+        }
         .dresscode-text { max-width: 600px; margin: 0 auto; font-size: 1.2rem; line-height: 1.6; color: #4a2c6d; }
-        .dresscode-note { margin-top: 20px; font-size: 1.1rem; color: #b69ad4; font-weight: 500; background: #f3eaff; display: inline-block; padding: 5px 15px; border-radius: 30px; }
+        .dresscode-note { margin-top: 25px; font-size: 1.2rem; color: #b69ad4; font-weight: 500; background: #f3eaff; display: inline-block; padding: 8px 25px; border-radius: 40px; }
 
         /* МЕСТО ПРОВЕДЕНИЯ */
         .venue-section { background: #f3eaff; padding: 60px 20px; text-align: center; }
@@ -171,17 +181,18 @@
         .volume-slider { width: 70px; height: 4px; -webkit-appearance: none; background: #d9c4ff; border-radius: 2px; outline: none; }
         .volume-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: #ffecb3; cursor: pointer; }
 
-        /* ПОДТВЕРЖДЕНИЕ */
+        /* ПОДТВЕРЖДЕНИЕ (ТЕКСТ УВЕЛИЧЕН) */
         .rsvp-section { background: #faf7f2; padding: 60px 20px; text-align: center; }
-        .rsvp-section h2 { font-size: 2rem; color: #4a2c6d; margin-bottom: 20px; }
+        .rsvp-section h2 { font-size: 2.2rem; color: #4a2c6d; margin-bottom: 20px; }
         .form-group { max-width: 350px; margin: 0 auto 20px; }
         .form-group input { width: 100%; padding: 14px 20px; border-radius: 50px; border: 1px solid #d9c4ff; font-family: inherit; font-size: 1rem; }
         .transfer-buttons { display: flex; gap: 15px; justify-content: center; margin: 20px auto; }
         .transfer-btn { background: #f0e6ff; border: 2px solid #d9c4ff; padding: 10px 25px; border-radius: 50px; font-size: 1rem; cursor: pointer; transition: 0.3s; }
         .transfer-btn.active { background: #b69ad4; color: white; border-color: #b69ad4; }
         .confirm-btn { background: #b69ad4; color: white; padding: 14px 30px; border: none; border-radius: 50px; font-size: 1rem; cursor: pointer; margin-top: 10px; }
-        .thankyou-text { max-width: 550px; margin: 30px auto 20px; font-size: 1rem; line-height: 1.5; color: #4a2c6d; }
-        .rsvp-note { margin-top: 15px; font-size: 0.85rem; color: #7c5f9e; }
+        .thankyou-text { max-width: 550px; margin: 30px auto 20px; font-size: 1.1rem; line-height: 1.5; color: #4a2c6d; }
+        .rsvp-note { margin-top: 20px; font-size: 1rem; color: #7c5f9e; }
+        .big-footer-text { font-size: 1.3rem; margin: 10px 0; }
 
         /* МОДАЛЬНОЕ ОКНО */
         .custom-modal {
@@ -214,7 +225,7 @@
             .child-card img { width: 200px; height: 200px; }
             .child-card { min-width: 200px; }
             .timing-item { flex-direction: column; gap: 5px; text-align: left; }
-            .swatch { width: 50px; height: 50px; }
+            .paint-swatch { width: 60px; height: 60px; }
         }
     </style>
 </head>
@@ -236,14 +247,12 @@
         </div>
     </div>
 
-    <!-- ВСПЛЫВАЮЩАЯ БУМАЖКА -->
     <div class="popup-paper" id="popupPaper">
         <h3>📜 Приглашение</h3>
         <p>Дорогой гость!<br>Ты очень важен для нас.<br>Ждём тебя на нашем празднике! 💜</p>
         <button class="close-popup" id="closePopup">Открыть приглашение</button>
     </div>
 
-    <!-- МОДАЛЬНОЕ ОКНО ПОДТВЕРЖДЕНИЯ -->
     <div class="custom-modal" id="confirmModal">
         <div class="modal-content">
             <strong>💜 ПОДТВЕРЖДЕНИЕ 💜</strong>
@@ -304,13 +313,14 @@
         <div class="dresscode-section">
             <h2>👗 ДРЕСС-КОД</h2>
             <div class="palette">
-                <div class="swatch" style="background: #d8bfd8;"></div>
-                <div class="swatch" style="background: #c8a2c8;"></div>
-                <div class="swatch" style="background: #b69ad4;"></div>
-                <div class="swatch" style="background: #9370db;"></div>
-                <div class="swatch" style="background: #daa520;"></div>
-                <div class="swatch" style="background: #ffd700;"></div>
-                <div class="swatch" style="background: #b8860b;"></div>
+                <div class="paint-swatch" style="background: #E6E6FA;"></div>
+                <div class="paint-swatch" style="background: #D8BFD8;"></div>
+                <div class="paint-swatch" style="background: #C8A2C8;"></div>
+                <div class="paint-swatch" style="background: #B69AD4;"></div>
+                <div class="paint-swatch" style="background: #9370DB;"></div>
+                <div class="paint-swatch" style="background: #FFD700;"></div>
+                <div class="paint-swatch" style="background: #DAA520;"></div>
+                <div class="paint-swatch" style="background: #CD853F;"></div>
             </div>
             <div class="dresscode-text">
                 <p><strong>Тематика свадьбы — лавандовые и золотистые тона.</strong></p>
@@ -348,7 +358,7 @@
             </div>
         </div>
 
-        <!-- ПОДТВЕРЖДЕНИЕ (БЕЗ ЛИШНЕЙ ССЫЛКИ) -->
+        <!-- ПОДТВЕРЖДЕНИЕ (УВЕЛИЧЕННЫЙ ТЕКСТ) -->
         <div class="rsvp-section">
             <h2>💌 Подтвердите присутствие</h2>
             <div class="form-group">
@@ -362,7 +372,7 @@
             <button class="confirm-btn" id="confirmBtn">📨 Подтвердить присутствие</button>
             <div class="thankyou-text">
                 <p>Спасибо, что разделите этот день вместе с нами.</p>
-                <p>💜 С любовью, Наталья и Влад 💜</p>
+                <p style="font-size:1.3rem; margin:15px 0;">💜 С любовью, Наталья и Влад 💜</p>
             </div>
             <div class="rsvp-note">
                 💜 После нажатия кнопки скопируйте текст и отправьте невесте в ВК<br>
@@ -370,9 +380,10 @@
             </div>
         </div>
 
+        <!-- ФУТЕР С КРУПНЫМ ТЕКСТОМ -->
         <footer>
-            <p>Владислав & Наталья 💜</p>
-            <p>+7 (953) 421-82-93 | +7 (910) 945-53-96</p>
+            <p class="big-footer-text">Владислав & Наталья 💜</p>
+            <p class="big-footer-text">+7 (953) 421-82-93 | +7 (910) 945-53-96</p>
         </footer>
     </div>
 
