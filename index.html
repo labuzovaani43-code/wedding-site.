@@ -6,31 +6,11 @@
     <title>Наталья & Влад | Свадебное приглашение</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Cormorant Garamond', serif;
-            background: #faf7f2;
-            color: #3d2b1f;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cormorant Garamond', serif; background: #faf7f2; color: #3d2b1f; }
 
-        /* КОНВЕРТ */
-        .envelope-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #e8d9ff;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-        }
+        /* КОНВЕРТ И ОСНОВНЫЕ СТИЛИ */
+        .envelope-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #e8d9ff; z-index: 1000; display: flex; justify-content: center; align-items: center; cursor: pointer; }
         .envelope { width: 320px; height: 220px; background: #d9c4ff; border-radius: 12px; position: relative; box-shadow: 0 20px 35px rgba(0,0,0,0.25); }
         .flap { width: 100%; height: 100%; background: #c4a8e6; position: absolute; top: 0; left: 0; transform-origin: top; border-radius: 12px; z-index: 3; }
         .letter { width: 280px; background: #fffaf5; position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); padding: 20px; text-align: center; border-radius: 10px; font-size: 1rem; color: #4a2c6d; z-index: 2; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
@@ -38,51 +18,17 @@
         .seal { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); width: 45px; height: 45px; background: #b69ad4; border-radius: 50%; z-index: 4; cursor: pointer; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.3rem; box-shadow: 0 2px 8px rgba(0,0,0,0.2); transition: transform 0.2s; }
         .seal:hover { transform: translateX(-50%) scale(1.05); }
 
-        .popup-paper {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            width: 320px;
-            background: #fffef7;
-            border-radius: 20px;
-            padding: 35px 25px;
-            text-align: center;
-            z-index: 2000;
-            box-shadow: 0 25px 45px rgba(0,0,0,0.3);
-            border: 2px solid #d9c4ff;
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
-            pointer-events: none;
-        }
+        .popup-paper { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); width: 320px; background: #fffef7; border-radius: 20px; padding: 35px 25px; text-align: center; z-index: 2000; box-shadow: 0 25px 45px rgba(0,0,0,0.3); border: 2px solid #d9c4ff; opacity: 0; transition: all 0.4s cubic-bezier(0.34, 1.2, 0.64, 1); pointer-events: none; }
         .popup-paper.show { transform: translate(-50%, -50%) scale(1); opacity: 1; pointer-events: auto; }
         .popup-paper h3 { font-size: 1.8rem; color: #7c5f9e; margin-bottom: 15px; }
         .popup-paper p { font-size: 1rem; color: #4a2c6d; margin-bottom: 25px; }
         .close-popup { background: #b69ad4; color: white; border: none; padding: 10px 30px; border-radius: 40px; font-size: 1rem; cursor: pointer; }
 
-        .main-content {
-            opacity: 0;
-            transition: opacity 1s ease;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: none;
-        }
+        .main-content { opacity: 0; transition: opacity 1s ease; max-width: 1200px; margin: 0 auto; display: none; }
         .main-content.visible { opacity: 1; display: block; }
 
         /* ГЛАВНЫЙ ЭКРАН */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('bride.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-        }
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px; background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('bride.jpg'); background-size: cover; background-position: center; color: white; }
         .wedding-day { font-family: 'Montserrat', sans-serif; font-size: 1rem; letter-spacing: 8px; color: #ffecb3; margin-bottom: 15px; }
         .hero h1 { font-size: 4rem; font-weight: 400; letter-spacing: 4px; margin-bottom: 20px; text-shadow: 2px 2px 8px rgba(0,0,0,0.3); color: #d9c4ff; }
         .hero-subtitle { font-size: 1.2rem; max-width: 500px; margin: 20px auto; line-height: 1.5; text-shadow: 1px 1px 4px rgba(0,0,0,0.3); color: #f0e6d2; }
@@ -99,19 +45,7 @@
         .love-story { margin-top: 35px; font-size: 1.15rem; color: #4a2c6d; font-style: italic; }
 
         /* ТАЙМЕР НА ФОНЕ */
-        .timer-bg-section {
-            min-height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('groom.jpg');
-            background-size: cover;
-            background-position: center;
-            padding: 80px 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-        }
+        .timer-bg-section { min-height: 100vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('groom.jpg'); background-size: cover; background-position: center; padding: 80px 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; }
         .timer-bg-section h2 { font-size: 2rem; font-weight: 400; margin-bottom: 40px; max-width: 600px; }
         .timer { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); padding: 30px 40px; border-radius: 60px; }
         .timer-box { text-align: center; background: rgba(255,255,255,0.15); padding: 15px 25px; border-radius: 20px; min-width: 100px; }
@@ -126,109 +60,25 @@
         .timing-time { font-weight: 600; color: #b69ad4; font-family: monospace; font-size: 1.2rem; }
         .timing-note { font-size: 0.85rem; margin-top: 8px; margin-bottom: 12px; color: #6c4e8f; padding-left: 15px; border-left: 3px solid #d9c4ff; width: 100%; }
 
-        /* ДРЕСС-КОД С РАЗНОЙ ВЫСОТОЙ И ПОДСКАЗКАМИ */
+        /* ДРЕСС-КОД — ИСПРАВЛЕН */
         .dresscode-section { padding: 70px 20px; background: #faf7f2; text-align: center; }
-        .dresscode-section h2 { font-size: 2.2rem; color: #4a2c6d; margin-bottom: 20px; letter-spacing: 2px; }
-        .dresscode-row {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            flex-wrap: wrap;
-            align-items: flex-start;
-            margin-bottom: 35px;
-        }
-        .dresscode-card {
-            background: white;
-            border-radius: 30px;
-            padding: 25px 20px;
-            width: 320px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-            border: 1px solid #e8d9ff;
-        }
-        /* Женская карточка — выше (больше padding снизу) */
-        .women-card {
-            padding-bottom: 40px;
-        }
+        .dresscode-section h2 { font-size: 2.2rem; color: #4a2c6d; margin-bottom: 25px; letter-spacing: 2px; }
+        .dresscode-row { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; align-items: flex-start; margin-bottom: 35px; }
+        .dresscode-card { background: white; border-radius: 30px; padding: 25px 20px; width: 320px; box-shadow: 0 10px 20px rgba(0,0,0,0.08); border: 1px solid #e8d9ff; transition: all 0.3s ease; }
+        /* Женская карточка — выше за счёт большего количества элементов */
+        .women-card { padding-bottom: 35px; }
         /* Мужская карточка — компактнее */
-        .men-card {
-            padding-bottom: 25px;
-        }
-        .dresscode-card h3 {
-            font-size: 1.5rem;
-            color: #b69ad4;
-            margin-bottom: 15px;
-            font-weight: 500;
-        }
-        .color-palette {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-        .swatch-container {
-            position: relative;
-            display: inline-block;
-        }
-        .paint-swatch {
-            width: 55px;
-            height: 55px;
-            border-radius: 25px;
-            box-shadow: 0 5px 12px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .paint-swatch:hover {
-            transform: scale(1.1);
-            border-radius: 15px;
-        }
-        /* Всплывающая подсказка */
-        .swatch-tooltip {
-            visibility: hidden;
-            background-color: #4a2c6d;
-            color: #fff;
-            text-align: center;
-            border-radius: 8px;
-            padding: 5px 10px;
-            position: absolute;
-            z-index: 10;
-            bottom: 125%;
-            left: 50%;
-            transform: translateX(-50%);
-            white-space: nowrap;
-            font-size: 0.75rem;
-            font-family: 'Montserrat', sans-serif;
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-        }
-        .swatch-container:hover .swatch-tooltip {
-            visibility: visible;
-            opacity: 1;
-        }
-        .dresscode-card p {
-            font-size: 1rem;
-            color: #4a2c6d;
-            margin-top: 15px;
-            line-height: 1.4;
-        }
-        .dresscode-text {
-            max-width: 600px;
-            margin: 20px auto 0;
-            font-size: 1.2rem;
-            line-height: 1.6;
-            color: #4a2c6d;
-        }
-        .dresscode-note {
-            margin-top: 25px;
-            font-size: 1.2rem;
-            color: #b69ad4;
-            font-weight: 500;
-            background: #f3eaff;
-            display: inline-block;
-            padding: 8px 25px;
-            border-radius: 40px;
-        }
+        .men-card { padding-bottom: 20px; }
+        .dresscode-card h3 { font-size: 1.5rem; color: #b69ad4; margin-bottom: 15px; font-weight: 500; }
+        .color-palette { display: flex; gap: 12px; justify-content: center; margin: 20px 0; flex-wrap: wrap; }
+        .swatch-container { position: relative; display: inline-block; }
+        .paint-swatch { width: 55px; height: 55px; border-radius: 25px; box-shadow: 0 5px 12px rgba(0,0,0,0.1); transition: all 0.3s ease; cursor: pointer; }
+        .paint-swatch:hover { transform: scale(1.1); border-radius: 15px; }
+        .swatch-tooltip { visibility: hidden; background-color: #4a2c6d; color: #fff; text-align: center; border-radius: 8px; padding: 5px 10px; position: absolute; z-index: 10; bottom: 125%; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.7rem; font-family: 'Montserrat', sans-serif; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+        .swatch-container:hover .swatch-tooltip { visibility: visible; opacity: 1; }
+        .dresscode-card p { font-size: 1rem; color: #4a2c6d; margin-top: 15px; line-height: 1.4; }
+        .dresscode-text { max-width: 600px; margin: 20px auto 0; font-size: 1.2rem; line-height: 1.6; color: #4a2c6d; }
+        .dresscode-note { margin-top: 25px; font-size: 1.2rem; color: #b69ad4; font-weight: 500; background: #f3eaff; display: inline-block; padding: 8px 25px; border-radius: 40px; }
 
         /* МЕСТО ПРОВЕДЕНИЯ */
         .venue-section { background: #f3eaff; padding: 60px 20px; text-align: center; }
@@ -239,21 +89,7 @@
         .map-link { display: inline-block; margin-top: 10px; color: #b69ad4; text-decoration: none; border-bottom: 1px dotted; }
 
         /* ПЛЕЕР */
-        .music-player {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1001;
-            background: rgba(74, 44, 109, 0.85);
-            backdrop-filter: blur(10px);
-            border-radius: 50px;
-            padding: 8px 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            border: 1px solid #d9c4ff;
-        }
+        .music-player { position: fixed; bottom: 20px; right: 20px; z-index: 1001; background: rgba(74, 44, 109, 0.85); backdrop-filter: blur(10px); border-radius: 50px; padding: 8px 16px; display: flex; align-items: center; gap: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.3); border: 1px solid #d9c4ff; }
         .music-btn { background: #b69ad4; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: 0.3s; color: white; }
         .volume-slider { width: 70px; height: 4px; -webkit-appearance: none; background: #d9c4ff; border-radius: 2px; outline: none; }
         .volume-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: #ffecb3; cursor: pointer; }
@@ -270,21 +106,7 @@
         .thankyou-text { max-width: 550px; margin: 30px auto 20px; font-size: 1.1rem; line-height: 1.5; color: #4a2c6d; }
         .rsvp-note { margin-top: 20px; font-size: 1.1rem; color: #7c5f9e; }
 
-        .custom-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.6);
-            z-index: 3000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
+        .custom-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 3000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
         .custom-modal.show { opacity: 1; visibility: visible; }
         .modal-content { background: white; border-radius: 30px; padding: 30px; max-width: 400px; width: 90%; text-align: center; }
         .copy-text { background: #f0e6ff; padding: 15px; border-radius: 15px; font-size: 0.9rem; text-align: left; margin: 15px 0; white-space: pre-wrap; }
@@ -316,11 +138,7 @@
 
     <!-- КОНВЕРТ -->
     <div class="envelope-screen" id="envelopeScreen">
-        <div class="envelope">
-            <div class="flap" id="flap"></div>
-            <div class="letter" id="letter"><span>💌</span><br>Наталья & Влад</div>
-            <div class="seal" id="seal">❤️</div>
-        </div>
+        <div class="envelope"><div class="flap" id="flap"></div><div class="letter" id="letter"><span>💌</span><br>Наталья & Влад</div><div class="seal" id="seal">❤️</div></div>
     </div>
 
     <div class="popup-paper" id="popupPaper">
@@ -340,7 +158,6 @@
 
     <div class="main-content" id="mainContent">
         
-        <!-- ГЛАВНЫЙ ЭКРАН -->
         <div class="hero">
             <div class="wedding-day">W E D D I N G   D A Y !</div>
             <h1>Владислав & Наталья</h1>
@@ -348,7 +165,6 @@
             <div class="hero-date">4 ИЮЛЯ · УСАДЬБА АЛЕКСАНДРОВО</div>
         </div>
 
-        <!-- НАША ИСТОРИЯ -->
         <div class="story-section">
             <h2>💜 Наша история 💜</h2>
             <div class="story-text">Помните эту пару? Когда-то мы были просто детьми, не подозревая, что однажды наши пути пересекутся. Спустя годы мы нашли друг друга, чтобы вместе написать нашу историю любви.</div>
@@ -359,7 +175,6 @@
             <div class="love-story">А ведь наша любовь выросла! Ждём вас разделить этот день 💑</div>
         </div>
 
-        <!-- ТАЙМЕР НА ФОНЕ -->
         <div class="timer-bg-section">
             <h2>Мы будем счастливы, если вы разделите с нами этот особенный день</h2>
             <div class="timer">
@@ -370,7 +185,6 @@
             </div>
         </div>
 
-        <!-- ТАЙМИНГ -->
         <div class="timing-section">
             <h2>📅 Тайминг дня</h2>
             <div class="timing-list-center">
@@ -385,11 +199,11 @@
             </div>
         </div>
 
-        <!-- ДРЕСС-КОД С ПОДСКАЗКАМИ -->
+        <!-- ДРЕСС-КОД — ИСПРАВЛЕНАЯ ВЕРСИЯ -->
         <div class="dresscode-section">
             <h2>👗 ДРЕСС-КОД</h2>
             <div class="dresscode-row">
-                <!-- ДЛЯ ДАМ (6 оттенков, карточка выше) -->
+                <!-- ДЛЯ ДАМ (6 оттенков, карточка ВЫШЕ) -->
                 <div class="dresscode-card women-card">
                     <h3>🌸 ДЛЯ ДАМ</h3>
                     <div class="color-palette">
@@ -400,9 +214,9 @@
                         <div class="swatch-container"><div class="paint-swatch" style="background: #C8E6C9;"></div><span class="swatch-tooltip">Мятное платье</span></div>
                         <div class="swatch-container"><div class="paint-swatch" style="background: #FFF3E0;"></div><span class="swatch-tooltip">Бежевое платье</span></div>
                     </div>
-                    <p>Лучшие платья в нежных, пудровых, розовых, персиковых, лавандовых, мятных и бежевых тонах</p>
+                    <p>Лучшие платья в нежных тонах: пудровые, розовые, персиковые, лавандовые, мятные, бежевые</p>
                 </div>
-                <!-- ДЛЯ МУЖЧИН (4 оттенка, карточка компактнее) -->
+                <!-- ДЛЯ МУЖЧИН (4 оттенка, карточка НИЖЕ) -->
                 <div class="dresscode-card men-card">
                     <h3>👔 ДЛЯ МУЖЧИН</h3>
                     <div class="color-palette">
@@ -421,64 +235,42 @@
             <div class="dresscode-note">💜 лавандовые и золотистые акценты приветствуются 💛</div>
         </div>
 
-        <!-- МЕСТО ПРОВЕДЕНИЯ -->
         <div class="venue-section">
             <div class="venue-card">
                 <h3>📍 Усадьба Александрово</h3>
                 <p>Наша свадьба пройдет в живописном месте, окруженном соснами</p>
                 <p><strong>город Кимовск, Тульская область</strong></p>
-                <div class="map-container">
-                    <iframe src="https://yandex.ru/map-widget/v1/?from=api-maps&ll=38.520617%2C53.963235&mode=routes&origin=jsapi_2_1_79&rtext=~53.963235%2C38.520617&rtt=auto&ruri=~&utm_source=jsapi&z=15" allowfullscreen="true"></iframe>
-                </div>
+                <div class="map-container"><iframe src="https://yandex.ru/map-widget/v1/?from=api-maps&ll=38.520617%2C53.963235&mode=routes&origin=jsapi_2_1_79&rtext=~53.963235%2C38.520617&rtt=auto&ruri=~&utm_source=jsapi&z=15" allowfullscreen="true"></iframe></div>
                 <a href="https://yandex.ru/maps/?rtext=~53.963235%2C38.520617&rtt=auto" target="_blank" class="map-link">🗺️ Построить маршрут</a>
             </div>
         </div>
 
-        <!-- ВЕДУЩИЙ -->
         <div class="venue-section" style="background:#faf7f2;">
             <div class="venue-card">
                 <h2 style="font-size:1.8rem;">🎤 По вопросам и сюрпризам</h2>
                 <p style="font-size:2rem; color:#4a2c6d;">Владислав</p>
                 <p style="font-size:1.4rem; color:#b69ad4;">+7 (910) 945-53-96</p>
                 <p style="color:#6c4e8f;">жених</p>
-                <p style="margin-top:10px;">
-                    <a href="https://vk.com/vladosik_man" target="_blank" style="color:#b69ad4; text-decoration:none; border-bottom:1px dotted;">📱 Написать в ВК</a>
-                </p>
+                <p style="margin-top:10px;"><a href="https://vk.com/vladosik_man" target="_blank" style="color:#b69ad4; text-decoration:none; border-bottom:1px dotted;">📱 Написать в ВК</a></p>
                 <p style="margin-top:25px;">Очень ждем и будем рады видеть вас на нашей свадьбе!<br>Подтвердите, если сможете прийти</p>
             </div>
         </div>
 
-        <!-- ПОДТВЕРЖДЕНИЕ -->
         <div class="rsvp-section">
             <h2>💌 Подтвердите присутствие</h2>
-            <div class="form-group">
-                <input type="text" id="guestName" placeholder="Ваше имя">
-            </div>
-            <div class="transfer-buttons">
-                <button class="transfer-btn" id="selfBtn">🚙 Приеду сам</button>
-                <button class="transfer-btn" id="needBtn">🚌 Нужен трансфер</button>
-            </div>
+            <div class="form-group"><input type="text" id="guestName" placeholder="Ваше имя"></div>
+            <div class="transfer-buttons"><button class="transfer-btn" id="selfBtn">🚙 Приеду сам</button><button class="transfer-btn" id="needBtn">🚌 Нужен трансфер</button></div>
             <div id="transferNote" style="margin-bottom:15px; color:#7c5f9e;"></div>
             <button class="confirm-btn" id="confirmBtn">📨 Подтвердить присутствие</button>
-            <div class="thankyou-text">
-                <p>Спасибо, что разделите этот день вместе с нами.</p>
-                <p style="font-size:1.3rem; margin:15px 0;">💜 С любовью, Наталья и Влад 💜</p>
-            </div>
-            <div class="rsvp-note">
-                💜 После нажатия кнопки скопируйте текст и отправьте невесте в ВК<br>
-                Ответьте до <strong>1 июня 2026</strong>
-            </div>
+            <div class="thankyou-text"><p>Спасибо, что разделите этот день вместе с нами.</p><p style="font-size:1.3rem; margin:15px 0;">💜 С любовью, Наталья и Влад 💜</p></div>
+            <div class="rsvp-note">💜 После нажатия кнопки скопируйте текст и отправьте невесте в ВК<br>Ответьте до <strong>1 июня 2026</strong></div>
         </div>
 
-        <footer>
-            <p>Владислав & Наталья 💜</p>
-            <p>+7 (953) 421-82-93 | +7 (910) 945-53-96</p>
-        </footer>
+        <footer><p>Владислав & Наталья 💜</p><p>+7 (953) 421-82-93 | +7 (910) 945-53-96</p></footer>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script>
-        // МУЗЫКА
         const audio = document.getElementById('weddingAudio');
         const playPauseBtn = document.getElementById('playPauseBtn');
         const volumeSlider = document.getElementById('volumeSlider');
@@ -497,7 +289,6 @@
         });
         volumeSlider?.addEventListener('input', (e) => { if(audio) audio.volume = e.target.value / 100; });
 
-        // ТАЙМЕР
         function updateTimer() {
             const weddingDate = new Date("2026-07-04T00:00:00").getTime();
             const now = new Date().getTime();
@@ -510,7 +301,6 @@
         }
         updateTimer(); setInterval(updateTimer, 1000);
 
-        // КОНВЕРТ
         const seal = document.getElementById('seal');
         const envelopeScreen = document.getElementById('envelopeScreen');
         const popup = document.getElementById('popupPaper');
@@ -530,7 +320,6 @@
             gsap.to('#envelopeScreen', { opacity: 0, duration: 0.8, onComplete: () => { envelopeScreen.style.display = 'none'; mainContent.classList.add('visible'); } });
         });
 
-        // ВЫБОР ТРАНСФЕРА
         const selfBtn = document.getElementById('selfBtn');
         const needBtn = document.getElementById('needBtn');
         const transferNote = document.getElementById('transferNote');
@@ -543,7 +332,6 @@
         selfBtn?.addEventListener('click', () => setActiveTransfer('self'));
         needBtn?.addEventListener('click', () => setActiveTransfer('need'));
 
-        // ПОДТВЕРЖДЕНИЕ
         const modal = document.getElementById('confirmModal');
         const closeModal = document.getElementById('closeModalBtn');
         const copyBlock = document.getElementById('copyTextBlock');
