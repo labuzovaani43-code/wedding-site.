@@ -147,7 +147,7 @@
         }
         .main-content.visible { opacity: 1; display: block; }
 
-        /* ГЛАВНЫЙ ЭКРАН — НАДПИСЬ НА ФОТО */
+        /* ГЛАВНЫЙ ЭКРАН — ТЕКСТ ПОВЕРХ bride.jpg */
         .hero {
             min-height: 100vh;
             position: relative;
@@ -157,7 +157,7 @@
             align-items: center;
             text-align: center;
             padding: 40px 20px;
-            background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('couple-bg.jpg');
+            background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('bride.jpg');
             background-size: cover;
             background-position: center;
             color: white;
@@ -215,27 +215,27 @@
         .child-photos-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 40px;
+            gap: 50px;
             justify-content: center;
-            max-width: 600px;
+            max-width: 700px;
             margin: 20px auto 0;
         }
         .child-card {
             text-align: center;
             flex: 1;
-            min-width: 180px;
+            min-width: 220px;
         }
         .child-card img {
-            width: 180px;
-            height: 180px;
+            width: 220px;
+            height: 220px;
             object-fit: cover;
             border-radius: 50%;
-            border: 4px solid #d9c4ff;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 5px solid #d9c4ff;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
         .child-card p {
-            margin-top: 12px;
-            font-size: 1.1rem;
+            margin-top: 15px;
+            font-size: 1.2rem;
             color: #4a2c6d;
         }
         .love-story {
@@ -245,34 +245,41 @@
             font-style: italic;
         }
 
-        /* ТАЙМИНГ НА ФОНЕ ВТОРОГО ФОТО */
+        /* ТАЙМИНГ ПОВЕРХ groom.jpg */
         .timing-bg-section {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('couple-bg2.jpg');
+            min-height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('groom.jpg');
             background-size: cover;
             background-position: center;
             padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
             color: white;
         }
         .timing-bg-section h2 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 400;
-            margin-bottom: 35px;
+            margin-bottom: 40px;
             letter-spacing: 1px;
+            max-width: 600px;
         }
         .timing-list-center {
-            max-width: 550px;
+            max-width: 600px;
+            width: 100%;
             margin: 0 auto;
-            background: rgba(0,0,0,0.45);
+            background: rgba(0,0,0,0.5);
             backdrop-filter: blur(5px);
-            padding: 30px;
+            padding: 35px;
             border-radius: 30px;
         }
         .timing-item {
             display: flex;
             justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.25);
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
             font-size: 1.1rem;
         }
         .timing-note {
@@ -281,9 +288,6 @@
             margin-bottom: 15px;
             opacity: 0.9;
             text-align: left;
-        }
-        .timing-note a {
-            color: #ffecb3;
         }
 
         /* ДРЕСС-КОД С ПАЛИТРОЙ */
@@ -305,8 +309,8 @@
             flex-wrap: wrap;
         }
         .palette-color {
-            width: 60px;
-            height: 60px;
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
             box-shadow: 0 5px 10px rgba(0,0,0,0.1);
             border: 2px solid white;
@@ -356,7 +360,68 @@
             border-bottom: 1px dotted;
         }
 
-        /* ПОДТВЕРЖДЕНИЕ + ФИНАЛЬНЫЙ ТЕКСТ */
+        /* ПЛЕЕР */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: rgba(74, 44, 109, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 10px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            border: 1px solid #d9c4ff;
+        }
+        .music-btn {
+            background: #b69ad4;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+        .music-btn:hover {
+            background: #9b7abf;
+            transform: scale(1.05);
+        }
+        .volume-slider {
+            width: 80px;
+            height: 4px;
+            -webkit-appearance: none;
+            background: #d9c4ff;
+            border-radius: 2px;
+            outline: none;
+        }
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ffecb3;
+            cursor: pointer;
+        }
+        .music-label {
+            font-size: 0.7rem;
+            color: #ffecb3;
+            font-family: 'Montserrat', sans-serif;
+        }
+        @media (max-width: 500px) {
+            .music-player { padding: 6px 12px; }
+            .music-btn { width: 32px; height: 32px; font-size: 0.9rem; }
+            .volume-slider { width: 60px; }
+            .music-label { display: none; }
+        }
+
+        /* ПОДТВЕРЖДЕНИЕ */
         .rsvp-section {
             background: #f3eaff;
             padding: 60px 20px;
@@ -474,11 +539,24 @@
             .hero h1 { font-size: 2.5rem; }
             .hero h1 span { font-size: 1.8rem; }
             .timing-item { flex-direction: column; gap: 5px; text-align: center; }
-            .child-card img { width: 140px; height: 140px; }
+            .child-card img { width: 160px; height: 160px; }
+            .palette-color { width: 50px; height: 50px; }
         }
     </style>
 </head>
 <body>
+
+    <!-- МУЗЫКАЛЬНЫЙ ПЛЕЕР -->
+    <div class="music-player" id="musicPlayer">
+        <button class="music-btn" id="playPauseBtn">🔊</button>
+        <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="30">
+        <span class="music-label">🎵</span>
+    </div>
+
+    <!-- АУДИО (флешмоб - на свадьбу) -->
+    <audio id="weddingAudio" loop>
+        <source src="wedding-song.mp3" type="audio/mpeg">
+    </audio>
 
     <!-- КОНВЕРТ -->
     <div class="envelope-screen" id="envelopeScreen">
@@ -506,7 +584,7 @@
 
     <div class="main-content" id="mainContent">
         
-        <!-- ГЛАВНЫЙ ЭКРАН — ТЕКСТ ПОВЕРХ ФОТО -->
+        <!-- ГЛАВНЫЙ ЭКРАН — ТЕКСТ ПОВЕРХ bride.jpg -->
         <div class="hero">
             <div class="wedding-day">W E D D I N G   D A Y !</div>
             <h1>Владислав & Наталья</h1>
@@ -514,7 +592,7 @@
             <div class="hero-date">4 ИЮЛЯ · УСАДЬБА АЛЕКСАНДРОВО</div>
         </div>
 
-        <!-- НАША ИСТОРИЯ + ДЕТСКИЕ ФОТО + ТЕКСТ -->
+        <!-- НАША ИСТОРИЯ + ДЕТСКИЕ ФОТО -->
         <div class="story-section">
             <h2>💜 Наша история 💜</h2>
             <div class="story-text">Помните эту пару? Когда-то мы были просто детьми, не подозревая, что однажды наши пути пересекутся. Спустя годы мы нашли друг друга, чтобы вместе написать нашу историю любви.</div>
@@ -531,7 +609,7 @@
             <div class="love-story">А ведь наша любовь выросла! Ждём вас разделить этот день 💑</div>
         </div>
 
-        <!-- ТАЙМИНГ ПОВЕРХ ВТОРОГО ФОТО -->
+        <!-- ТАЙМИНГ ПОВЕРХ groom.jpg -->
         <div class="timing-bg-section">
             <h2>Мы будем счастливы, если вы разделите с нами этот особенный день</h2>
             <div class="timing-list-center">
@@ -589,7 +667,7 @@
             </div>
         </div>
 
-        <!-- ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ + БЛАГОДАРНОСТЬ -->
+        <!-- ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ -->
         <div class="rsvp-section">
             <h2>💌 Подтвердите присутствие</h2>
             <div class="form-group">
@@ -621,7 +699,49 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script>
-        // КОНВЕРТ
+        // ========== МУЗЫКА ==========
+        const audio = document.getElementById('weddingAudio');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const volumeSlider = document.getElementById('volumeSlider');
+        let isPlaying = false;
+
+        // Пытаемся автоматически запустить музыку (но браузеры часто блокируют)
+        // Поэтому запустим при первом клике на конверт
+        function startMusic() {
+            if (!isPlaying && audio) {
+                audio.volume = volumeSlider.value / 100;
+                audio.play().then(() => {
+                    isPlaying = true;
+                    playPauseBtn.textContent = '🔊';
+                }).catch(e => console.log('Автозапуск заблокирован, нажмите кнопку плеера'));
+            }
+        }
+
+        // Кнопка вкл/выкл
+        if (playPauseBtn && audio) {
+            playPauseBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (isPlaying) {
+                    audio.pause();
+                    isPlaying = false;
+                    playPauseBtn.textContent = '🔈';
+                } else {
+                    audio.play();
+                    isPlaying = true;
+                    playPauseBtn.textContent = '🔊';
+                }
+            });
+        }
+
+        // Регулировка громкости
+        if (volumeSlider && audio) {
+            volumeSlider.addEventListener('input', (e) => {
+                audio.volume = e.target.value / 100;
+            });
+        }
+
+        // Попробуем включить музыку при открытии конверта
+        // ========== КОНВЕРТ ==========
         const seal = document.getElementById('seal');
         const envelopeScreen = document.getElementById('envelopeScreen');
         const popup = document.getElementById('popupPaper');
@@ -633,6 +753,8 @@
             seal.addEventListener('click', () => {
                 if (opened) return;
                 opened = true;
+                // Запускаем музыку при открытии конверта
+                startMusic();
                 gsap.to('#flap', { rotateX: 180, duration: 1.2, ease: 'power2.inOut' });
                 gsap.to('#letter', { y: -120, duration: 1.4, delay: 0.5, ease: 'power3.out' });
                 gsap.to('#envelopeScreen', { opacity: 0.4, duration: 0.5, delay: 1.3, onComplete: () => popup.classList.add('show') });
@@ -667,7 +789,7 @@
         if(selfBtn) selfBtn.addEventListener('click', () => setActiveTransfer('self'));
         if(needBtn) needBtn.addEventListener('click', () => setActiveTransfer('need'));
 
-        // ПОДТВЕРЖДЕНИЕ С КОПИРОВАНИЕМ ТЕКСТА
+        // ПОДТВЕРЖДЕНИЕ
         const modal = document.getElementById('confirmModal');
         const closeModal = document.getElementById('closeModalBtn');
         const copyBlock = document.getElementById('copyTextBlock');
