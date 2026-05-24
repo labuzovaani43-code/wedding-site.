@@ -60,7 +60,8 @@
             min-height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('groom.jpg');
             background-size: cover;
-            background-position: center;
+            background-position: center 30%;
+            background-repeat: no-repeat;
             padding: 80px 20px;
             display: flex;
             flex-direction: column;
@@ -103,7 +104,7 @@
         .timing-time { font-weight: 600; color: #b69ad4; font-family: monospace; font-size: 1.2rem; }
         .timing-note { font-size: 0.85rem; margin-top: 8px; margin-bottom: 12px; color: #6c4e8f; padding-left: 15px; border-left: 3px solid #d9c4ff; width: 100%; }
 
-        /* ДРЕСС-КОД — С ПОДСКАЗКАМИ ПРИ НАВЕДЕНИИ И КЛИКЕ */
+        /* ДРЕСС-КОД — ДЛЯ КОМПЬЮТЕРА (HOVER) И ТЕЛЕФОНА (КЛИК) */
         .dresscode-section { padding: 70px 20px; background: #faf7f2; text-align: center; }
         .dresscode-section h2 { font-size: 2.2rem; color: #4a2c6d; margin-bottom: 25px; letter-spacing: 2px; }
         .dresscode-row { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; align-items: flex-start; margin-bottom: 35px; }
@@ -201,7 +202,8 @@
         footer { background: #2e1f3d; color: #b89b7b; text-align: center; padding: 30px 20px; }
         footer p { margin: 5px 0; font-size: 1.1rem; }
 
-        @media (max-width: 700px) {
+        /* СКРЫВАЕМ ТУЛТИП НА ТЕЛЕФОНЕ */
+        @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
             .timer-number { font-size: 2rem; }
             .timer-box { padding: 10px 15px; min-width: 70px; }
@@ -548,20 +550,18 @@
             });
         });
         
-        // ПОДСКАЗКИ ДЛЯ ЦВЕТОВ: на телефоне — клик, на компьютере — наведение уже есть
-        const colorItems = document.querySelectorAll('.color-item');
-        // Проверяем, телефон ли это (по ширине экрана или наличию touch)
+        // ДЛЯ ТЕЛЕФОНА: ПРИ КЛИКЕ НА ЦВЕТ — ПОКАЗЫВАЕМ ПОДСКАЗКУ
         const isMobile = window.matchMedia('(max-width: 768px)').matches || ('ontouchstart' in window);
+        const colorItems = document.querySelectorAll('.color-item');
         
-        colorItems.forEach(item => {
-            // На телефоне добавляем обработчик клика
-            if (isMobile) {
+        if (isMobile) {
+            colorItems.forEach(item => {
                 item.addEventListener('click', (e) => {
                     const tip = item.getAttribute('data-tip');
                     if (tip) alert(tip);
                 });
-            }
-        });
+            });
+        }
     </script>
 </body>
 </html>
