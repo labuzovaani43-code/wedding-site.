@@ -126,31 +126,24 @@
         .timing-time { font-weight: 600; color: #b69ad4; font-family: monospace; font-size: 1.2rem; }
         .timing-note { font-size: 0.85rem; margin-top: 8px; margin-bottom: 12px; color: #6c4e8f; padding-left: 15px; border-left: 3px solid #d9c4ff; width: 100%; }
 
-        /* ДРЕСС-КОД С МАЗКАМИ (КАК НА КАРТИНКЕ) */
+        /* ДРЕСС-КОД С РАЗДЕЛЕНИЕМ И МАЗКАМИ */
         .dresscode-section { padding: 70px 20px; background: #faf7f2; text-align: center; }
         .dresscode-section h2 { font-size: 2.2rem; color: #4a2c6d; margin-bottom: 20px; letter-spacing: 2px; }
-        .palette {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin: 40px 0;
-            flex-wrap: wrap;
-        }
-        /* МАЗКИ КИСТИ */
+        .dresscode-sub { font-size: 1.4rem; color: #4a2c6d; margin: 25px 0 15px; }
+        .dresscode-row { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-bottom: 30px; }
+        .dresscode-category { text-align: center; min-width: 250px; }
+        .dresscode-category h3 { font-size: 1.8rem; color: #b69ad4; margin-bottom: 10px; }
+        .swatch-group { display: flex; gap: 12px; justify-content: center; margin: 15px 0; flex-wrap: wrap; }
         .paint-swatch {
-            width: 85px;
-            height: 85px;
-            background: #d8bfd8;
+            width: 70px;
+            height: 70px;
             border-radius: 65% 35% 70% 30% / 40% 55% 45% 60%;
             transform: rotate(-4deg);
             box-shadow: 0 12px 20px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
         }
-        .paint-swatch:hover {
-            transform: rotate(0deg) scale(1.05);
-            border-radius: 50%;
-        }
-        .dresscode-text { max-width: 600px; margin: 0 auto; font-size: 1.2rem; line-height: 1.6; color: #4a2c6d; }
+        .paint-swatch:hover { transform: rotate(0deg) scale(1.05); border-radius: 50%; }
+        .dresscode-text { max-width: 600px; margin: 20px auto 0; font-size: 1.2rem; line-height: 1.6; color: #4a2c6d; }
         .dresscode-note { margin-top: 25px; font-size: 1.2rem; color: #b69ad4; font-weight: 500; background: #f3eaff; display: inline-block; padding: 8px 25px; border-radius: 40px; }
 
         /* МЕСТО ПРОВЕДЕНИЯ */
@@ -181,7 +174,7 @@
         .volume-slider { width: 70px; height: 4px; -webkit-appearance: none; background: #d9c4ff; border-radius: 2px; outline: none; }
         .volume-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: #ffecb3; cursor: pointer; }
 
-        /* ПОДТВЕРЖДЕНИЕ (ТЕКСТ УВЕЛИЧЕН) */
+        /* ПОДТВЕРЖДЕНИЕ (РАЗМЕРЫ ТЕКСТА ВЫРОВНЕНЫ) */
         .rsvp-section { background: #faf7f2; padding: 60px 20px; text-align: center; }
         .rsvp-section h2 { font-size: 2.2rem; color: #4a2c6d; margin-bottom: 20px; }
         .form-group { max-width: 350px; margin: 0 auto 20px; }
@@ -191,8 +184,7 @@
         .transfer-btn.active { background: #b69ad4; color: white; border-color: #b69ad4; }
         .confirm-btn { background: #b69ad4; color: white; padding: 14px 30px; border: none; border-radius: 50px; font-size: 1rem; cursor: pointer; margin-top: 10px; }
         .thankyou-text { max-width: 550px; margin: 30px auto 20px; font-size: 1.1rem; line-height: 1.5; color: #4a2c6d; }
-        .rsvp-note { margin-top: 20px; font-size: 1rem; color: #7c5f9e; }
-        .big-footer-text { font-size: 1.3rem; margin: 10px 0; }
+        .rsvp-note { margin-top: 20px; font-size: 1.1rem; color: #7c5f9e; } /* Размер как у "Спасибо, что разделите..." */
 
         /* МОДАЛЬНОЕ ОКНО */
         .custom-modal {
@@ -216,7 +208,7 @@
         .modal-link { display: inline-block; background: #b69ad4; color: white; padding: 12px 25px; border-radius: 40px; text-decoration: none; }
 
         footer { background: #2e1f3d; color: #b89b7b; text-align: center; padding: 30px 20px; }
-        footer p { margin: 5px 0; }
+        footer p { margin: 5px 0; font-size: 1.1rem; }
 
         @media (max-width: 700px) {
             .hero h1 { font-size: 2.5rem; }
@@ -225,7 +217,8 @@
             .child-card img { width: 200px; height: 200px; }
             .child-card { min-width: 200px; }
             .timing-item { flex-direction: column; gap: 5px; text-align: left; }
-            .paint-swatch { width: 60px; height: 60px; }
+            .paint-swatch { width: 50px; height: 50px; }
+            .dresscode-category h3 { font-size: 1.4rem; }
         }
     </style>
 </head>
@@ -309,24 +302,36 @@
             </div>
         </div>
 
-        <!-- ДРЕСС-КОД С МАЗКАМИ -->
+        <!-- ДРЕСС-КОД С РАЗДЕЛЕНИЕМ ДЛЯ ДАМ И ДЖЕНТЛЬМЕНОВ И МАЗКАМИ -->
         <div class="dresscode-section">
             <h2>👗 ДРЕСС-КОД</h2>
-            <div class="palette">
-                <div class="paint-swatch" style="background: #E6E6FA;"></div>
-                <div class="paint-swatch" style="background: #D8BFD8;"></div>
-                <div class="paint-swatch" style="background: #C8A2C8;"></div>
-                <div class="paint-swatch" style="background: #B69AD4;"></div>
-                <div class="paint-swatch" style="background: #9370DB;"></div>
-                <div class="paint-swatch" style="background: #FFD700;"></div>
-                <div class="paint-swatch" style="background: #DAA520;"></div>
-                <div class="paint-swatch" style="background: #CD853F;"></div>
+            <div class="dresscode-row">
+                <div class="dresscode-category">
+                    <h3>🌸 ДЛЯ ДАМ</h3>
+                    <div class="swatch-group">
+                        <div class="paint-swatch" style="background: #E6E6FA;"></div>
+                        <div class="paint-swatch" style="background: #D8BFD8;"></div>
+                        <div class="paint-swatch" style="background: #C8A2C8;"></div>
+                        <div class="paint-swatch" style="background: #B69AD4;"></div>
+                        <div class="paint-swatch" style="background: #9370DB;"></div>
+                    </div>
+                    <p>Лучшие платья в лавандовых тонах</p>
+                </div>
+                <div class="dresscode-category">
+                    <h3>👔 ДЛЯ ДЖЕНТЛЬМЕНОВ</h3>
+                    <div class="swatch-group">
+                        <div class="paint-swatch" style="background: #FFD700;"></div>
+                        <div class="paint-swatch" style="background: #DAA520;"></div>
+                        <div class="paint-swatch" style="background: #CD853F;"></div>
+                        <div class="paint-swatch" style="background: #F5DEB3;"></div>
+                        <div class="paint-swatch" style="background: #FFF8DC;"></div>
+                    </div>
+                    <p>Классические костюмы, спокойные благородные оттенки</p>
+                </div>
             </div>
             <div class="dresscode-text">
-                <p><strong>Тематика свадьбы — лавандовые и золотистые тона.</strong></p>
-                <p>👨‍💼 <strong>мужчины</strong> — классические костюмы, спокойные благородные оттенки<br>
-                👩‍🎀 <strong>дамы</strong> — лучшие платья</p>
-                <p>Если есть сомнения, будьте минималистичны и дополните образ аксессуаром фиолетовых, золотых оттенков.</p>
+                Тематика свадьбы — <strong>лавандовые и золотистые тона</strong>.
+                Если есть сомнения, будьте минималистичны и дополните образ аксессуаром фиолетовых, золотых оттенков.
             </div>
             <div class="dresscode-note">💜 лавандовые и золотистые акценты приветствуются 💛</div>
         </div>
@@ -358,7 +363,7 @@
             </div>
         </div>
 
-        <!-- ПОДТВЕРЖДЕНИЕ (УВЕЛИЧЕННЫЙ ТЕКСТ) -->
+        <!-- ПОДТВЕРЖДЕНИЕ (РАЗМЕРЫ ТЕКСТА ВЫРОВНЕНЫ) -->
         <div class="rsvp-section">
             <h2>💌 Подтвердите присутствие</h2>
             <div class="form-group">
@@ -380,10 +385,9 @@
             </div>
         </div>
 
-        <!-- ФУТЕР С КРУПНЫМ ТЕКСТОМ -->
         <footer>
-            <p class="big-footer-text">Владислав & Наталья 💜</p>
-            <p class="big-footer-text">+7 (953) 421-82-93 | +7 (910) 945-53-96</p>
+            <p>Владислав & Наталья 💜</p>
+            <p>+7 (953) 421-82-93 | +7 (910) 945-53-96</p>
         </footer>
     </div>
 
