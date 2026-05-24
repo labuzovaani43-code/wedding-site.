@@ -55,44 +55,42 @@
         .child-card p { margin-top: 15px; font-size: 1.3rem; color: #4a2c6d; }
         .love-story { margin-top: 35px; font-size: 1.15rem; color: #4a2c6d; font-style: italic; }
 
-        /* ТАЙМЕР НА ФОНЕ */
+        /* ТАЙМЕР НА ФОНЕ — ОПУЩЕН, ЧТОБЫ ЛИЦА БЫЛИ ВИДНЫ */
         .timer-bg-section {
             min-height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('groom.jpg');
             background-size: cover;
-            background-position: center 40%;
+            background-position: center 45%;
             background-repeat: no-repeat;
-            padding: 80px 20px;
+            padding: 100px 20px 60px 20px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-end;
             align-items: center;
             text-align: center;
             color: white;
         }
         .timer-bg-section h2 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 400;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
             max-width: 600px;
-            margin-top: -80px;
         }
         .timer {
             display: flex;
             justify-content: center;
-            gap: 25px;
+            gap: 20px;
             flex-wrap: wrap;
             background: rgba(0,0,0,0.5);
             backdrop-filter: blur(5px);
-            padding: 25px 35px;
-            border-radius: 60px;
-            margin-top: 30px;
-            margin-bottom: -80px;
+            padding: 20px 30px;
+            border-radius: 50px;
+            margin-bottom: 20px;
         }
-        .timer-box { text-align: center; background: rgba(255,255,255,0.15); padding: 15px 25px; border-radius: 20px; min-width: 100px; transition: transform 0.3s ease; }
+        .timer-box { text-align: center; background: rgba(255,255,255,0.15); padding: 10px 20px; border-radius: 20px; min-width: 80px; transition: transform 0.3s ease; }
         .timer-box:hover { transform: scale(1.05); }
-        .timer-number { font-size: 3rem; font-weight: 600; font-family: 'Montserrat', sans-serif; color: #ffecb3; }
-        .timer-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #f0e6d2; }
+        .timer-number { font-size: 2.5rem; font-weight: 600; font-family: 'Montserrat', sans-serif; color: #ffecb3; }
+        .timer-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: #f0e6d2; }
 
         /* ТАЙМИНГ */
         .timing-section { padding: 80px 20px; background: #f3eaff; text-align: center; }
@@ -124,10 +122,7 @@
             border-radius: 40px;
             position: relative;
         }
-        .color-item:hover { 
-            transform: translateX(8px); 
-            background: #f3eaff; 
-        }
+        .color-item:hover { transform: translateX(8px); background: #f3eaff; }
         .color-item .tooltip {
             visibility: hidden;
             position: absolute;
@@ -204,7 +199,7 @@
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
             .timer-number { font-size: 2rem; }
-            .timer-box { padding: 10px 15px; min-width: 70px; }
+            .timer-box { padding: 8px 12px; min-width: 65px; }
             .child-card img { width: 200px; height: 200px; }
             .child-card { min-width: 200px; }
             .timing-item { flex-direction: column; gap: 5px; text-align: left; }
@@ -275,6 +270,7 @@
             <div class="stagger-item love-story">А ведь наша любовь выросла! Ждём вас разделить этот день 💑</div>
         </div>
 
+        <!-- ТАЙМЕР ОПУЩЕН, ЧТОБЫ ЛИЦА БЫЛИ ВИДНЫ -->
         <div class="fade-section timer-bg-section">
             <h2>Мы будем счастливы, если вы разделите с нами этот особенный день</h2>
             <div class="timer">
@@ -343,7 +339,7 @@
             </div>
         </div>
 
-        <!-- БЛОК ДЛЯ ЖЕНИХА С ФОРМОЙ (ТЕЛЕФОН УБРАН) -->
+        <!-- БЛОК ДЛЯ ЖЕНИХА (БЕЗ ТЕЛЕФОНА) -->
         <div class="fade-section venue-section" style="background:#faf7f2;">
             <div class="venue-card">
                 <h2 style="font-size:1.8rem;">🎤 По вопросам и подаркам</h2>
@@ -362,7 +358,7 @@
             </div>
         </div>
 
-        <!-- БЛОК ДЛЯ НЕВЕСТЫ С ФОРМОЙ (ТЕКСТ УКОРОЧЕН) -->
+        <!-- БЛОК ДЛЯ НЕВЕСТЫ (БЕЗ ЛИШНЕГО ТЕКСТА) -->
         <div class="fade-section rsvp-section">
             <h2>💌 Подтвердите присутствие</h2>
             <div class="form-group"><input type="text" id="guestName" placeholder="Ваше имя"></div>
