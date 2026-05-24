@@ -126,25 +126,72 @@
         .timing-time { font-weight: 600; color: #b69ad4; font-family: monospace; font-size: 1.2rem; }
         .timing-note { font-size: 0.85rem; margin-top: 8px; margin-bottom: 12px; color: #6c4e8f; padding-left: 15px; border-left: 3px solid #d9c4ff; width: 100%; }
 
-        /* ДРЕСС-КОД С РАЗДЕЛЕНИЕМ И МАЗКАМИ */
+        /* ДРЕСС-КОД С РАЗДЕЛЕНИЕМ И МАЗКАМИ КАК НА ПРИМЕРЕ */
         .dresscode-section { padding: 70px 20px; background: #faf7f2; text-align: center; }
         .dresscode-section h2 { font-size: 2.2rem; color: #4a2c6d; margin-bottom: 20px; letter-spacing: 2px; }
-        .dresscode-sub { font-size: 1.4rem; color: #4a2c6d; margin: 25px 0 15px; }
-        .dresscode-row { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-bottom: 30px; }
-        .dresscode-category { text-align: center; min-width: 250px; }
-        .dresscode-category h3 { font-size: 1.8rem; color: #b69ad4; margin-bottom: 10px; }
-        .swatch-group { display: flex; gap: 12px; justify-content: center; margin: 15px 0; flex-wrap: wrap; }
+        .dresscode-row {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .dresscode-card {
+            background: white;
+            border-radius: 30px;
+            padding: 25px;
+            width: 280px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border: 1px solid #e8d9ff;
+        }
+        .dresscode-card h3 {
+            font-size: 1.6rem;
+            color: #b69ad4;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        .paint-strokes {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        /* ХУДОЖЕСТВЕННЫЙ МАЗОК */
         .paint-swatch {
-            width: 70px;
-            height: 70px;
-            border-radius: 65% 35% 70% 30% / 40% 55% 45% 60%;
-            transform: rotate(-4deg);
-            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+            width: 60px;
+            height: 60px;
+            border-radius: 70% 30% 65% 35% / 40% 55% 45% 60%;
+            transform: rotate(-5deg);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
         }
-        .paint-swatch:hover { transform: rotate(0deg) scale(1.05); border-radius: 50%; }
-        .dresscode-text { max-width: 600px; margin: 20px auto 0; font-size: 1.2rem; line-height: 1.6; color: #4a2c6d; }
-        .dresscode-note { margin-top: 25px; font-size: 1.2rem; color: #b69ad4; font-weight: 500; background: #f3eaff; display: inline-block; padding: 8px 25px; border-radius: 40px; }
+        .paint-swatch:hover {
+            transform: rotate(0deg) scale(1.1);
+            border-radius: 50%;
+        }
+        .dresscode-card p {
+            font-size: 1rem;
+            color: #4a2c6d;
+            margin-top: 15px;
+        }
+        .dresscode-text {
+            max-width: 600px;
+            margin: 20px auto 0;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #4a2c6d;
+        }
+        .dresscode-note {
+            margin-top: 25px;
+            font-size: 1.2rem;
+            color: #b69ad4;
+            font-weight: 500;
+            background: #f3eaff;
+            display: inline-block;
+            padding: 8px 25px;
+            border-radius: 40px;
+        }
 
         /* МЕСТО ПРОВЕДЕНИЯ */
         .venue-section { background: #f3eaff; padding: 60px 20px; text-align: center; }
@@ -174,7 +221,7 @@
         .volume-slider { width: 70px; height: 4px; -webkit-appearance: none; background: #d9c4ff; border-radius: 2px; outline: none; }
         .volume-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: #ffecb3; cursor: pointer; }
 
-        /* ПОДТВЕРЖДЕНИЕ (РАЗМЕРЫ ТЕКСТА ВЫРОВНЕНЫ) */
+        /* ПОДТВЕРЖДЕНИЕ */
         .rsvp-section { background: #faf7f2; padding: 60px 20px; text-align: center; }
         .rsvp-section h2 { font-size: 2.2rem; color: #4a2c6d; margin-bottom: 20px; }
         .form-group { max-width: 350px; margin: 0 auto 20px; }
@@ -184,9 +231,8 @@
         .transfer-btn.active { background: #b69ad4; color: white; border-color: #b69ad4; }
         .confirm-btn { background: #b69ad4; color: white; padding: 14px 30px; border: none; border-radius: 50px; font-size: 1rem; cursor: pointer; margin-top: 10px; }
         .thankyou-text { max-width: 550px; margin: 30px auto 20px; font-size: 1.1rem; line-height: 1.5; color: #4a2c6d; }
-        .rsvp-note { margin-top: 20px; font-size: 1.1rem; color: #7c5f9e; } /* Размер как у "Спасибо, что разделите..." */
+        .rsvp-note { margin-top: 20px; font-size: 1.1rem; color: #7c5f9e; }
 
-        /* МОДАЛЬНОЕ ОКНО */
         .custom-modal {
             position: fixed;
             top: 0;
@@ -217,8 +263,9 @@
             .child-card img { width: 200px; height: 200px; }
             .child-card { min-width: 200px; }
             .timing-item { flex-direction: column; gap: 5px; text-align: left; }
-            .paint-swatch { width: 50px; height: 50px; }
-            .dresscode-category h3 { font-size: 1.4rem; }
+            .paint-swatch { width: 45px; height: 45px; }
+            .dresscode-card { width: 240px; }
+            .dresscode-card h3 { font-size: 1.3rem; }
         }
     </style>
 </head>
@@ -302,13 +349,13 @@
             </div>
         </div>
 
-        <!-- ДРЕСС-КОД С РАЗДЕЛЕНИЕМ ДЛЯ ДАМ И ДЖЕНТЛЬМЕНОВ И МАЗКАМИ -->
+        <!-- ДРЕСС-КОД С РАЗДЕЛЕНИЕМ И МАЗКАМИ КАК НА ПРИМЕРЕ -->
         <div class="dresscode-section">
             <h2>👗 ДРЕСС-КОД</h2>
             <div class="dresscode-row">
-                <div class="dresscode-category">
+                <div class="dresscode-card">
                     <h3>🌸 ДЛЯ ДАМ</h3>
-                    <div class="swatch-group">
+                    <div class="paint-strokes">
                         <div class="paint-swatch" style="background: #E6E6FA;"></div>
                         <div class="paint-swatch" style="background: #D8BFD8;"></div>
                         <div class="paint-swatch" style="background: #C8A2C8;"></div>
@@ -317,9 +364,9 @@
                     </div>
                     <p>Лучшие платья в лавандовых тонах</p>
                 </div>
-                <div class="dresscode-category">
-                    <h3>👔 ДЛЯ ДЖЕНТЛЬМЕНОВ</h3>
-                    <div class="swatch-group">
+                <div class="dresscode-card">
+                    <h3>👔 ДЛЯ МУЖЧИН</h3>
+                    <div class="paint-strokes">
                         <div class="paint-swatch" style="background: #FFD700;"></div>
                         <div class="paint-swatch" style="background: #DAA520;"></div>
                         <div class="paint-swatch" style="background: #CD853F;"></div>
@@ -363,7 +410,7 @@
             </div>
         </div>
 
-        <!-- ПОДТВЕРЖДЕНИЕ (РАЗМЕРЫ ТЕКСТА ВЫРОВНЕНЫ) -->
+        <!-- ПОДТВЕРЖДЕНИЕ -->
         <div class="rsvp-section">
             <h2>💌 Подтвердите присутствие</h2>
             <div class="form-group">
