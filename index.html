@@ -159,6 +159,7 @@
             letter-spacing: 4px;
             margin-bottom: 20px;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            color: #d9c4ff;
         }
         .hero-subtitle {
             font-size: 1.2rem;
@@ -166,11 +167,13 @@
             margin: 20px auto;
             line-height: 1.5;
             text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+            color: #f0e6d2;
         }
         .hero-date {
             font-size: 1.2rem;
             margin-top: 25px;
             letter-spacing: 2px;
+            color: #ffecb3;
         }
 
         /* НАША ИСТОРИЯ + БОЛЬШИЕ ДЕТСКИЕ ФОТО */
@@ -320,7 +323,7 @@
             width: 100%;
         }
 
-        /* ДРЕСС-КОД */
+        /* ДРЕСС-КОД С ПАЛИТРОЙ МАЗКАМИ */
         .dresscode-section {
             background: #faf7f2;
             padding: 60px 20px;
@@ -334,23 +337,33 @@
         .palette {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
             margin: 25px 0;
             flex-wrap: wrap;
         }
-        .palette-color {
-            width: 65px;
-            height: 65px;
-            border-radius: 50%;
+        /* Стили для цветовых мазков */
+        .swatch {
+            width: 70px;
+            height: 70px;
+            border-radius: 30px 10px 30px 10px;
             box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-            border: 2px solid white;
+            transition: transform 0.3s ease;
+        }
+        .swatch:hover {
+            transform: scale(1.05);
         }
         .dresscode-text {
-            max-width: 550px;
+            max-width: 600px;
             margin: 0 auto;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             line-height: 1.6;
             color: #4a2c6d;
+        }
+        .dresscode-note {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: #b69ad4;
+            font-weight: 500;
         }
 
         /* МЕСТО ПРОВЕДЕНИЯ С КАРТОЙ */
@@ -390,7 +403,7 @@
             border-bottom: 1px dotted;
         }
 
-        /* ПЛЕЕР (ГРОМКОСТЬ, ВКЛ/ВЫКЛ) */
+        /* ПЛЕЕР */
         .music-player {
             position: fixed;
             bottom: 20px;
@@ -497,6 +510,11 @@
             line-height: 1.5;
             color: #4a2c6d;
         }
+        .rsvp-note {
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #7c5f9e;
+        }
 
         .custom-modal {
             position: fixed;
@@ -526,7 +544,7 @@
             background: #f0e6ff;
             padding: 15px;
             border-radius: 15px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             text-align: left;
             margin: 15px 0;
             white-space: pre-wrap;
@@ -560,6 +578,7 @@
             .timing-time { margin-top: 5px; }
             .music-player { padding: 5px 12px; }
             .volume-slider { width: 50px; }
+            .swatch { width: 50px; height: 50px; }
         }
     </style>
 </head>
@@ -609,7 +628,7 @@
             <div class="hero-date">4 ИЮЛЯ · УСАДЬБА АЛЕКСАНДРОВО</div>
         </div>
 
-        <!-- НАША ИСТОРИЯ + БОЛЬШИЕ ДЕТСКИЕ ФОТО -->
+        <!-- НАША ИСТОРИЯ -->
         <div class="story-section">
             <h2>💜 Наша история 💜</h2>
             <div class="story-text">Помните эту пару? Когда-то мы были просто детьми, не подозревая, что однажды наши пути пересекутся. Спустя годы мы нашли друг друга, чтобы вместе написать нашу историю любви.</div>
@@ -637,7 +656,7 @@
             </div>
         </div>
 
-        <!-- ТАЙМИНГ ДНЯ НА ОТДЕЛЬНОМ ФОНЕ -->
+        <!-- ТАЙМИНГ ДНЯ -->
         <div class="timing-section">
             <h2>📅 Тайминг дня</h2>
             <div class="timing-list-center">
@@ -652,22 +671,24 @@
             </div>
         </div>
 
-        <!-- ДРЕСС-КОД -->
+        <!-- ДРЕСС-КОД С ПАЛИТРОЙ МАЗКАМИ -->
         <div class="dresscode-section">
             <h2>👗 ДРЕСС-КОД</h2>
             <div class="palette">
-                <div class="palette-color" style="background:#e6e6fa;"></div>
-                <div class="palette-color" style="background:#d8bfd8;"></div>
-                <div class="palette-color" style="background:#c8a2c8;"></div>
-                <div class="palette-color" style="background:#b69ad4;"></div>
-                <div class="palette-color" style="background:#9370db;"></div>
+                <div class="swatch" style="background: #e6e6fa;"></div>
+                <div class="swatch" style="background: #d8bfd8;"></div>
+                <div class="swatch" style="background: #c8a2c8;"></div>
+                <div class="swatch" style="background: #b69ad4;"></div>
+                <div class="swatch" style="background: #9370db;"></div>
+                <div class="swatch" style="background: #ffd700;"></div>
+                <div class="swatch" style="background: #daa520;"></div>
             </div>
             <div class="dresscode-text">
-                <p>Тематика свадьбы — <strong>лавандовые тона</strong>.</p>
-                <p>👨‍💼 <strong>мужчины</strong> — белые рубашки, костюмы и жилетки<br>
-                👩‍🎀 <strong>дамы</strong> — красивые наряды</p>
-                <p>Если есть сомнения, будьте минималистичны и дополните образ аксессуаром фиолетовых оттенков.</p>
-                <p>💜 лавандовые акценты приветствуются 💜</p>
+                <p>Тематика свадьбы — <strong>лавандовые и золотистые тона</strong>.</p>
+                <p>👨‍💼 <strong>мужчины</strong> — классические костюмы, спокойные благородные оттенки<br>
+                👩‍🎀 <strong>дамы</strong> — лучшие платья</p>
+                <p>Если есть сомнения, будьте минималистичны и дополните образ аксессуаром фиолетовых, золотых оттенков.</p>
+                <p>💜 <strong>лавандовые и золотистые акценты приветствуются</strong> 💛</p>
             </div>
         </div>
 
@@ -684,7 +705,7 @@
             </div>
         </div>
 
-        <!-- ВЕДУЩИЙ + ССЫЛКА НА ВК -->
+        <!-- ВЕДУЩИЙ -->
         <div class="venue-section" style="background:#faf7f2;">
             <div class="venue-card">
                 <h2 style="font-size:1.8rem;">🎤 По вопросам и сюрпризам</h2>
@@ -698,7 +719,7 @@
             </div>
         </div>
 
-        <!-- ПОДТВЕРЖДЕНИЕ (ТЕЛЕФОНЫ ТОЛЬКО В КОНЦЕ) -->
+        <!-- ПОДТВЕРЖДЕНИЕ -->
         <div class="rsvp-section">
             <h2>💌 Подтвердите присутствие</h2>
             <div class="form-group">
@@ -714,14 +735,13 @@
                 <p>Спасибо, что разделите этот день вместе с нами.</p>
                 <p>💜 С любовью, Наталья и Влад 💜</p>
             </div>
-            <p style="margin-top:15px; font-size:0.85rem; color:#7c5f9e;">
+            <div class="rsvp-note">
                 💜 После нажатия кнопки скопируйте текст и отправьте невесте в ВК<br>
-                <a href="https://vk.com/nataliiiiie" target="_blank" style="color:#b69ad4;">vk.com/nataliiiiie</a><br>
                 Ответьте до <strong>1 июня 2026</strong>
-            </p>
+            </div>
         </div>
 
-        <!-- ФУТЕР: ТЕЛЕФОНЫ ТОЛЬКО ЗДЕСЬ -->
+        <!-- ФУТЕР -->
         <footer>
             <p>Владислав & Наталья 💜</p>
             <p>+7 (953) 421-82-93 | +7 (910) 945-53-96</p>
@@ -843,7 +863,7 @@
         confirmBtn.addEventListener('click', () => {
             const guestName = guestNameInput?.value.trim() || 'Гость';
             let transferText = currentTransfer === 'self' ? '🚙 Приеду сам' : (currentTransfer === 'need' ? '🚌 Нужен трансфер' : '❓ Не выбран');
-            const msg = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nИмя: ${guestName}\nТрансфер: ${transferText}\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
+            const msg = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nИмя: ${guestName}\nТрансфер: ${transferText}\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜\n\n📱 Отправьте это сообщение Наталье в ВК: vk.com/nataliiiiie`;
             copyBlock.innerText = msg;
             modal.classList.add('show');
         });
