@@ -126,23 +126,32 @@
         .timing-time { font-weight: 600; color: #b69ad4; font-family: monospace; font-size: 1.2rem; }
         .timing-note { font-size: 0.85rem; margin-top: 8px; margin-bottom: 12px; color: #6c4e8f; padding-left: 15px; border-left: 3px solid #d9c4ff; width: 100%; }
 
-        /* ДРЕСС-КОД С МАЗКАМИ (УМЕНЬШЕННЫЙ НАБОР ДЛЯ МУЖЧИН) */
+        /* ДРЕСС-КОД С РАЗНОЙ ВЫСОТОЙ И ПОДСКАЗКАМИ */
         .dresscode-section { padding: 70px 20px; background: #faf7f2; text-align: center; }
         .dresscode-section h2 { font-size: 2.2rem; color: #4a2c6d; margin-bottom: 20px; letter-spacing: 2px; }
         .dresscode-row {
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 50px;
             flex-wrap: wrap;
+            align-items: flex-start;
             margin-bottom: 35px;
         }
         .dresscode-card {
             background: white;
             border-radius: 30px;
             padding: 25px 20px;
-            width: 300px;
+            width: 320px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.08);
             border: 1px solid #e8d9ff;
+        }
+        /* Женская карточка — выше (больше padding снизу) */
+        .women-card {
+            padding-bottom: 40px;
+        }
+        /* Мужская карточка — компактнее */
+        .men-card {
+            padding-bottom: 25px;
         }
         .dresscode-card h3 {
             font-size: 1.5rem;
@@ -152,10 +161,14 @@
         }
         .color-palette {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             justify-content: center;
             margin: 20px 0;
             flex-wrap: wrap;
+        }
+        .swatch-container {
+            position: relative;
+            display: inline-block;
         }
         .paint-swatch {
             width: 55px;
@@ -163,10 +176,35 @@
             border-radius: 25px;
             box-shadow: 0 5px 12px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
+            cursor: pointer;
         }
         .paint-swatch:hover {
             transform: scale(1.1);
             border-radius: 15px;
+        }
+        /* Всплывающая подсказка */
+        .swatch-tooltip {
+            visibility: hidden;
+            background-color: #4a2c6d;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 5px 10px;
+            position: absolute;
+            z-index: 10;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-size: 0.75rem;
+            font-family: 'Montserrat', sans-serif;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        .swatch-container:hover .swatch-tooltip {
+            visibility: visible;
+            opacity: 1;
         }
         .dresscode-card p {
             font-size: 1rem;
@@ -263,7 +301,7 @@
             .child-card { min-width: 200px; }
             .timing-item { flex-direction: column; gap: 5px; text-align: left; }
             .paint-swatch { width: 45px; height: 45px; }
-            .dresscode-card { width: 260px; }
+            .dresscode-card { width: 280px; }
         }
     </style>
 </head>
@@ -347,42 +385,33 @@
             </div>
         </div>
 
-        <!-- ДРЕСС-КОД С МАЗКАМИ (ЧИСТЫЙ НАБОР ДЛЯ МУЖЧИН) -->
+        <!-- ДРЕСС-КОД С ПОДСКАЗКАМИ -->
         <div class="dresscode-section">
             <h2>👗 ДРЕСС-КОД</h2>
             <div class="dresscode-row">
-                <!-- ДЛЯ ДАМ -->
-                <div class="dresscode-card">
+                <!-- ДЛЯ ДАМ (6 оттенков, карточка выше) -->
+                <div class="dresscode-card women-card">
                     <h3>🌸 ДЛЯ ДАМ</h3>
                     <div class="color-palette">
-                        <div class="paint-swatch" style="background: #FADADD;"></div>
-                        <div class="paint-swatch" style="background: #F5C6CB;"></div>
-                        <div class="paint-swatch" style="background: #F8E0E0;"></div>
-                        <div class="paint-swatch" style="background: #F9E6E6;"></div>
-                        <div class="paint-swatch" style="background: #F0E6F6;"></div>
-                        <div class="paint-swatch" style="background: #E6E6FA;"></div>
-                        <div class="paint-swatch" style="background: #C8E6C9;"></div>
-                        <div class="paint-swatch" style="background: #DCEDC8;"></div>
-                        <div class="paint-swatch" style="background: #FFF3E0;"></div>
-                        <div class="paint-swatch" style="background: #FFE0B2;"></div>
+                        <div class="swatch-container"><div class="paint-swatch" style="background: #FADADD;"></div><span class="swatch-tooltip">Пудровое платье</span></div>
+                        <div class="swatch-container"><div class="paint-swatch" style="background: #F5C6CB;"></div><span class="swatch-tooltip">Розовое платье</span></div>
+                        <div class="swatch-container"><div class="paint-swatch" style="background: #FFE0B2;"></div><span class="swatch-tooltip">Персиковое платье</span></div>
+                        <div class="swatch-container"><div class="paint-swatch" style="background: #E6E6FA;"></div><span class="swatch-tooltip">Лавандовое платье</span></div>
+                        <div class="swatch-container"><div class="paint-swatch" style="background: #C8E6C9;"></div><span class="swatch-tooltip">Мятное платье</span></div>
+                        <div class="swatch-container"><div class="paint-swatch" style="background: #FFF3E0;"></div><span class="swatch-tooltip">Бежевое платье</span></div>
                     </div>
-                    <p>Лучшие платья в нежных, пудровых, лавандовых, розовых, бежевых и мятных тонах</p>
+                    <p>Лучшие платья в нежных, пудровых, розовых, персиковых, лавандовых, мятных и бежевых тонах</p>
                 </div>
-                <!-- ДЛЯ МУЖЧИН (ТОЛЬКО КЛАССИЧЕСКИЕ ОТТЕНКИ) -->
-                <div class="dresscode-card">
+                <!-- ДЛЯ МУЖЧИН (4 оттенка, карточка компактнее) -->
+                <div class="dresscode-card men-card">
                     <h3>👔 ДЛЯ МУЖЧИН</h3>
                     <div class="color-palette">
-                        <div class="paint-swatch" style="background: #2C2C2C;"></div>
-                        <div class="paint-swatch" style="background: #5A5A5A;"></div>
-                        <div class="paint-swatch" style="background: #9E9E9E;"></div>
-                        <div class="paint-swatch" style="background: #E0E0E0;"></div>
-                        <div class="paint-swatch" style="background: #FFFFFF;"></div>
-                        <div class="paint-swatch" style="background: #6D4C41;"></div>
-                        <div class="paint-swatch" style="background: #8D6E63;"></div>
-                        <div class="paint-swatch" style="background: #1A237E;"></div>
-                        <div class="paint-swatch" style="background: #283593;"></div>
+                        <div class="swatch-container"><div class="paint-swatch" style="background: #2C2C2C;"></div><span class="swatch-tooltip">Чёрный костюм</span></div>
+                        <div class="swatch-container"><div class="paint-swatch" style="background: #9E9E9E;"></div><span class="swatch-tooltip">Серый костюм</span></div>
+                        <div class="swatch-container"><div class="paint-swatch" style="background: #8D6E63;"></div><span class="swatch-tooltip">Коричневый костюм</span></div>
+                        <div class="swatch-container"><div class="paint-swatch" style="background: #FFFFFF;"></div><span class="swatch-tooltip">Белый костюм</span></div>
                     </div>
-                    <p>Классические костюмы: чёрные, серые, коричневые, белые, тёмно-синие оттенки</p>
+                    <p>Классические костюмы: чёрные, серые, коричневые, белые оттенки</p>
                 </div>
             </div>
             <div class="dresscode-text">
