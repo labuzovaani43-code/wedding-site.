@@ -173,6 +173,7 @@
         .guest-stats { display: flex; justify-content: space-between; margin-top: 20px; padding-top: 15px; border-top: 2px dashed #d9c4ff; font-weight: 600; color: #4a2c6d; flex-wrap: wrap; gap: 10px; }
         .clear-all-btn { background: #b69ad4; color: white; border: none; padding: 8px 20px; border-radius: 30px; cursor: pointer; margin-top: 20px; font-family: inherit; transition: 0.3s; }
         .clear-all-btn:hover { background: #9b7abf; transform: translateY(-2px); }
+        .sync-info { font-size:0.7rem; color:#7c5f9e; margin-top:15px; padding:8px; background:#f0e6ff; border-radius:20px; }
 
         .custom-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 3000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
         .custom-modal.show { opacity: 1; visibility: visible; }
@@ -231,7 +232,7 @@
             <div class="copy-text" id="copyTextBlock"></div>
             <button class="copy-btn" id="copyMessageBtn">📋 Копировать текст</button>
             <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
-                <a href="https://vk.com/write277437328" target="_blank" class="modal-link" id="vkLink">💬 Написать невесте в ВК</a>
+                <a href="https://vk.com/write277437328" target="_blank" class="modal-link">💬 Написать невесте в ВК</a>
                 <a href="https://vk.com/id277437328" target="_blank" class="modal-link" style="background: #9370db;">👤 Открыть профиль невесты</a>
             </div>
             <div class="manual-note">✨ Если диалог не открывается — нажмите «Открыть профиль», затем «Написать сообщение» ✨</div>
@@ -245,7 +246,7 @@
             <div class="copy-text" id="askGroomTextBlock"></div>
             <button class="copy-btn" id="copyGroomMsgBtn">📋 Копировать текст</button>
             <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
-                <a href="https://vk.com/write80427230" target="_blank" class="modal-link" id="vkGroomLink">💬 Написать жениху в ВК</a>
+                <a href="https://vk.com/write80427230" target="_blank" class="modal-link">💬 Написать жениху в ВК</a>
                 <a href="https://vk.com/id80427230" target="_blank" class="modal-link" style="background: #9370db;">👤 Открыть профиль жениха</a>
             </div>
             <div class="manual-note">✨ Если диалог не открывается — нажмите «Открыть профиль», затем «Написать сообщение» ✨</div>
@@ -379,7 +380,7 @@
         <div class="fade-section guestlist-section">
             <div class="guestlist-container">
                 <h2>📋 Список гостей</h2>
-                <div class="guestlist-sub">* список обновляется автоматически при подтверждении</div>
+                <div class="guestlist-sub">* список сохраняется в вашем браузере</div>
                 <div class="guest-category">
                     <h3>🚙 Приедут сами</h3>
                     <div id="selfGuestsList"></div>
@@ -390,7 +391,12 @@
                 </div>
                 <div class="guest-stats" id="guestStats"></div>
                 <button class="clear-all-btn" id="clearAllGuestsBtn">🗑️ Очистить список гостей</button>
-                <div style="font-size:0.8rem; color:#7c5f9e; margin-top:15px;">💡 При повторном подтверждении данные обновляются, дубли не создаются</div>
+                <div class="sync-info">
+                    📱 Список сохраняется в вашем браузере.<br>
+                    Чтобы перенести данные на другой телефон/компьютер:<br>
+                    1️⃣ На старом устройстве нажмите F12 → Console → введите <code>copy(JSON.stringify(localStorage.getItem('weddingGuests')))</code><br>
+                    2️⃣ На новом устройстве вставьте в Console: <code>localStorage.setItem('weddingGuests', '...')</code>
+                </div>
             </div>
         </div>
 
@@ -634,11 +640,6 @@
         if (selfBtn) selfBtn.addEventListener('click', () => setActiveTransfer('self'));
         if (needBtn) needBtn.addEventListener('click', () => setActiveTransfer('need'));
 
-        // ФУНКЦИЯ ОБНОВЛЕНИЯ СПИСКА
-        function updateGuestList() {
-            renderGuestList();
-        }
-
         // МОДАЛЬНОЕ ОКНО ДЛЯ НЕВЕСТЫ
         const confirmModal = document.getElementById('confirmModal');
         const closeConfirmModal = document.getElementById('closeModalBtn');
@@ -675,11 +676,7 @@
                 const transferValue = currentTransfer;
                 const transferText = transferValue === 'need' ? 'Нужен трансфер. Сбор в 13:00, парковка Сауна «Бригантина»' : 'Приеду сам';
                 
-                // Добавляем гостя и ОБЯЗАТЕЛЬНО обновляем список
-                const result = addOrUpdateGuest(guestName, guestSurname, guestCount, transferValue);
-                
-                // Принудительно обновляем отображение списка
-                updateGuestList();
+                addOrUpdateGuest(guestName, guestSurname, guestCount, transferValue);
                 
                 const peopleText = guestCount > 1 ? ` (всего ${guestCount} человека)` : '';
                 
