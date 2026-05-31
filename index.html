@@ -389,7 +389,6 @@
                 </div>
                 <div class="guest-stats" id="guestStats"></div>
                 <button class="clear-all-btn" id="clearAllGuestsBtn">🗑️ Очистить список гостей</button>
-                <div style="font-size:0.8rem; color:#7c5f9e; margin-top:15px;">💡 При повторном подтверждении данные обновляются, дубли не создаются</div>
             </div>
         </div>
 
@@ -470,7 +469,7 @@
             });
         }
 
-        // УПРАВЛЕНИЕ СПИСКОМ ГОСТЕЙ
+        // УПРАВЛЕНИЕ СПИСКОМ ГОСТЕЙ (только имя + трансфер)
         let guests = [];
 
         function loadGuests() {
@@ -652,7 +651,9 @@
         const guestCountInput = document.getElementById('guestCount');
 
         if (confirmBtn) {
-            confirmBtn.addEventListener('click', () => {
+            confirmBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
                 const guestName = guestNameInput?.value.trim() || '';
                 const guestSurname = guestSurnameInput?.value.trim() || '';
                 let guestCount = guestCountInput?.value;
