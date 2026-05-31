@@ -231,7 +231,7 @@
             <div class="copy-text" id="copyTextBlock"></div>
             <button class="copy-btn" id="copyMessageBtn">📋 Копировать текст</button>
             <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
-                <a href="https://vk.com/write277437328" target="_blank" class="modal-link">💬 Написать невесте в ВК</a>
+                <a href="https://vk.com/write277437328" target="_blank" class="modal-link" id="vkLink">💬 Написать невесте в ВК</a>
                 <a href="https://vk.com/id277437328" target="_blank" class="modal-link" style="background: #9370db;">👤 Открыть профиль невесты</a>
             </div>
             <div class="manual-note">✨ Если диалог не открывается — нажмите «Открыть профиль», затем «Написать сообщение» ✨</div>
@@ -245,7 +245,7 @@
             <div class="copy-text" id="askGroomTextBlock"></div>
             <button class="copy-btn" id="copyGroomMsgBtn">📋 Копировать текст</button>
             <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px;">
-                <a href="https://vk.com/write80427230" target="_blank" class="modal-link">💬 Написать жениху в ВК</a>
+                <a href="https://vk.com/write80427230" target="_blank" class="modal-link" id="vkGroomLink">💬 Написать жениху в ВК</a>
                 <a href="https://vk.com/id80427230" target="_blank" class="modal-link" style="background: #9370db;">👤 Открыть профиль жениха</a>
             </div>
             <div class="manual-note">✨ Если диалог не открывается — нажмите «Открыть профиль», затем «Написать сообщение» ✨</div>
@@ -282,7 +282,6 @@
             </div>
         </div>
 
-        <!-- ТАЙМИНГ ДНЯ - ИНФОРМАЦИЯ О ТРАНСФЕРЕ ТОЛЬКО В ОДНОМ МЕСТЕ -->
         <div class="fade-section timing-section">
             <h2>📅 Тайминг дня</h2>
             <div class="timing-list-center">
@@ -472,7 +471,7 @@
             });
         }
 
-        // УПРАВЛЕНИЕ СПИСКОМ ГОСТЕЙ (с именем, фамилией и количеством)
+        // УПРАВЛЕНИЕ СПИСКОМ ГОСТЕЙ
         let guests = [];
 
         function loadGuests() {
@@ -669,20 +668,18 @@
                 
                 const fullName = guestName + ' ' + (guestSurname || '');
                 const transferValue = currentTransfer;
+                const transferText = transferValue === 'need' ? 'Нужен трансфер. Сбор в 13:00, парковка Сауна «Бригантина»' : 'Приеду сам';
                 
                 addOrUpdateGuest(guestName, guestSurname, guestCount, transferValue);
                 
                 const peopleText = guestCount > 1 ? ` (всего ${guestCount} человека)` : '';
-                let fullMessage = '';
-                if (transferValue === 'need') {
-                    fullMessage = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nГость: ${fullName}${peopleText}\n✅ Выбрал: Нужен трансфер. Сбор в 13:00 Парковка: Сауна «Бригантина»\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
-                } else {
-                    fullMessage = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nГость: ${fullName}${peopleText}\n✅ Трансфер: Приеду сам(а)\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
-                }
-                copyBlock.innerText = fullMessage;
+                
+                const msg = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nГость: ${fullName}${peopleText}\n✅ ${transferText}\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
+                
+                copyBlock.innerText = msg;
                 confirmModal.classList.add('show');
                 
-                // Очищаем форму после подтверждения
+                // Очищаем форму
                 guestNameInput.value = '';
                 guestSurnameInput.value = '';
                 guestCountInput.value = '';
@@ -716,7 +713,7 @@
             askGroomBtn.addEventListener('click', () => {
                 const guestName = groomNameInput?.value.trim() || 'Гость';
                 const question = groomQuestionInput?.value.trim() || '(без вопроса)';
-                const msg = `💜 ВОПРОС ИЛИ ПОЖЕЛАНИЕ ДЛЯ ЖЕНИХА 💜\n\nИмя: ${guestName}\nВопрос/Пожелание: ${question}\n\n💜 Спасибо! Жду встречи на свадьбе!`;
+                const msg = `💜 ВОПРОС ИЛИ ПОЖЕЛАНИЕ ДЛЯ ЖЕНИХА 💜\n\nГость: ${guestName}\nВопрос/Пожелание: ${question}\n\n💜 Спасибо! Жду встречи на свадьбе!`;
                 askGroomTextBlock.innerText = msg;
                 askGroomModal.classList.add('show');
             });
@@ -749,18 +746,14 @@
             clearAllBtn.addEventListener('click', clearAllGuests);
         }
         
-        // Подсказки для цветов на телефоне
-        const isMobile = window.matchMedia('(max-width: 768px)').matches || ('ontouchstart' in window);
+        // Подсказки для цветов
         const colorItems = document.querySelectorAll('.color-item');
-        
-        if (isMobile) {
-            colorItems.forEach(item => {
-                item.addEventListener('click', (e) => {
-                    const tip = item.getAttribute('data-tip');
-                    if (tip) alert(tip);
-                });
+        colorItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                const tip = item.getAttribute('data-tip');
+                if (tip) alert(tip);
             });
-        }
+        });
         
         loadGuests();
     </script>
