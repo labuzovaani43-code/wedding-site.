@@ -6,7 +6,6 @@
     <title>Наталья & Влад | Свадебное приглашение</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* Стили (оставьте все ваши существующие стили без изменений) */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Cormorant Garamond', serif; background: #faf7f2; color: #3d2b1f; overflow-x: hidden; }
 
@@ -365,10 +364,8 @@
 
         <div class="fade-section rsvp-section">
             <h2>💌 Подтвердите присутствие</h2>
-            <div class="inline-group">
-                <div class="form-group"><input type="text" id="guestName" placeholder="Ваше имя"></div>
-                <div class="form-group"><input type="text" id="guestSurname" placeholder="Ваша фамилия"></div>
-            </div>
+            <div class="form-group"><input type="text" id="guestName" placeholder="Ваше имя" required></div>
+            <div class="form-group"><input type="text" id="guestSurname" placeholder="Ваша фамилия"></div>
             <div class="form-group"><input type="number" id="guestCount" placeholder="Количество человек (включая вас)" min="1" max="10"></div>
             <div class="transfer-buttons"><button class="transfer-btn" id="selfBtn">🚙 Приеду сам</button><button class="transfer-btn" id="needBtn">🚌 Нужен трансфер</button></div>
             <div id="transferNote" style="margin-bottom:15px; color:#7c5f9e;"></div>
@@ -391,9 +388,6 @@
                 </div>
                 <div class="guest-stats" id="guestStats"></div>
                 <button class="clear-all-btn" id="clearAllGuestsBtn">🗑️ Очистить список гостей</button>
-                <div style="font-size:0.7rem; color:#7c5f9e; margin-top:15px; padding:8px; background:#f0e6ff; border-radius:20px;">
-                    📱 Данные сохраняются в вашем браузере. Чтобы видеть всех гостей, используйте один и тот же браузер на всех устройствах.
-                </div>
             </div>
         </div>
 
@@ -474,7 +468,7 @@
             });
         }
 
-        // УПРАВЛЕНИЕ СПИСКОМ ГОСТЕЙ (ЛОКАЛЬНАЯ ВЕРСИЯ - БЕЗ ОШИБОК)
+        // УПРАВЛЕНИЕ СПИСКОМ ГОСТЕЙ - УПРОЩЁННАЯ ВЕРСИЯ
         let guests = [];
 
         function loadGuests() {
@@ -648,10 +642,13 @@
         const guestCountInput = document.getElementById('guestCount');
 
         if (confirmBtn) {
-            confirmBtn.addEventListener('click', () => {
-                const guestName = guestNameInput?.value.trim() || '';
-                const guestSurname = guestSurnameInput?.value.trim() || '';
-                let guestCount = guestCountInput?.value;
+            confirmBtn.addEventListener('click', function(e) {
+                // Предотвращаем любые стандартные действия
+                if (e) e.preventDefault();
+                
+                const guestName = guestNameInput ? guestNameInput.value.trim() : '';
+                const guestSurname = guestSurnameInput ? guestSurnameInput.value.trim() : '';
+                let guestCount = guestCountInput ? guestCountInput.value : '';
                 
                 if (!guestName) {
                     alert('Пожалуйста, укажите ваше имя');
@@ -673,35 +670,40 @@
                 const transferValue = currentTransfer;
                 const transferText = transferValue === 'need' ? 'Нужен трансфер. Сбор в 13:00, парковка Сауна «Бригантина»' : 'Приеду сам';
                 
+                // Сохраняем гостя
                 addOrUpdateGuest(guestName, guestSurname, guestCount, transferValue);
                 
                 const peopleText = guestCount > 1 ? ` (всего ${guestCount} человека)` : '';
                 
                 const msg = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nГость: ${fullName}${peopleText}\n✅ ${transferText}\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
                 
-                copyBlock.innerText = msg;
-                confirmModal.classList.add('show');
+                if (copyBlock) copyBlock.innerText = msg;
+                if (confirmModal) confirmModal.classList.add('show');
                 
                 // Очищаем форму
-                guestNameInput.value = '';
-                guestSurnameInput.value = '';
-                guestCountInput.value = '';
+                if (guestNameInput) guestNameInput.value = '';
+                if (guestSurnameInput) guestSurnameInput.value = '';
+                if (guestCountInput) guestCountInput.value = '';
                 setActiveTransfer('');
             });
         }
         
         if (copyBtn) {
             copyBtn.addEventListener('click', () => {
-                const text = copyBlock.innerText;
-                navigator.clipboard.writeText(text).then(() => {
-                    alert('✅ Текст скопирован! Теперь отправьте его невесте в ВК');
-                }).catch(() => {
-                    alert('❌ Не удалось скопировать, выделите текст вручную');
-                });
+                const text = copyBlock ? copyBlock.innerText : '';
+                if (text) {
+                    navigator.clipboard.writeText(text).then(() => {
+                        alert('✅ Текст скопирован! Теперь отправьте его невесте в ВК');
+                    }).catch(() => {
+                        alert('❌ Не удалось скопировать, выделите текст вручную');
+                    });
+                }
             });
         }
         
-        if (closeConfirmModal) closeConfirmModal.addEventListener('click', () => confirmModal.classList.remove('show'));
+        if (closeConfirmModal) closeConfirmModal.addEventListener('click', () => {
+            if (confirmModal) confirmModal.classList.remove('show');
+        });
 
         // МОДАЛЬНОЕ ОКНО ДЛЯ ЖЕНИХА
         const askGroomModal = document.getElementById('askGroomModal');
@@ -714,26 +716,30 @@
 
         if (askGroomBtn) {
             askGroomBtn.addEventListener('click', () => {
-                const guestName = groomNameInput?.value.trim() || 'Гость';
-                const question = groomQuestionInput?.value.trim() || '(без вопроса)';
+                const guestName = groomNameInput ? groomNameInput.value.trim() : 'Гость';
+                const question = groomQuestionInput ? groomQuestionInput.value.trim() : '(без вопроса)';
                 const msg = `💜 ВОПРОС ИЛИ ПОЖЕЛАНИЕ ДЛЯ ЖЕНИХА 💜\n\nГость: ${guestName}\nВопрос/Пожелание: ${question}\n\n💜 Спасибо! Жду встречи на свадьбе!`;
-                askGroomTextBlock.innerText = msg;
-                askGroomModal.classList.add('show');
+                if (askGroomTextBlock) askGroomTextBlock.innerText = msg;
+                if (askGroomModal) askGroomModal.classList.add('show');
             });
         }
         
         if (copyGroomBtn) {
             copyGroomBtn.addEventListener('click', () => {
-                const text = askGroomTextBlock.innerText;
-                navigator.clipboard.writeText(text).then(() => {
-                    alert('✅ Текст скопирован! Теперь отправьте его жениху в ВК');
-                }).catch(() => {
-                    alert('❌ Не удалось скопировать, выделите текст вручную');
-                });
+                const text = askGroomTextBlock ? askGroomTextBlock.innerText : '';
+                if (text) {
+                    navigator.clipboard.writeText(text).then(() => {
+                        alert('✅ Текст скопирован! Теперь отправьте его жениху в ВК');
+                    }).catch(() => {
+                        alert('❌ Не удалось скопировать, выделите текст вручную');
+                    });
+                }
             });
         }
         
-        if (closeGroomModal) closeGroomModal.addEventListener('click', () => askGroomModal.classList.remove('show'));
+        if (closeGroomModal) closeGroomModal.addEventListener('click', () => {
+            if (askGroomModal) askGroomModal.classList.remove('show');
+        });
         
         // Закрытие модальных окон при клике на фон
         const modals = document.querySelectorAll('.custom-modal');
