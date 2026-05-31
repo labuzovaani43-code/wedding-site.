@@ -87,7 +87,7 @@
         .timer-number { font-size: 2.5rem; font-weight: 600; font-family: 'Montserrat', sans-serif; color: #ffecb3; }
         .timer-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: #f0e6d2; }
 
-        /* ОБНОВЛЁННЫЙ ТАЙМИНГ ДНЯ */
+        /* ТАЙМИНГ ДНЯ — ИНФОРМАЦИЯ О ТРАНСФЕРЕ ТОЛЬКО ЗДЕСЬ */
         .timing-section { padding: 80px 20px; background: #f3eaff; text-align: center; }
         .timing-section h2 { font-size: 2rem; color: #4a2c6d; margin-bottom: 30px; }
         .timing-list-center { max-width: 700px; margin: 0 auto; background: white; border-radius: 40px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: left; transition: transform 0.3s ease; }
@@ -281,12 +281,18 @@
             </div>
         </div>
 
-        <!-- ОБНОВЛЁННЫЙ ТАЙМИНГ ДНЯ С ИНФОРМАЦИЕЙ О ТРАНСФЕРЕ -->
+        <!-- ТАЙМИНГ ДНЯ — ВСЯ ИНФОРМАЦИЯ О ТРАНСФЕРЕ ЗДЕСЬ -->
         <div class="fade-section timing-section">
             <h2>📅 Тайминг дня</h2>
             <div class="timing-list-center">
-                <div class="timing-item"><span>Сбор гостей на трансфер</span><span class="timing-time">13:00</span></div>
-                <div class="timing-note">📍 г. Новомосковск, ул. Парковая, 20 (у нашего дома)<br>🚗 Парковка: Сауна «Бригантина» (ул. Парковая, 18)</div>
+                <div class="timing-item">
+                    <span>🚌 Сбор гостей на трансфер</span>
+                    <span class="timing-time">13:00</span>
+                </div>
+                <div class="timing-note">
+                    📍 Место сбора: г. Новомосковск, ул. Парковая, 20<br>
+                    🅿️ Парковка: Сауна «Бригантина» (ул. Парковая, д. 18)
+                </div>
                 <div class="timing-item"><span>Прибытие гостей в усадьбу</span><span class="timing-time">14:00</span></div>
                 <div class="timing-item"><span>Выездная регистрация</span><span class="timing-time">15:00</span></div>
                 <div class="timing-item"><span>Начало банкета</span><span class="timing-time">15:30</span></div>
@@ -294,7 +300,8 @@
                 <div class="timing-item"><span>Окончание праздника</span><span class="timing-time">22:00</span></div>
                 <div class="transfer-note-inline">
                     🚌 <strong>Трансфер:</strong> Автобус отвезёт гостей в Усадьбу Александрово и обратно.<br>
-                    Сбор в <strong>13:00</strong> по адресу: <strong>ул. Парковая, 20</strong> (Новомосковск)
+                    Сбор в <strong>13:00</strong> по адресу: <strong>ул. Парковая, 20</strong> (Новомосковск)<br>
+                    🅿️ Парковка для автомобилей: <strong>Сауна «Бригантина» (ул. Парковая, д. 18)</strong>
                 </div>
             </div>
         </div>
@@ -588,7 +595,7 @@
         window.editGuest = editGuest;
         window.deleteGuest = deleteGuest;
 
-        // ВЫБОР ТРАНСФЕРА
+        // ВЫБОР ТРАНСФЕРА — точная надпись как вы просили
         const selfBtn = document.getElementById('selfBtn');
         const needBtn = document.getElementById('needBtn');
         const transferNote = document.getElementById('transferNote');
@@ -603,7 +610,7 @@
             } else if (selected === 'need') {
                 needBtn.classList.add('active');
                 selfBtn.classList.remove('active');
-                transferNote.innerHTML = '✅ Вы выбрали: Нужен трансфер. Сбор в 13:00 у дома (ул. Парковая, 20). Автобус отвезёт в усадьбу и обратно!';
+                transferNote.innerHTML = '✅ Вы выбрали: Нужен трансфер. Сбор в 13:00 Парковка: Сауна «Бригантина» (ул. Парковая, д. 18)';
             }
         }
         if (selfBtn) selfBtn.addEventListener('click', () => setActiveTransfer('self'));
@@ -627,8 +634,13 @@
                     addOrUpdateGuest(guestName, transferValue);
                 }
                 
-                const msg = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nИмя: ${guestName}\nТрансфер: ${transferText}\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
-                copyBlock.innerText = msg;
+                let fullMessage = '';
+                if (transferValue === 'need') {
+                    fullMessage = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nИмя: ${guestName}\n✅ Вы выбрали: Нужен трансфер. Сбор в 13:00 Парковка: Сауна «Бригантина» (ул. Парковая, д. 18)\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
+                } else {
+                    fullMessage = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nИмя: ${guestName}\nТрансфер: ${transferText}\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
+                }
+                copyBlock.innerText = fullMessage;
                 confirmModal.classList.add('show');
             });
         }
