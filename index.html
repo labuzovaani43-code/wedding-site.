@@ -87,6 +87,7 @@
         .timer-number { font-size: 2.5rem; font-weight: 600; font-family: 'Montserrat', sans-serif; color: #ffecb3; }
         .timer-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: #f0e6d2; }
 
+        /* ОБНОВЛЁННЫЙ ТАЙМИНГ ДНЯ */
         .timing-section { padding: 80px 20px; background: #f3eaff; text-align: center; }
         .timing-section h2 { font-size: 2rem; color: #4a2c6d; margin-bottom: 30px; }
         .timing-list-center { max-width: 700px; margin: 0 auto; background: white; border-radius: 40px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: left; transition: transform 0.3s ease; }
@@ -95,6 +96,7 @@
         .timing-item:hover { background: #faf5ff; padding-left: 10px; border-radius: 20px; }
         .timing-time { font-weight: 600; color: #b69ad4; font-family: monospace; font-size: 1.2rem; }
         .timing-note { font-size: 0.85rem; margin-top: 8px; margin-bottom: 12px; color: #6c4e8f; padding-left: 15px; border-left: 3px solid #d9c4ff; width: 100%; }
+        .transfer-note-inline { background: #f0e6ff; padding: 12px; border-radius: 15px; margin-top: 15px; font-size: 0.9rem; color: #4a2c6d; }
 
         .dresscode-section { padding: 70px 20px; background: #faf7f2; text-align: center; }
         .dresscode-section h2 { font-size: 2.2rem; color: #4a2c6d; margin-bottom: 25px; letter-spacing: 2px; }
@@ -171,21 +173,6 @@
         .guest-stats { display: flex; justify-content: space-between; margin-top: 20px; padding-top: 15px; border-top: 2px dashed #d9c4ff; font-weight: 600; color: #4a2c6d; flex-wrap: wrap; gap: 10px; }
         .clear-all-btn { background: #b69ad4; color: white; border: none; padding: 8px 20px; border-radius: 30px; cursor: pointer; margin-top: 20px; font-family: inherit; transition: 0.3s; }
         .clear-all-btn:hover { background: #9b7abf; transform: translateY(-2px); }
-
-        .transfer-info {
-            background: #f0e6ff;
-            border-radius: 20px;
-            padding: 20px;
-            margin-top: 20px;
-            text-align: left;
-        }
-        .transfer-info p {
-            margin: 8px 0;
-            font-size: 1rem;
-        }
-        .transfer-info strong {
-            color: #b69ad4;
-        }
 
         .custom-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 3000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
         .custom-modal.show { opacity: 1; visibility: visible; }
@@ -294,15 +281,21 @@
             </div>
         </div>
 
-        <!-- НОВЫЙ ТАЙМИНГ ДНЯ -->
+        <!-- ОБНОВЛЁННЫЙ ТАЙМИНГ ДНЯ С ИНФОРМАЦИЕЙ О ТРАНСФЕРЕ -->
         <div class="fade-section timing-section">
             <h2>📅 Тайминг дня</h2>
             <div class="timing-list-center">
+                <div class="timing-item"><span>Сбор гостей на трансфер</span><span class="timing-time">13:00</span></div>
+                <div class="timing-note">📍 г. Новомосковск, ул. Парковая, 20 (у нашего дома)<br>🚗 Парковка: Сауна «Бригантина» (ул. Парковая, 18)</div>
                 <div class="timing-item"><span>Прибытие гостей в усадьбу</span><span class="timing-time">14:00</span></div>
                 <div class="timing-item"><span>Выездная регистрация</span><span class="timing-time">15:00</span></div>
                 <div class="timing-item"><span>Начало банкета</span><span class="timing-time">15:30</span></div>
                 <div class="timing-item"><span>Свадебный торт</span><span class="timing-time">20:45</span></div>
                 <div class="timing-item"><span>Окончание праздника</span><span class="timing-time">22:00</span></div>
+                <div class="transfer-note-inline">
+                    🚌 <strong>Трансфер:</strong> Автобус отвезёт гостей в Усадьбу Александрово и обратно.<br>
+                    Сбор в <strong>13:00</strong> по адресу: <strong>ул. Парковая, 20</strong> (Новомосковск)
+                </div>
             </div>
         </div>
 
@@ -354,15 +347,6 @@
                 <h2 style="font-size:1.8rem;">🎤 По вопросам и подаркам</h2>
                 <p style="font-size:2rem; color:#4a2c6d;">Владислав</p>
                 <p style="color:#6c4e8f;">жених</p>
-                
-                <!-- ИНФОРМАЦИЯ О ТРАНСФЕРЕ -->
-                <div class="transfer-info">
-                    <p><strong>🚌 Трансфер для гостей:</strong></p>
-                    <p>📍 <strong>Место сбора:</strong> г. Новомосковск, ул. Парковая, д. 20 (рядом с нашим домом)</p>
-                    <p>📍 <strong>Парковка:</strong> Сауна «Бригантина» (ул. Парковая, д. 18)</p>
-                    <p>⏰ <strong>Время сбора:</strong> <strong>13:00</strong></p>
-                    <p>💜 Автобус отвезёт гостей в Усадьбу Александрово и обратно</p>
-                </div>
                 
                 <div style="margin-top: 25px;">
                     <div class="form-group">
@@ -615,11 +599,11 @@
             if (selected === 'self') {
                 selfBtn.classList.add('active');
                 needBtn.classList.remove('active');
-                transferNote.innerHTML = '✅ Вы выбрали: Приеду сам.';
+                transferNote.innerHTML = '✅ Вы выбрали: Приеду сам. Ждём вас в усадьбе к 14:00!';
             } else if (selected === 'need') {
                 needBtn.classList.add('active');
                 selfBtn.classList.remove('active');
-                transferNote.innerHTML = '✅ Вы выбрали: Нужен трансфер. Сбор в 13:00 у дома (ул. Парковая, 20)';
+                transferNote.innerHTML = '✅ Вы выбрали: Нужен трансфер. Сбор в 13:00 у дома (ул. Парковая, 20). Автобус отвезёт в усадьбу и обратно!';
             }
         }
         if (selfBtn) selfBtn.addEventListener('click', () => setActiveTransfer('self'));
