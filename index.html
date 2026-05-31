@@ -144,6 +144,7 @@
         .confirm-btn:hover { background: #9b7abf; transform: translateY(-2px); }
         .thankyou-text { max-width: 550px; margin: 30px auto 20px; font-size: 1.1rem; line-height: 1.5; color: #4a2c6d; }
         .rsvp-note { margin-top: 20px; font-size: 1.1rem; color: #7c5f9e; }
+        .browser-warning { background: #fff3cd; color: #856404; padding: 10px; border-radius: 10px; margin-bottom: 20px; font-size: 0.85rem; text-align: center; }
 
         .guestlist-section {
             background: #f3eaff;
@@ -173,7 +174,6 @@
         .guest-stats { display: flex; justify-content: space-between; margin-top: 20px; padding-top: 15px; border-top: 2px dashed #d9c4ff; font-weight: 600; color: #4a2c6d; flex-wrap: wrap; gap: 10px; }
         .clear-all-btn { background: #b69ad4; color: white; border: none; padding: 8px 20px; border-radius: 30px; cursor: pointer; margin-top: 20px; font-family: inherit; transition: 0.3s; }
         .clear-all-btn:hover { background: #9b7abf; transform: translateY(-2px); }
-        .sync-info { font-size:0.7rem; color:#7c5f9e; margin-top:15px; padding:8px; background:#f0e6ff; border-radius:20px; }
 
         .custom-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 3000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
         .custom-modal.show { opacity: 1; visibility: visible; }
@@ -364,6 +364,9 @@
         </div>
 
         <div class="fade-section rsvp-section">
+            <div class="browser-warning" id="browserWarning" style="display: none;">
+                ⚠️ Для корректной работы откройте сайт в браузере Safari или Chrome, а не во встроенном браузере ВК.
+            </div>
             <h2>💌 Подтвердите присутствие</h2>
             <div class="inline-group">
                 <div class="form-group"><input type="text" id="guestName" placeholder="Ваше имя"></div>
@@ -391,11 +394,9 @@
                 </div>
                 <div class="guest-stats" id="guestStats"></div>
                 <button class="clear-all-btn" id="clearAllGuestsBtn">🗑️ Очистить список гостей</button>
-                <div class="sync-info">
-                    📱 Список сохраняется в вашем браузере.<br>
-                    Чтобы перенести данные на другой телефон/компьютер:<br>
-                    1️⃣ На старом устройстве нажмите F12 → Console → введите <code>copy(JSON.stringify(localStorage.getItem('weddingGuests')))</code><br>
-                    2️⃣ На новом устройстве вставьте в Console: <code>localStorage.setItem('weddingGuests', '...')</code>
+                <div style="font-size:0.7rem; color:#7c5f9e; margin-top:15px; padding:8px; background:#f0e6ff; border-radius:20px;">
+                    📱 <strong>Важно:</strong> Список сохраняется в вашем браузере.<br>
+                    Чтобы подтвердить присутствие — используйте <strong>Safari или Chrome</strong>, а не встроенный браузер ВК.
                 </div>
             </div>
         </div>
@@ -475,6 +476,18 @@
                     staggerItems.forEach(el => staggerObserver.observe(el));
                 }});
             });
+        }
+
+        // ПРОВЕРКА БРАУЗЕРА
+        function isInAppBrowser() {
+            const ua = navigator.userAgent || navigator.vendor || window.opera;
+            // Проверка на встроенный браузер ВК, Telegram, WhatsApp и т.д.
+            return /VK|vk\.com|Telegram|WhatsApp|FB|Instagram/i.test(ua);
+        }
+        
+        if (isInAppBrowser()) {
+            const warning = document.getElementById('browserWarning');
+            if (warning) warning.style.display = 'block';
         }
 
         // УПРАВЛЕНИЕ СПИСКОМ ГОСТЕЙ
