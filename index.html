@@ -190,6 +190,8 @@
         .dresscode-card p { font-size: 1rem; color: #4a2c6d; margin-top: 15px; line-height: 1.4; }
         .dresscode-text { max-width: 600px; margin: 20px auto 0; font-size: 1.2rem; line-height: 1.6; color: #4a2c6d; }
         .dresscode-note { margin-top: 25px; font-size: 1.2rem; color: #b69ad4; font-weight: 500; background: #f3eaff; display: inline-block; padding: 8px 25px; border-radius: 40px; }
+        .tip-badge { font-size:0.8rem; color:#b69ad4; margin-bottom:15px; text-align:center; background:#f3eaff; padding:8px 12px; border-radius:30px; display:inline-block; width:100%; cursor:pointer; transition:0.3s; }
+        .tip-badge:hover { background:#e8d9ff; transform:scale(1.02); }
 
         .venue-section { background: #f3eaff; padding: 60px 20px; text-align: center; }
         .venue-card { max-width: 650px; margin: 0 auto; background: white; border-radius: 30px; padding: 35px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
@@ -386,7 +388,7 @@
             <div class="dresscode-row">
                 <div class="dresscode-card">
                     <h3>🌸 ДЛЯ ЖЕНЩИН</h3>
-                    <div style="font-size:0.8rem; color:#b69ad4; margin-bottom:15px; text-align:center; background:#f3eaff; padding:5px 10px; border-radius:20px; display:inline-block; width:100%;">
+                    <div class="tip-badge" onclick="alert('💡 Нажмите на любой цвет ниже, чтобы увидеть пример наряда!')">
                         💡 Хотите узнать больше? Нажмите на цвет — увидите пример наряда!
                     </div>
                     <div class="color-list">
@@ -401,7 +403,7 @@
                 </div>
                 <div class="dresscode-card">
                     <h3>👔 ДЛЯ МУЖЧИН</h3>
-                    <div style="font-size:0.8rem; color:#b69ad4; margin-bottom:15px; text-align:center; background:#f3eaff; padding:5px 10px; border-radius:20px; display:inline-block; width:100%;">
+                    <div class="tip-badge" onclick="alert('💡 Нажмите на любой цвет ниже, чтобы увидеть пример наряда!')">
                         💡 Хотите узнать больше? Нажмите на цвет — увидите пример наряда!
                     </div>
                     <div class="color-list">
@@ -594,7 +596,7 @@
             });
         }
 
-        // УПРАВЛЕНИЕ СПИСКОМ ГОСТЕЙ (с именем, фамилией и количеством)
+        // УПРАВЛЕНИЕ СПИСКОМ ГОСТЕЙ
         let guests = [];
 
         function loadGuests() {
@@ -864,17 +866,18 @@
             clearAllBtn.addEventListener('click', clearAllGuests);
         }
         
-        const isMobile = window.matchMedia('(max-width: 768px)').matches || ('ontouchstart' in window);
+        // Подсказки для цветов на телефоне и компьютере
         const colorItems = document.querySelectorAll('.color-item');
         
-        if (isMobile) {
-            colorItems.forEach(item => {
-                item.addEventListener('click', (e) => {
-                    const tip = item.getAttribute('data-tip');
-                    if (tip) alert(tip);
-                });
+        // Для всех устройств: при клике на цвет показываем alert с описанием
+        colorItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                const tip = item.getAttribute('data-tip');
+                if (tip) {
+                    alert(tip);
+                }
             });
-        }
+        });
         
         loadGuests();
     </script>
