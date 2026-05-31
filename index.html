@@ -478,7 +478,10 @@
             if (saved) {
                 try {
                     guests = JSON.parse(saved);
-                } catch(e) { guests = []; }
+                } catch(e) { 
+                    console.error('Ошибка загрузки гостей:', e);
+                    guests = []; 
+                }
             }
             renderGuestList();
         }
@@ -628,8 +631,13 @@
                 needBtn.classList.add('active');
                 selfBtn.classList.remove('active');
                 transferNote.innerHTML = '✅ Вы выбрали: Нужен трансфер. Сбор в 13:00 Парковка: Сауна «Бригантина»';
+            } else {
+                selfBtn.classList.remove('active');
+                needBtn.classList.remove('active');
+                transferNote.innerHTML = '';
             }
         }
+        
         if (selfBtn) selfBtn.addEventListener('click', () => setActiveTransfer('self'));
         if (needBtn) needBtn.addEventListener('click', () => setActiveTransfer('need'));
 
@@ -654,13 +662,13 @@
                     return;
                 }
                 
-                const fullName = guestName + ' ' + (guestSurname || '');
-                const transferValue = currentTransfer === 'self' ? 'self' : (currentTransfer === 'need' ? 'need' : '');
-                
-                if (!transferValue) {
+                if (!currentTransfer) {
                     alert('Пожалуйста, выберите вариант трансфера');
                     return;
                 }
+                
+                const fullName = guestName + ' ' + (guestSurname || '');
+                const transferValue = currentTransfer;
                 
                 addOrUpdateGuest(guestName, guestSurname, guestCount, transferValue);
                 
