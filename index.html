@@ -165,7 +165,6 @@
         .timer-number { font-size: 2.5rem; font-weight: 600; font-family: 'Montserrat', sans-serif; color: #ffecb3; }
         .timer-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: #f0e6d2; }
 
-        /* ТАЙМИНГ ДНЯ — ИНФОРМАЦИЯ ТОЛЬКО В ОДНОМ МЕСТЕ */
         .timing-section { padding: 80px 20px; background: #f3eaff; text-align: center; }
         .timing-section h2 { font-size: 2rem; color: #4a2c6d; margin-bottom: 30px; }
         .timing-list-center { max-width: 700px; margin: 0 auto; background: white; border-radius: 40px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: left; transition: transform 0.3s ease; }
@@ -211,6 +210,9 @@
         .form-group input, .form-group textarea { width: 100%; padding: 14px 20px; border-radius: 50px; border: 1px solid #d9c4ff; font-family: inherit; font-size: 1rem; transition: all 0.3s; background: white; }
         .form-group textarea { border-radius: 25px; resize: vertical; min-height: 80px; }
         .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #b69ad4; box-shadow: 0 0 5px rgba(182,154,212,0.5); }
+        .inline-group { display: flex; gap: 10px; max-width: 350px; margin: 0 auto 20px; }
+        .inline-group .form-group { margin: 0; flex: 1; }
+        .inline-group input { text-align: center; }
         .transfer-buttons { display: flex; gap: 15px; justify-content: center; margin: 20px auto; }
         .transfer-btn { background: #f0e6ff; border: 2px solid #d9c4ff; padding: 10px 25px; border-radius: 50px; font-size: 1rem; cursor: pointer; transition: 0.3s; }
         .transfer-btn:hover { transform: translateY(-2px); background: #e8d9ff; }
@@ -240,7 +242,7 @@
         .guest-category h3 { font-size: 1.3rem; color: #b69ad4; padding-bottom: 10px; border-bottom: 2px solid #e8d9ff; margin-bottom: 15px; text-align: left; }
         .guest-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; border-bottom: 1px solid #e8d9ff; transition: background 0.2s; }
         .guest-item:hover { background: #faf5ff; }
-        .guest-name { font-size: 1.1rem; color: #4a2c6d; font-weight: 500; }
+        .guest-name { font-size: 1rem; color: #4a2c6d; font-weight: 500; }
         .guest-actions { display: flex; gap: 10px; }
         .guest-edit-btn, .guest-delete-btn { background: none; border: none; cursor: pointer; font-size: 1.1rem; padding: 5px 8px; border-radius: 20px; transition: 0.2s; }
         .guest-edit-btn:hover { background: #e8d9ff; transform: scale(1.05); }
@@ -278,6 +280,7 @@
             .guest-item { flex-wrap: wrap; gap: 10px; }
             .guest-actions { margin-left: auto; }
             .guest-stats { flex-direction: column; align-items: center; gap: 5px; }
+            .inline-group { flex-direction: column; gap: 10px; }
         }
     </style>
 </head>
@@ -360,7 +363,6 @@
             </div>
         </div>
 
-        <!-- ТАЙМИНГ ДНЯ — ИНФОРМАЦИЯ О ТРАНСФЕРЕ ТОЛЬКО ЗДЕСЬ И БЕЗ ПОВТОРОВ -->
         <div class="fade-section timing-section">
             <h2>📅 Тайминг дня</h2>
             <div class="timing-list-center">
@@ -431,7 +433,7 @@
                 
                 <div style="margin-top: 25px;">
                     <div class="form-group">
-                        <input type="text" id="groomName" placeholder="Ваше имя">
+                        <input type="text" id="groomName" placeholder="Ваше имя и фамилия">
                     </div>
                     <div class="form-group">
                         <textarea id="groomQuestion" rows="3" placeholder="Ваш вопрос или пожелание..."></textarea>
@@ -443,7 +445,11 @@
 
         <div class="fade-section rsvp-section">
             <h2>💌 Подтвердите присутствие</h2>
-            <div class="form-group"><input type="text" id="guestName" placeholder="Ваше имя"></div>
+            <div class="inline-group">
+                <div class="form-group"><input type="text" id="guestName" placeholder="Ваше имя"></div>
+                <div class="form-group"><input type="text" id="guestSurname" placeholder="Ваша фамилия"></div>
+            </div>
+            <div class="form-group"><input type="number" id="guestCount" placeholder="Количество человек (включая вас)" value="1" min="1" max="10"></div>
             <div class="transfer-buttons"><button class="transfer-btn" id="selfBtn">🚙 Приеду сам</button><button class="transfer-btn" id="needBtn">🚌 Нужен трансфер</button></div>
             <div id="transferNote" style="margin-bottom:15px; color:#7c5f9e;"></div>
             <button class="confirm-btn" id="confirmBtn">📨 Подтвердить присутствие</button>
@@ -526,7 +532,7 @@
         updateTimer(); 
         setInterval(updateTimer, 1000);
 
-        // ========== КОНВЕРТ — ОТКРЫТИЕ ПРИ НАЖАТИИ НА СЕРДЦЕ ==========
+        // ========== КОНВЕРТ ==========
         const seal = document.getElementById('seal');
         const envelopeScreen = document.getElementById('envelopeScreen');
         const popupPaper = document.getElementById('popupPaper');
@@ -539,9 +545,7 @@
         function openEnvelope() {
             if (isOpened) return;
             isOpened = true;
-            
             startMusic();
-            
             gsap.to(flap, { rotateX: 180, duration: 1, ease: "power2.inOut" });
             gsap.to(letter, { y: -100, duration: 1.2, delay: 0.3, ease: "back.out(1)" });
             gsap.to(envelopeScreen, { opacity: 0.5, duration: 0.5, delay: 0.8, onComplete: () => {
@@ -585,7 +589,7 @@
             });
         }
 
-        // УПРАВЛЕНИЕ СПИСКОМ ГОСТЕЙ
+        // УПРАВЛЕНИЕ СПИСКОМ ГОСТЕЙ (с именем, фамилией и количеством человек)
         let guests = [];
 
         function loadGuests() {
@@ -603,14 +607,21 @@
             renderGuestList();
         }
 
-        function addOrUpdateGuest(name, transfer) {
+        function addOrUpdateGuest(name, surname, count, transfer) {
             if (!name || name.trim() === '') return false;
-            const normalizedName = name.trim();
-            const existingIndex = guests.findIndex(g => g.name === normalizedName);
+            const normalizedName = name.trim() + ' ' + surname.trim();
+            const existingIndex = guests.findIndex(g => g.fullName === normalizedName);
+            const guestData = {
+                fullName: normalizedName,
+                name: name.trim(),
+                surname: surname.trim(),
+                count: parseInt(count) || 1,
+                transfer: transfer
+            };
             if (existingIndex !== -1) {
-                guests[existingIndex].transfer = transfer;
+                guests[existingIndex] = guestData;
             } else {
-                guests.push({ name: normalizedName, transfer: transfer });
+                guests.push(guestData);
             }
             saveGuests();
             return true;
@@ -623,10 +634,18 @@
 
         function editGuest(index) {
             const guest = guests[index];
-            const newName = prompt('Введите новое имя гостя:', guest.name);
+            const newName = prompt('Введите имя гостя:', guest.name);
             if (newName && newName.trim() !== '') {
+                const newSurname = prompt('Введите фамилию гостя:', guest.surname);
+                const newCount = prompt('Количество человек (включая гостя):', guest.count);
                 const newTransfer = confirm('Изменить трансфер?\nOK - Нужен трансфер\nОтмена - Приедет сам') ? 'need' : 'self';
-                guests[index] = { name: newName.trim(), transfer: newTransfer };
+                guests[index] = {
+                    fullName: newName.trim() + ' ' + (newSurname?.trim() || ''),
+                    name: newName.trim(),
+                    surname: newSurname?.trim() || '',
+                    count: parseInt(newCount) || 1,
+                    transfer: newTransfer
+                };
                 saveGuests();
             }
         }
@@ -651,10 +670,11 @@
                     selfContainer.innerHTML = '<div style="padding:15px; text-align:center; color:#aaa;">— пока никого нет —</div>';
                 } else {
                     selfContainer.innerHTML = selfGuests.map((guest, idx) => {
-                        const globalIdx = guests.findIndex(g => g.name === guest.name && g.transfer === 'self');
+                        const globalIdx = guests.findIndex(g => g.fullName === guest.fullName);
+                        const peopleText = guest.count > 1 ? ` (${guest.count} чел.)` : '';
                         return `
                             <div class="guest-item">
-                                <span class="guest-name">${escapeHtml(guest.name)}</span>
+                                <span class="guest-name">${escapeHtml(guest.fullName)}${peopleText}</span>
                                 <div class="guest-actions">
                                     <button class="guest-edit-btn" onclick="editGuest(${globalIdx})" title="Редактировать">✏️</button>
                                     <button class="guest-delete-btn" onclick="deleteGuest(${globalIdx})" title="Удалить">🗑️</button>
@@ -670,10 +690,11 @@
                     needContainer.innerHTML = '<div style="padding:15px; text-align:center; color:#aaa;">— пока никого нет —</div>';
                 } else {
                     needContainer.innerHTML = needGuests.map((guest, idx) => {
-                        const globalIdx = guests.findIndex(g => g.name === guest.name && g.transfer === 'need');
+                        const globalIdx = guests.findIndex(g => g.fullName === guest.fullName);
+                        const peopleText = guest.count > 1 ? ` (${guest.count} чел.)` : '';
                         return `
                             <div class="guest-item">
-                                <span class="guest-name">${escapeHtml(guest.name)}</span>
+                                <span class="guest-name">${escapeHtml(guest.fullName)}${peopleText}</span>
                                 <div class="guest-actions">
                                     <button class="guest-edit-btn" onclick="editGuest(${globalIdx})" title="Редактировать">✏️</button>
                                     <button class="guest-delete-btn" onclick="deleteGuest(${globalIdx})" title="Удалить">🗑️</button>
@@ -688,10 +709,12 @@
                 const total = guests.length;
                 const selfCount = selfGuests.length;
                 const needCount = needGuests.length;
+                const totalPeople = guests.reduce((sum, g) => sum + g.count, 0);
                 statsContainer.innerHTML = `
-                    <span>👥 Всего: ${total}</span>
-                    <span>🚙 Приедут сами: ${selfCount}</span>
-                    <span>🚌 Нужен трансфер: ${needCount}</span>
+                    <span>👥 Всего гостей: ${total}</span>
+                    <span>👤 Всего человек: ${totalPeople}</span>
+                    <span>🚙 Сами: ${selfCount}</span>
+                    <span>🚌 С трансфером: ${needCount}</span>
                 `;
             }
         }
@@ -737,25 +760,36 @@
         const copyBtn = document.getElementById('copyMessageBtn');
         const confirmBtn = document.getElementById('confirmBtn');
         const guestNameInput = document.getElementById('guestName');
+        const guestSurnameInput = document.getElementById('guestSurname');
+        const guestCountInput = document.getElementById('guestCount');
 
         if (confirmBtn) {
             confirmBtn.addEventListener('click', () => {
                 const guestName = guestNameInput?.value.trim() || 'Гость';
+                const guestSurname = guestSurnameInput?.value.trim() || '';
+                const guestCount = parseInt(guestCountInput?.value) || 1;
+                const fullName = guestName + ' ' + guestSurname;
                 const transferValue = currentTransfer === 'self' ? 'self' : (currentTransfer === 'need' ? 'need' : 'self');
                 
                 if (guestName !== 'Гость') {
-                    addOrUpdateGuest(guestName, transferValue);
+                    addOrUpdateGuest(guestName, guestSurname, guestCount, transferValue);
                 }
                 
+                const peopleText = guestCount > 1 ? ` (всего ${guestCount} человекa(и))` : '';
                 let fullMessage = '';
                 if (transferValue === 'need') {
-                    fullMessage = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nИмя: ${guestName}\n✅ Вы выбрали: Нужен трансфер. Сбор в 13:00 Парковка: Сауна «Бригантина» (ул. Парковая, д. 18)\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
+                    fullMessage = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nГость: ${fullName}${peopleText}\n✅ Выбрал: Нужен трансфер. Сбор в 13:00 Парковка: Сауна «Бригантина» (ул. Парковая, д. 18)\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
                 } else {
-                    const transferText = currentTransfer === 'self' ? 'Приеду сам' : 'Не выбран';
-                    fullMessage = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nИмя: ${guestName}\nТрансфер: ${transferText}\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
+                    fullMessage = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nГость: ${fullName}${peopleText}\n✅ Трансфер: Приеду сам(а)\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
                 }
                 copyBlock.innerText = fullMessage;
                 confirmModal.classList.add('show');
+                
+                // Очищаем форму после подтверждения
+                guestNameInput.value = '';
+                guestSurnameInput.value = '';
+                guestCountInput.value = '1';
+                setActiveTransfer('');
             });
         }
         
@@ -785,7 +819,7 @@
             askGroomBtn.addEventListener('click', () => {
                 const guestName = groomNameInput?.value.trim() || 'Гость';
                 const question = groomQuestionInput?.value.trim() || '(без вопроса)';
-                const msg = `💜 ВОПРОС ИЛИ ПОЖЕЛАНИЕ ДЛЯ ЖЕНИХА 💜\n\nИмя: ${guestName}\nВопрос/Пожелание: ${question}\n\n💜 Спасибо! Жду встречи на свадьбе!`;
+                const msg = `💜 ВОПРОС ИЛИ ПОЖЕЛАНИЕ ДЛЯ ЖЕНИХА 💜\n\nГость: ${guestName}\nСообщение: ${question}\n\n💜 Спасибо! Жду встречи на свадьбе!`;
                 askGroomTextBlock.innerText = msg;
                 askGroomModal.classList.add('show');
             });
