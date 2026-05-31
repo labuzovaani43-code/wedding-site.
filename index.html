@@ -681,7 +681,7 @@
         if (selfBtn) selfBtn.addEventListener('click', () => setActiveTransfer('self'));
         if (needBtn) needBtn.addEventListener('click', () => setActiveTransfer('need'));
 
-        // МОДАЛЬНОЕ ОКНО ДЛЯ НЕВЕСТЫ - ПРОСТАЯ ВЕРСИЯ ДЛЯ ТЕЛЕФОНА
+        // МОДАЛЬНОЕ ОКНО ДЛЯ НЕВЕСТЫ
         const confirmModal = document.getElementById('confirmModal');
         const copyBlock = document.getElementById('copyTextBlock');
         const copyBtn = document.getElementById('copyMessageBtn');
@@ -690,49 +690,53 @@
         const guestSurnameInput = document.getElementById('guestSurname');
         const guestCountInput = document.getElementById('guestCount');
 
+        function showConfirmModal() {
+            const guestName = guestNameInput?.value.trim() || '';
+            const guestSurname = guestSurnameInput?.value.trim() || '';
+            let guestCount = guestCountInput?.value;
+            
+            console.log('Кнопка нажата!', guestName, guestSurname, guestCount, currentTransfer);
+            
+            if (!guestName) {
+                alert('Пожалуйста, укажите ваше имя');
+                return;
+            }
+            
+            if (!currentTransfer) {
+                alert('Пожалуйста, выберите вариант трансфера');
+                return;
+            }
+            
+            if (!guestCount || isNaN(parseInt(guestCount))) {
+                guestCount = 1;
+            } else {
+                guestCount = parseInt(guestCount);
+            }
+            
+            const fullName = guestName + ' ' + (guestSurname || '');
+            const transferValue = currentTransfer;
+            
+            addOrUpdateGuest(guestName, guestSurname, guestCount, transferValue);
+            
+            const peopleText = guestCount > 1 ? ` (всего ${guestCount} человека)` : '';
+            let fullMessage = '';
+            if (transferValue === 'need') {
+                fullMessage = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nГость: ${fullName}${peopleText}\n✅ Выбрал: Нужен трансфер. Сбор в 13:00 Парковка: Сауна «Бригантина»\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
+            } else {
+                fullMessage = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nГость: ${fullName}${peopleText}\n✅ Трансфер: Приеду сам(а)\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
+            }
+            copyBlock.innerText = fullMessage;
+            confirmModal.classList.add('show');
+            
+            // Очищаем форму после подтверждения
+            guestNameInput.value = '';
+            guestSurnameInput.value = '';
+            guestCountInput.value = '';
+            setActiveTransfer('');
+        }
+        
         if (confirmBtn) {
-            confirmBtn.addEventListener('click', function() {
-                const guestName = guestNameInput?.value.trim() || '';
-                const guestSurname = guestSurnameInput?.value.trim() || '';
-                let guestCount = guestCountInput?.value;
-                
-                if (!guestName) {
-                    alert('Пожалуйста, укажите ваше имя');
-                    return;
-                }
-                
-                if (!currentTransfer) {
-                    alert('Пожалуйста, выберите вариант трансфера');
-                    return;
-                }
-                
-                if (!guestCount || isNaN(parseInt(guestCount))) {
-                    guestCount = 1;
-                } else {
-                    guestCount = parseInt(guestCount);
-                }
-                
-                const fullName = guestName + ' ' + (guestSurname || '');
-                const transferValue = currentTransfer;
-                
-                addOrUpdateGuest(guestName, guestSurname, guestCount, transferValue);
-                
-                const peopleText = guestCount > 1 ? ` (всего ${guestCount} человека)` : '';
-                let fullMessage = '';
-                if (transferValue === 'need') {
-                    fullMessage = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nГость: ${fullName}${peopleText}\n✅ Выбрал: Нужен трансфер. Сбор в 13:00 Парковка: Сауна «Бригантина»\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
-                } else {
-                    fullMessage = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nГость: ${fullName}${peopleText}\n✅ Трансфер: Приеду сам(а)\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
-                }
-                copyBlock.innerText = fullMessage;
-                confirmModal.classList.add('show');
-                
-                // Очищаем форму после подтверждения
-                guestNameInput.value = '';
-                guestSurnameInput.value = '';
-                guestCountInput.value = '';
-                setActiveTransfer('');
-            });
+            confirmBtn.addEventListener('click', showConfirmModal);
         }
         
         if (copyBtn) {
