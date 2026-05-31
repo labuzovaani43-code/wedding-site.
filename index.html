@@ -23,8 +23,8 @@
         .flap { width: 100%; height: 100%; background: #c4a8e6; position: absolute; top: 0; left: 0; transform-origin: top; border-radius: 12px; z-index: 3; }
         .letter { width: 280px; background: #fffaf5; position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); padding: 20px; text-align: center; border-radius: 10px; font-size: 1rem; color: #4a2c6d; z-index: 2; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .letter span { font-size: 1.5rem; }
-        .seal { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); width: 45px; height: 45px; background: #b69ad4; border-radius: 50%; z-index: 4; cursor: pointer; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.3rem; box-shadow: 0 2px 8px rgba(0,0,0,0.2); transition: transform 0.2s; }
-        .seal:hover { transform: translateX(-50%) scale(1.05); }
+        .seal { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); width: 50px; height: 50px; background: #b69ad4; border-radius: 50%; z-index: 10; cursor: pointer; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.2); transition: transform 0.2s; }
+        .seal:hover { transform: translateX(-50%) scale(1.1); }
 
         .popup-paper { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); width: 320px; background: #fffef7; border-radius: 20px; padding: 35px 25px; text-align: center; z-index: 2000; box-shadow: 0 25px 45px rgba(0,0,0,0.3); border: 2px solid #d9c4ff; opacity: 0; transition: all 0.5s cubic-bezier(0.34, 1.2, 0.64, 1); pointer-events: none; }
         .popup-paper.show { transform: translate(-50%, -50%) scale(1); opacity: 1; pointer-events: auto; }
@@ -94,15 +94,13 @@
         .timing-item { display: flex; justify-content: space-between; align-items: baseline; padding: 15px 0; border-bottom: 1px solid #e8d9ff; font-size: 1.1rem; flex-wrap: wrap; transition: all 0.3s ease; }
         .timing-item:hover { background: #faf5ff; padding-left: 10px; border-radius: 20px; }
         .timing-time { font-weight: 600; color: #b69ad4; font-family: monospace; font-size: 1.2rem; }
-        .timing-note { font-size: 0.85rem; margin-top: 8px; margin-bottom: 12px; color: #6c4e8f; padding-left: 15px; border-left: 3px solid #d9c4ff; width: 100%; }
+        .timing-note { font-size: 0.9rem; margin-top: 5px; margin-bottom: 10px; color: #6c4e8f; padding-left: 15px; border-left: 3px solid #d9c4ff; width: 100%; line-height: 1.5; }
 
         .dresscode-section { padding: 70px 20px; background: #faf7f2; text-align: center; }
         .dresscode-section h2 { font-size: 2.2rem; color: #4a2c6d; margin-bottom: 25px; letter-spacing: 2px; }
         .dresscode-row { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; align-items: flex-start; margin-bottom: 35px; }
         .dresscode-card { background: white; border-radius: 30px; padding: 25px 20px; width: 350px; box-shadow: 0 10px 20px rgba(0,0,0,0.08); border: 1px solid #e8d9ff; transition: transform 0.3s ease; }
         .dresscode-card:hover { transform: translateY(-5px); }
-        .women-card { padding-bottom: 35px; }
-        .men-card { padding-bottom: 20px; }
         .dresscode-card h3 { font-size: 1.5rem; color: #b69ad4; margin-bottom: 15px; font-weight: 500; }
         .color-list { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
         .color-item { display: flex; align-items: center; gap: 12px; cursor: pointer; transition: transform 0.2s ease; padding: 5px 10px; border-radius: 40px; position: relative; }
@@ -114,6 +112,8 @@
         .dresscode-card p { font-size: 1rem; color: #4a2c6d; margin-top: 15px; line-height: 1.4; }
         .dresscode-text { max-width: 600px; margin: 20px auto 0; font-size: 1.2rem; line-height: 1.6; color: #4a2c6d; }
         .dresscode-note { margin-top: 25px; font-size: 1.2rem; color: #b69ad4; font-weight: 500; background: #f3eaff; display: inline-block; padding: 8px 25px; border-radius: 40px; }
+        .tip-badge { font-size:0.8rem; color:#b69ad4; margin-bottom:15px; text-align:center; background:#f3eaff; padding:8px 12px; border-radius:30px; display:inline-block; width:100%; cursor:pointer; transition:0.3s; }
+        .tip-badge:hover { background:#e8d9ff; transform:scale(1.02); }
 
         .venue-section { background: #f3eaff; padding: 60px 20px; text-align: center; }
         .venue-card { max-width: 650px; margin: 0 auto; background: white; border-radius: 30px; padding: 35px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
@@ -216,7 +216,11 @@
     <audio id="weddingAudio" loop preload="auto"><source src="wedding-song.mp3" type="audio/mpeg"></audio>
 
     <div class="envelope-screen" id="envelopeScreen">
-        <div class="envelope"><div class="flap" id="flap"></div><div class="letter" id="letter"><span>💌</span><br>Наталья & Влад</div><div class="seal" id="seal">❤️</div></div>
+        <div class="envelope">
+            <div class="flap" id="flap"></div>
+            <div class="letter" id="letter"><span>💌</span><br>Наталья & Влад</div>
+            <div class="seal" id="seal">❤️</div>
+        </div>
     </div>
 
     <div class="popup-paper" id="popupPaper">
@@ -285,8 +289,14 @@
         <div class="fade-section timing-section">
             <h2>📅 Тайминг дня</h2>
             <div class="timing-list-center">
-                <div class="timing-item"><span>🚌 Сбор гостей на трансфер</span><span class="timing-time">13:00</span></div>
-                <div class="timing-note">📍 Место сбора: г. Новомосковск, ул. Парковая, 18<br>🅿️ Парковка: Сауна «Бригантина»</div>
+                <div class="timing-item">
+                    <span>🚌 Сбор гостей на трансфер</span>
+                    <span class="timing-time">13:00</span>
+                </div>
+                <div class="timing-note">
+                    📍 Место сбора: г. Новомосковск, ул. Парковая, 18<br>
+                    🅿️ Парковка: Сауна «Бригантина»
+                </div>
                 <div class="timing-item"><span>Прибытие гостей в усадьбу</span><span class="timing-time">14:00</span></div>
                 <div class="timing-item"><span>Выездная регистрация</span><span class="timing-time">15:00</span></div>
                 <div class="timing-item"><span>Начало банкета</span><span class="timing-time">15:30</span></div>
@@ -298,9 +308,9 @@
         <div class="fade-section dresscode-section">
             <h2>👗 ДРЕСС-КОД</h2>
             <div class="dresscode-row">
-                <div class="dresscode-card women-card">
+                <div class="dresscode-card">
                     <h3>🌸 ДЛЯ ЖЕНЩИН</h3>
-                    <div style="font-size:0.8rem; color:#b69ad4; margin-bottom:15px; text-align:center; background:#f3eaff; padding:5px 10px; border-radius:20px; display:inline-block; width:100%;">
+                    <div class="tip-badge" onclick="alert('💡 Нажмите на любой цвет ниже, чтобы увидеть пример наряда!')">
                         💡 Хотите узнать больше? Нажмите на цвет — увидите пример наряда!
                     </div>
                     <div class="color-list">
@@ -313,9 +323,9 @@
                     </div>
                     <p><strong>Платья и костюмы в пастельных оттенках</strong></p>
                 </div>
-                <div class="dresscode-card men-card">
+                <div class="dresscode-card">
                     <h3>👔 ДЛЯ МУЖЧИН</h3>
-                    <div style="font-size:0.8rem; color:#b69ad4; margin-bottom:15px; text-align:center; background:#f3eaff; padding:5px 10px; border-radius:20px; display:inline-block; width:100%;">
+                    <div class="tip-badge" onclick="alert('💡 Нажмите на любой цвет ниже, чтобы увидеть пример наряда!')">
                         💡 Хотите узнать больше? Нажмите на цвет — увидите пример наряда!
                     </div>
                     <div class="color-list">
@@ -349,6 +359,7 @@
                 <h2 style="font-size:1.8rem;">🎤 По вопросам и подаркам</h2>
                 <p style="font-size:2rem; color:#4a2c6d;">Владислав</p>
                 <p style="color:#6c4e8f;">жених</p>
+                
                 <div style="margin-top: 25px;">
                     <div class="form-group">
                         <input type="text" id="groomName" placeholder="Ваше имя и фамилия">
@@ -370,7 +381,7 @@
             <div class="form-group"><input type="number" id="guestCount" placeholder="Количество человек (включая вас)" min="1" max="10"></div>
             <div class="transfer-buttons"><button class="transfer-btn" id="selfBtn">🚙 Приеду сам</button><button class="transfer-btn" id="needBtn">🚌 Нужен трансфер</button></div>
             <div id="transferNote" style="margin-bottom:15px; color:#7c5f9e;"></div>
-            <button class="confirm-btn" id="confirmBtn">📨 Подтвердить присутствие</button>
+            <button class="confirm-btn" id="confirmBtn" onclick="confirmPresence()">📨 Подтвердить присутствие</button>
             <div class="thankyou-text"><p>Спасибо, что разделите этот день вместе с нами.</p><p style="font-size:1.3rem; margin:15px 0;">💜 С любовью, Наталья и Влад 💜</p></div>
             <div class="rsvp-note">💜 Ответьте до <strong>5 июня 2026</strong></div>
         </div>
@@ -406,15 +417,30 @@
         function startMusic() {
             if (!isPlaying && audio) {
                 audio.volume = volumeSlider.value / 100;
-                audio.play().then(() => { isPlaying = true; playPauseBtn.textContent = '🔊'; }).catch(e => console.log('Автозапуск заблокирован. Нажмите кнопку.'));
+                audio.play().then(() => { 
+                    isPlaying = true; 
+                    playPauseBtn.textContent = '🔊'; 
+                }).catch(e => console.log('Автозапуск заблокирован. Нажмите кнопку.'));
             }
         }
+        
         playPauseBtn?.addEventListener('click', (e) => {
             e.stopPropagation();
-            if (isPlaying) { audio.pause(); isPlaying = false; playPauseBtn.textContent = '🔈'; }
-            else { audio.play().then(() => { isPlaying = true; playPauseBtn.textContent = '🔊'; }).catch(e => console.log('Ошибка')); }
+            if (isPlaying) { 
+                audio.pause(); 
+                isPlaying = false; 
+                playPauseBtn.textContent = '🔈'; 
+            } else { 
+                audio.play().then(() => { 
+                    isPlaying = true; 
+                    playPauseBtn.textContent = '🔊'; 
+                }).catch(e => console.log('Ошибка')); 
+            }
         });
-        volumeSlider?.addEventListener('input', (e) => { if(audio) audio.volume = e.target.value / 100; });
+        
+        volumeSlider?.addEventListener('input', (e) => { 
+            if(audio) audio.volume = e.target.value / 100; 
+        });
 
         // ТАЙМЕР
         function updateTimer() {
@@ -431,35 +457,57 @@
             if (minutesEl) minutesEl.innerHTML = Math.floor((distance % (1000*60*60)) / (1000*60));
             if (secondsEl) secondsEl.innerHTML = Math.floor((distance % (1000*60)) / 1000);
         }
-        updateTimer(); setInterval(updateTimer, 1000);
+        updateTimer(); 
+        setInterval(updateTimer, 1000);
 
-        // КОНВЕРТ
-        const sealBtn = document.getElementById('seal');
-        const envelopeScreenDiv = document.getElementById('envelopeScreen');
-        const popup = document.getElementById('popupPaper');
-        const mainContentDiv = document.getElementById('mainContent');
+        // ========== КОНВЕРТ ==========
+        const seal = document.getElementById('seal');
+        const envelopeScreen = document.getElementById('envelopeScreen');
+        const popupPaper = document.getElementById('popupPaper');
+        const mainContent = document.getElementById('mainContent');
         const closePopupBtn = document.getElementById('closePopup');
-        let opened = false;
+        const flap = document.getElementById('flap');
+        const letter = document.getElementById('letter');
+        let isOpened = false;
 
-        if (sealBtn && envelopeScreenDiv && popup && mainContentDiv) {
-            sealBtn.addEventListener('click', () => {
-                if (opened) return;
-                opened = true;
-                startMusic();
-                gsap.to('#flap', { rotateX: 180, duration: 1.2, ease: 'power2.inOut' });
-                gsap.to('#letter', { y: -120, duration: 1.4, delay: 0.5, ease: 'power3.out' });
-                gsap.to('#envelopeScreen', { opacity: 0.4, duration: 0.5, delay: 1.3, onComplete: () => popup.classList.add('show') });
+        function openEnvelope() {
+            if (isOpened) return;
+            isOpened = true;
+            startMusic();
+            gsap.to(flap, { rotateX: 180, duration: 1, ease: "power2.inOut" });
+            gsap.to(letter, { y: -100, duration: 1.2, delay: 0.3, ease: "back.out(1)" });
+            gsap.to(envelopeScreen, { opacity: 0.5, duration: 0.5, delay: 0.8, onComplete: () => {
+                popupPaper.classList.add('show');
+            }});
+        }
+
+        if (seal) {
+            seal.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openEnvelope();
             });
+        }
+        
+        const envelope = document.querySelector('.envelope');
+        if (envelope) {
+            envelope.addEventListener('click', (e) => {
+                if (e.target === seal) return;
+                openEnvelope();
+            });
+        }
+
+        if (closePopupBtn) {
             closePopupBtn.addEventListener('click', () => {
-                popup.classList.remove('show');
-                gsap.to('#envelopeScreen', { opacity: 0, duration: 0.8, onComplete: () => {
-                    envelopeScreenDiv.style.display = 'none';
-                    mainContentDiv.classList.add('visible');
+                popupPaper.classList.remove('show');
+                gsap.to(envelopeScreen, { opacity: 0, duration: 0.8, onComplete: () => {
+                    envelopeScreen.style.display = 'none';
+                    mainContent.classList.add('visible');
+                    
                     const fadeSections = document.querySelectorAll('.fade-section');
                     const staggerItems = document.querySelectorAll('.stagger-item');
                     const observer = new IntersectionObserver((entries) => {
                         entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-                    }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
+                    }, { threshold: 0.15 });
                     fadeSections.forEach(el => observer.observe(el));
                     const staggerObserver = new IntersectionObserver((entries) => {
                         entries.forEach((entry, index) => { if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), index * 100); });
@@ -469,7 +517,7 @@
             });
         }
 
-        // УПРАВЛЕНИЕ СПИСКОМ ГОСТЕЙ (только имя + трансфер)
+        // УПРАВЛЕНИЕ СПИСКОМ ГОСТЕЙ
         let guests = [];
 
         function loadGuests() {
@@ -477,10 +525,7 @@
             if (saved) {
                 try {
                     guests = JSON.parse(saved);
-                } catch(e) { 
-                    console.error('Ошибка загрузки гостей:', e);
-                    guests = []; 
-                }
+                } catch(e) { guests = []; }
             }
             renderGuestList();
         }
@@ -630,136 +675,104 @@
                 needBtn.classList.add('active');
                 selfBtn.classList.remove('active');
                 transferNote.innerHTML = '✅ Вы выбрали: Нужен трансфер. Сбор в 13:00 Парковка: Сауна «Бригантина»';
-            } else {
-                selfBtn.classList.remove('active');
-                needBtn.classList.remove('active');
-                transferNote.innerHTML = '';
             }
         }
         
         if (selfBtn) selfBtn.addEventListener('click', () => setActiveTransfer('self'));
         if (needBtn) needBtn.addEventListener('click', () => setActiveTransfer('need'));
 
-        // МОДАЛЬНОЕ ОКНО ДЛЯ НЕВЕСТЫ
-        const confirmModal = document.getElementById('confirmModal');
-        const closeConfirmModal = document.getElementById('closeModalBtn');
-        const copyBlock = document.getElementById('copyTextBlock');
-        const copyBtn = document.getElementById('copyMessageBtn');
-        const confirmBtn = document.getElementById('confirmBtn');
-        const guestNameInput = document.getElementById('guestName');
-        const guestSurnameInput = document.getElementById('guestSurname');
-        const guestCountInput = document.getElementById('guestCount');
+        // ОСНОВНАЯ ФУНКЦИЯ ПОДТВЕРЖДЕНИЯ - ВЫНЕСЕНА В ГЛОБАЛЬНУЮ ДЛЯ ТЕЛЕФОНА
+        window.confirmPresence = function() {
+            const guestName = document.getElementById('guestName')?.value.trim() || '';
+            const guestSurname = document.getElementById('guestSurname')?.value.trim() || '';
+            let guestCount = document.getElementById('guestCount')?.value;
+            
+            if (!guestName) {
+                alert('Пожалуйста, укажите ваше имя');
+                return;
+            }
+            
+            if (!currentTransfer) {
+                alert('Пожалуйста, выберите вариант трансфера');
+                return;
+            }
+            
+            if (!guestCount || isNaN(parseInt(guestCount))) {
+                guestCount = 1;
+            } else {
+                guestCount = parseInt(guestCount);
+            }
+            
+            const fullName = guestName + ' ' + (guestSurname || '');
+            const transferValue = currentTransfer;
+            
+            addOrUpdateGuest(guestName, guestSurname, guestCount, transferValue);
+            
+            const peopleText = guestCount > 1 ? ` (всего ${guestCount} человека)` : '';
+            let fullMessage = '';
+            if (transferValue === 'need') {
+                fullMessage = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nГость: ${fullName}${peopleText}\n✅ Выбрал: Нужен трансфер. Сбор в 13:00 Парковка: Сауна «Бригантина»\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
+            } else {
+                fullMessage = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nГость: ${fullName}${peopleText}\n✅ Трансфер: Приеду сам(а)\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
+            }
+            document.getElementById('copyTextBlock').innerText = fullMessage;
+            document.getElementById('confirmModal').classList.add('show');
+            
+            // Очищаем форму
+            document.getElementById('guestName').value = '';
+            document.getElementById('guestSurname').value = '';
+            document.getElementById('guestCount').value = '';
+            setActiveTransfer('');
+        };
 
-        if (confirmBtn) {
-            confirmBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const guestName = guestNameInput?.value.trim() || '';
-                const guestSurname = guestSurnameInput?.value.trim() || '';
-                let guestCount = guestCountInput?.value;
-                
-                if (!guestName) {
-                    alert('Пожалуйста, укажите ваше имя');
-                    return;
-                }
-                
-                if (!currentTransfer) {
-                    alert('Пожалуйста, выберите вариант трансфера');
-                    return;
-                }
-                
-                // Если поле количества пустое или не число, ставим 1
-                if (!guestCount || isNaN(parseInt(guestCount))) {
-                    guestCount = 1;
-                } else {
-                    guestCount = parseInt(guestCount);
-                }
-                
-                const fullName = guestName + ' ' + (guestSurname || '');
-                const transferValue = currentTransfer;
-                
-                addOrUpdateGuest(guestName, guestSurname, guestCount, transferValue);
-                
-                const peopleText = guestCount > 1 ? ` (всего ${guestCount} человека)` : '';
-                let fullMessage = '';
-                if (transferValue === 'need') {
-                    fullMessage = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nГость: ${fullName}${peopleText}\n✅ Выбрал: Нужен трансфер. Сбор в 13:00 Парковка: Сауна «Бригантина»\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
-                } else {
-                    fullMessage = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nГость: ${fullName}${peopleText}\n✅ Трансфер: Приеду сам(а)\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
-                }
-                copyBlock.innerText = fullMessage;
-                confirmModal.classList.add('show');
-                
-                // Очищаем форму после подтверждения
-                guestNameInput.value = '';
-                guestSurnameInput.value = '';
-                if (guestCountInput) guestCountInput.value = '';
-                setActiveTransfer('');
+        // КОПИРОВАНИЕ ТЕКСТА
+        document.getElementById('copyMessageBtn')?.addEventListener('click', () => {
+            const text = document.getElementById('copyTextBlock').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('✅ Текст скопирован! Теперь отправьте его невесте в ВК');
+            }).catch(() => {
+                alert('❌ Не удалось скопировать, выделите текст вручную');
             });
-        }
+        });
         
-        if (copyBtn) {
-            copyBtn.addEventListener('click', () => {
-                const text = copyBlock.innerText;
-                navigator.clipboard.writeText(text).then(() => {
-                    alert('✅ Текст скопирован! Теперь отправьте его невесте в ВК');
-                }).catch(() => {
-                    alert('❌ Не удалось скопировать, выделите текст вручную');
-                });
-            });
-        }
-        
-        if (closeConfirmModal) closeConfirmModal.addEventListener('click', () => confirmModal.classList.remove('show'));
+        document.getElementById('closeModalBtn')?.addEventListener('click', () => {
+            document.getElementById('confirmModal').classList.remove('show');
+        });
 
-        // МОДАЛЬНОЕ ОКНО ДЛЯ ЖЕНИХА
-        const askGroomModal = document.getElementById('askGroomModal');
-        const closeGroomModal = document.getElementById('closeGroomModalBtn');
-        const askGroomTextBlock = document.getElementById('askGroomTextBlock');
-        const copyGroomBtn = document.getElementById('copyGroomMsgBtn');
-        const askGroomBtn = document.getElementById('askGroomBtn');
-        const groomNameInput = document.getElementById('groomName');
-        const groomQuestionInput = document.getElementById('groomQuestion');
-
-        if (askGroomBtn) {
-            askGroomBtn.addEventListener('click', () => {
-                const guestName = groomNameInput?.value.trim() || 'Гость';
-                const question = groomQuestionInput?.value.trim() || '(без вопроса)';
-                const msg = `💜 ВОПРОС ИЛИ ПОЖЕЛАНИЕ ДЛЯ ЖЕНИХА 💜\n\nГость: ${guestName}\nСообщение: ${question}\n\n💜 Спасибо! Жду встречи на свадьбе!`;
-                askGroomTextBlock.innerText = msg;
-                askGroomModal.classList.add('show');
-            });
-        }
+        // ЖЕНИХ
+        document.getElementById('askGroomBtn')?.addEventListener('click', () => {
+            const guestName = document.getElementById('groomName')?.value.trim() || 'Гость';
+            const question = document.getElementById('groomQuestion')?.value.trim() || '(без вопроса)';
+            const msg = `💜 ВОПРОС ИЛИ ПОЖЕЛАНИЕ ДЛЯ ЖЕНИХА 💜\n\nГость: ${guestName}\nСообщение: ${question}\n\n💜 Спасибо! Жду встречи на свадьбе!`;
+            document.getElementById('askGroomTextBlock').innerText = msg;
+            document.getElementById('askGroomModal').classList.add('show');
+        });
         
-        if (copyGroomBtn) {
-            copyGroomBtn.addEventListener('click', () => {
-                const text = askGroomTextBlock.innerText;
-                navigator.clipboard.writeText(text).then(() => {
-                    alert('✅ Текст скопирован! Теперь отправьте его жениху в ВК');
-                }).catch(() => {
-                    alert('❌ Не удалось скопировать, выделите текст вручную');
-                });
+        document.getElementById('copyGroomMsgBtn')?.addEventListener('click', () => {
+            const text = document.getElementById('askGroomTextBlock').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('✅ Текст скопирован! Теперь отправьте его жениху в ВК');
+            }).catch(() => {
+                alert('❌ Не удалось скопировать, выделите текст вручную');
             });
-        }
+        });
         
-        if (closeGroomModal) closeGroomModal.addEventListener('click', () => askGroomModal.classList.remove('show'));
+        document.getElementById('closeGroomModalBtn')?.addEventListener('click', () => {
+            document.getElementById('askGroomModal').classList.remove('show');
+        });
         
         // Закрытие модальных окон при клике на фон
-        const modals = document.querySelectorAll('.custom-modal');
-        modals.forEach(modal => {
+        document.querySelectorAll('.custom-modal').forEach(modal => {
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) modal.classList.remove('show');
             });
         });
         
         // Кнопка очистки списка
-        const clearAllBtn = document.getElementById('clearAllGuestsBtn');
-        if (clearAllBtn) {
-            clearAllBtn.addEventListener('click', clearAllGuests);
-        }
+        document.getElementById('clearAllGuestsBtn')?.addEventListener('click', clearAllGuests);
         
         // Подсказки для цветов
-        const colorItems = document.querySelectorAll('.color-item');
-        colorItems.forEach(item => {
+        document.querySelectorAll('.color-item').forEach(item => {
             item.addEventListener('click', (e) => {
                 const tip = item.getAttribute('data-tip');
                 if (tip) alert(tip);
