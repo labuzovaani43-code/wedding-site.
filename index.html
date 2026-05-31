@@ -367,12 +367,12 @@
                 <div class="form-group"><input type="text" id="guestName" placeholder="Ваше имя"></div>
                 <div class="form-group"><input type="text" id="guestSurname" placeholder="Ваша фамилия"></div>
             </div>
-            <div class="form-group"><input type="number" id="guestCount" placeholder="Количество человек (включая вас)" value="1" min="1" max="10"></div>
+            <div class="form-group"><input type="number" id="guestCount" placeholder="Количество человек (включая вас)" min="1" max="10"></div>
             <div class="transfer-buttons"><button class="transfer-btn" id="selfBtn">🚙 Приеду сам</button><button class="transfer-btn" id="needBtn">🚌 Нужен трансфер</button></div>
             <div id="transferNote" style="margin-bottom:15px; color:#7c5f9e;"></div>
             <button class="confirm-btn" id="confirmBtn">📨 Подтвердить присутствие</button>
             <div class="thankyou-text"><p>Спасибо, что разделите этот день вместе с нами.</p><p style="font-size:1.3rem; margin:15px 0;">💜 С любовью, Наталья и Влад 💜</p></div>
-            <div class="rsvp-note">💜 Ответьте до <strong>1 июня 2026</strong></div>
+            <div class="rsvp-note">💜 Ответьте до <strong>5 июня 2026</strong></div>
         </div>
 
         <div class="fade-section guestlist-section">
@@ -655,7 +655,7 @@
             confirmBtn.addEventListener('click', () => {
                 const guestName = guestNameInput?.value.trim() || '';
                 const guestSurname = guestSurnameInput?.value.trim() || '';
-                const guestCount = parseInt(guestCountInput?.value) || 1;
+                let guestCount = guestCountInput?.value;
                 
                 if (!guestName) {
                     alert('Пожалуйста, укажите ваше имя');
@@ -665,6 +665,13 @@
                 if (!currentTransfer) {
                     alert('Пожалуйста, выберите вариант трансфера');
                     return;
+                }
+                
+                // Если поле количества пустое или не число, ставим 1
+                if (!guestCount || isNaN(parseInt(guestCount))) {
+                    guestCount = 1;
+                } else {
+                    guestCount = parseInt(guestCount);
                 }
                 
                 const fullName = guestName + ' ' + (guestSurname || '');
@@ -685,7 +692,7 @@
                 // Очищаем форму после подтверждения
                 guestNameInput.value = '';
                 guestSurnameInput.value = '';
-                guestCountInput.value = '1';
+                if (guestCountInput) guestCountInput.value = '';
                 setActiveTransfer('');
             });
         }
