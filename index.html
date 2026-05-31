@@ -222,6 +222,7 @@
         .confirm-btn:hover { background: #9b7abf; transform: translateY(-2px); }
         .thankyou-text { max-width: 550px; margin: 30px auto 20px; font-size: 1.1rem; line-height: 1.5; color: #4a2c6d; }
         .rsvp-note { margin-top: 20px; font-size: 1.1rem; color: #7c5f9e; }
+        .refresh-btn { background: #b69ad4; color: white; border: none; padding: 8px 20px; border-radius: 40px; cursor: pointer; margin-top: 10px; font-size: 0.9rem; }
 
         .guestlist-section {
             background: #f3eaff;
@@ -364,6 +365,7 @@
             </div>
         </div>
 
+        <!-- ТАЙМИНГ ДНЯ — ИСПРАВЛЕН АДРЕС -->
         <div class="fade-section timing-section">
             <h2>📅 Тайминг дня</h2>
             <div class="timing-list-center">
@@ -468,6 +470,7 @@
             <div class="guestlist-container">
                 <h2>📋 Список гостей</h2>
                 <div class="guestlist-sub">* данные сохраняются в вашем браузере</div>
+                <button class="refresh-btn" id="refreshListBtn">🔄 Обновить список</button>
                 <div class="guest-category">
                     <h3>🚙 Приедут сами</h3>
                     <div id="selfGuestsList"></div>
@@ -601,6 +604,7 @@
 
         function loadGuests() {
             const saved = localStorage.getItem('weddingGuests');
+            console.log('Загружаем гостей:', saved);
             if (saved) {
                 try {
                     guests = JSON.parse(saved);
@@ -611,6 +615,7 @@
 
         function saveGuests() {
             localStorage.setItem('weddingGuests', JSON.stringify(guests));
+            console.log('Сохраняем гостей:', guests);
             renderGuestList();
         }
 
@@ -759,6 +764,15 @@
         
         if (selfBtn) selfBtn.addEventListener('click', () => setActiveTransfer('self'));
         if (needBtn) needBtn.addEventListener('click', () => setActiveTransfer('need'));
+
+        // Кнопка обновления списка
+        const refreshBtn = document.getElementById('refreshListBtn');
+        if (refreshBtn) {
+            refreshBtn.addEventListener('click', () => {
+                loadGuests();
+                alert('Список обновлён!');
+            });
+        }
 
         // МОДАЛЬНОЕ ОКНО ДЛЯ НЕВЕСТЫ
         const confirmModal = document.getElementById('confirmModal');
