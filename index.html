@@ -172,6 +172,21 @@
         .clear-all-btn { background: #b69ad4; color: white; border: none; padding: 8px 20px; border-radius: 30px; cursor: pointer; margin-top: 20px; font-family: inherit; transition: 0.3s; }
         .clear-all-btn:hover { background: #9b7abf; transform: translateY(-2px); }
 
+        .transfer-info {
+            background: #f0e6ff;
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        .transfer-info p {
+            margin: 8px 0;
+            font-size: 1rem;
+        }
+        .transfer-info strong {
+            color: #b69ad4;
+        }
+
         .custom-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 3000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
         .custom-modal.show { opacity: 1; visibility: visible; }
         .modal-content { background: white; border-radius: 30px; padding: 30px; max-width: 400px; width: 90%; text-align: center; animation: fadeInScale 0.4s ease; }
@@ -279,17 +294,15 @@
             </div>
         </div>
 
+        <!-- НОВЫЙ ТАЙМИНГ ДНЯ -->
         <div class="fade-section timing-section">
             <h2>📅 Тайминг дня</h2>
             <div class="timing-list-center">
-                <div class="timing-item"><span>Сбор гостей</span><span class="timing-time">12:00</span></div>
-                <div class="timing-item"><span>Начало церемонии (выездная регистрация)</span><span class="timing-time">14:00</span></div>
-                <div class="timing-note">Выездная регистрация начнется в 14:00 на территории забронированного нами дома. На территории усадьбы есть бесплатная парковка.</div>
-                <div class="timing-item"><span>Прогулка, вечеринка, фотосессия</span><span class="timing-time">15:00</span></div>
-                <div class="timing-note">Открытая вечеринка пройдет в саду на территории клуба. Если вы приедете на машине, пришлите нам номер автомобиля для пропуска на территорию.</div>
-                <div class="timing-item"><span>Праздничный банкет</span><span class="timing-time">16:00</span></div>
-                <div class="timing-item"><span>Развлекательная программа</span><span class="timing-time">18:00</span></div>
-                <div class="timing-item"><span>Свадебный торт</span><span class="timing-time">21:00</span></div>
+                <div class="timing-item"><span>Прибытие гостей в усадьбу</span><span class="timing-time">14:00</span></div>
+                <div class="timing-item"><span>Выездная регистрация</span><span class="timing-time">15:00</span></div>
+                <div class="timing-item"><span>Начало банкета</span><span class="timing-time">15:30</span></div>
+                <div class="timing-item"><span>Свадебный торт</span><span class="timing-time">20:45</span></div>
+                <div class="timing-item"><span>Окончание праздника</span><span class="timing-time">22:00</span></div>
             </div>
         </div>
 
@@ -341,6 +354,16 @@
                 <h2 style="font-size:1.8rem;">🎤 По вопросам и подаркам</h2>
                 <p style="font-size:2rem; color:#4a2c6d;">Владислав</p>
                 <p style="color:#6c4e8f;">жених</p>
+                
+                <!-- ИНФОРМАЦИЯ О ТРАНСФЕРЕ -->
+                <div class="transfer-info">
+                    <p><strong>🚌 Трансфер для гостей:</strong></p>
+                    <p>📍 <strong>Место сбора:</strong> г. Новомосковск, ул. Парковая, д. 20 (рядом с нашим домом)</p>
+                    <p>📍 <strong>Парковка:</strong> Сауна «Бригантина» (ул. Парковая, д. 18)</p>
+                    <p>⏰ <strong>Время сбора:</strong> <strong>13:00</strong></p>
+                    <p>💜 Автобус отвезёт гостей в Усадьбу Александрово и обратно</p>
+                </div>
+                
                 <div style="margin-top: 25px;">
                     <div class="form-group">
                         <input type="text" id="groomName" placeholder="Ваше имя">
@@ -596,7 +619,7 @@
             } else if (selected === 'need') {
                 needBtn.classList.add('active');
                 selfBtn.classList.remove('active');
-                transferNote.innerHTML = '✅ Вы выбрали: Нужен трансфер.';
+                transferNote.innerHTML = '✅ Вы выбрали: Нужен трансфер. Сбор в 13:00 у дома (ул. Парковая, 20)';
             }
         }
         if (selfBtn) selfBtn.addEventListener('click', () => setActiveTransfer('self'));
