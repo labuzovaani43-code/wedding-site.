@@ -212,7 +212,6 @@
         .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #b69ad4; box-shadow: 0 0 5px rgba(182,154,212,0.5); }
         .inline-group { display: flex; gap: 10px; max-width: 350px; margin: 0 auto 20px; }
         .inline-group .form-group { margin: 0; flex: 1; }
-        .inline-group input { text-align: center; }
         .transfer-buttons { display: flex; gap: 15px; justify-content: center; margin: 20px auto; }
         .transfer-btn { background: #f0e6ff; border: 2px solid #d9c4ff; padding: 10px 25px; border-radius: 50px; font-size: 1rem; cursor: pointer; transition: 0.3s; }
         .transfer-btn:hover { transform: translateY(-2px); background: #e8d9ff; }
@@ -589,7 +588,7 @@
             });
         }
 
-        // УПРАВЛЕНИЕ СПИСКОМ ГОСТЕЙ (с именем, фамилией и количеством человек)
+        // УПРАВЛЕНИЕ СПИСКОМ ГОСТЕЙ (с именем, фамилией и количеством)
         let guests = [];
 
         function loadGuests() {
@@ -609,10 +608,10 @@
 
         function addOrUpdateGuest(name, surname, count, transfer) {
             if (!name || name.trim() === '') return false;
-            const normalizedName = name.trim() + ' ' + surname.trim();
-            const existingIndex = guests.findIndex(g => g.fullName === normalizedName);
+            const fullName = name.trim() + ' ' + surname.trim();
+            const existingIndex = guests.findIndex(g => g.fullName === fullName);
             const guestData = {
-                fullName: normalizedName,
+                fullName: fullName,
                 name: name.trim(),
                 surname: surname.trim(),
                 count: parseInt(count) || 1,
@@ -711,7 +710,7 @@
                 const needCount = needGuests.length;
                 const totalPeople = guests.reduce((sum, g) => sum + g.count, 0);
                 statsContainer.innerHTML = `
-                    <span>👥 Всего гостей: ${total}</span>
+                    <span>👥 Записей: ${total}</span>
                     <span>👤 Всего человек: ${totalPeople}</span>
                     <span>🚙 Сами: ${selfCount}</span>
                     <span>🚌 С трансфером: ${needCount}</span>
@@ -765,17 +764,26 @@
 
         if (confirmBtn) {
             confirmBtn.addEventListener('click', () => {
-                const guestName = guestNameInput?.value.trim() || 'Гость';
+                const guestName = guestNameInput?.value.trim() || '';
                 const guestSurname = guestSurnameInput?.value.trim() || '';
                 const guestCount = parseInt(guestCountInput?.value) || 1;
-                const fullName = guestName + ' ' + guestSurname;
-                const transferValue = currentTransfer === 'self' ? 'self' : (currentTransfer === 'need' ? 'need' : 'self');
                 
-                if (guestName !== 'Гость') {
-                    addOrUpdateGuest(guestName, guestSurname, guestCount, transferValue);
+                if (!guestName) {
+                    alert('Пожалуйста, укажите ваше имя');
+                    return;
                 }
                 
-                const peopleText = guestCount > 1 ? ` (всего ${guestCount} человекa(и))` : '';
+                const fullName = guestName + ' ' + (guestSurname || '');
+                const transferValue = currentTransfer === 'self' ? 'self' : (currentTransfer === 'need' ? 'need' : '');
+                
+                if (!transferValue) {
+                    alert('Пожалуйста, выберите вариант трансфера');
+                    return;
+                }
+                
+                addOrUpdateGuest(guestName, guestSurname, guestCount, transferValue);
+                
+                const peopleText = guestCount > 1 ? ` (всего ${guestCount} человека)` : '';
                 let fullMessage = '';
                 if (transferValue === 'need') {
                     fullMessage = `💜 ПОДТВЕРЖДЕНИЕ ПРИСУТСТВИЯ 💜\n\nГость: ${fullName}${peopleText}\n✅ Выбрал: Нужен трансфер. Сбор в 13:00 Парковка: Сауна «Бригантина» (ул. Парковая, д. 18)\n📅 Дата: 4 июля 2026\n📍 Место: Усадьба Александрово (Кимовск)\n\n💜 Очень ждём и будем рады видеть вас!\nСпасибо, что разделите этот день вместе с нами.\nВладислав & Наталья 💜`;
