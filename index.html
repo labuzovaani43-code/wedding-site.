@@ -165,6 +165,7 @@
         .timer-number { font-size: 2.5rem; font-weight: 600; font-family: 'Montserrat', sans-serif; color: #ffecb3; }
         .timer-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: #f0e6d2; }
 
+        /* ТАЙМИНГ ДНЯ — ИНФОРМАЦИЯ ТОЛЬКО В ОДНОМ МЕСТЕ */
         .timing-section { padding: 80px 20px; background: #f3eaff; text-align: center; }
         .timing-section h2 { font-size: 2rem; color: #4a2c6d; margin-bottom: 30px; }
         .timing-list-center { max-width: 700px; margin: 0 auto; background: white; border-radius: 40px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: left; transition: transform 0.3s ease; }
@@ -172,8 +173,7 @@
         .timing-item { display: flex; justify-content: space-between; align-items: baseline; padding: 15px 0; border-bottom: 1px solid #e8d9ff; font-size: 1.1rem; flex-wrap: wrap; transition: all 0.3s ease; }
         .timing-item:hover { background: #faf5ff; padding-left: 10px; border-radius: 20px; }
         .timing-time { font-weight: 600; color: #b69ad4; font-family: monospace; font-size: 1.2rem; }
-        .timing-note { font-size: 0.85rem; margin-top: 8px; margin-bottom: 12px; color: #6c4e8f; padding-left: 15px; border-left: 3px solid #d9c4ff; width: 100%; }
-        .transfer-note-inline { background: #f0e6ff; padding: 12px; border-radius: 15px; margin-top: 15px; font-size: 0.9rem; color: #4a2c6d; }
+        .timing-note { font-size: 0.9rem; margin-top: 5px; margin-bottom: 10px; color: #6c4e8f; padding-left: 15px; border-left: 3px solid #d9c4ff; width: 100%; line-height: 1.5; }
 
         .dresscode-section { padding: 70px 20px; background: #faf7f2; text-align: center; }
         .dresscode-section h2 { font-size: 2.2rem; color: #4a2c6d; margin-bottom: 25px; letter-spacing: 2px; }
@@ -360,6 +360,7 @@
             </div>
         </div>
 
+        <!-- ТАЙМИНГ ДНЯ — ИНФОРМАЦИЯ О ТРАНСФЕРЕ ТОЛЬКО ЗДЕСЬ И БЕЗ ПОВТОРОВ -->
         <div class="fade-section timing-section">
             <h2>📅 Тайминг дня</h2>
             <div class="timing-list-center">
@@ -376,11 +377,6 @@
                 <div class="timing-item"><span>Начало банкета</span><span class="timing-time">15:30</span></div>
                 <div class="timing-item"><span>Свадебный торт</span><span class="timing-time">20:45</span></div>
                 <div class="timing-item"><span>Окончание праздника</span><span class="timing-time">22:00</span></div>
-                <div class="transfer-note-inline">
-                    🚌 <strong>Трансфер:</strong> Автобус отвезёт гостей в Усадьбу Александрово и обратно.<br>
-                    Сбор в <strong>13:00</strong> по адресу: <strong>ул. Парковая, 20</strong> (Новомосковск)<br>
-                    🅿️ Парковка для автомобилей: <strong>Сауна «Бригантина» (ул. Парковая, д. 18)</strong>
-                </div>
             </div>
         </div>
 
@@ -544,35 +540,15 @@
             if (isOpened) return;
             isOpened = true;
             
-            // Запускаем музыку
             startMusic();
             
-            // Анимация открытия конверта
-            gsap.to(flap, { 
-                rotateX: 180, 
-                duration: 1, 
-                ease: "power2.inOut" 
-            });
-            
-            gsap.to(letter, { 
-                y: -100, 
-                duration: 1.2, 
-                delay: 0.3, 
-                ease: "back.out(1)" 
-            });
-            
-            // Показываем popup
-            gsap.to(envelopeScreen, { 
-                opacity: 0.5, 
-                duration: 0.5, 
-                delay: 0.8,
-                onComplete: () => {
-                    popupPaper.classList.add('show');
-                }
-            });
+            gsap.to(flap, { rotateX: 180, duration: 1, ease: "power2.inOut" });
+            gsap.to(letter, { y: -100, duration: 1.2, delay: 0.3, ease: "back.out(1)" });
+            gsap.to(envelopeScreen, { opacity: 0.5, duration: 0.5, delay: 0.8, onComplete: () => {
+                popupPaper.classList.add('show');
+            }});
         }
 
-        // Клик по сердцу (печати)
         if (seal) {
             seal.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -580,48 +556,32 @@
             });
         }
         
-        // Также можно кликать по самому конверту для удобства
         const envelope = document.querySelector('.envelope');
         if (envelope) {
             envelope.addEventListener('click', (e) => {
-                // Чтобы не сработало дважды, если кликнули именно на сердце
                 if (e.target === seal) return;
                 openEnvelope();
             });
         }
 
-        // Закрытие поп-апа и показ основного контента
         if (closePopupBtn) {
             closePopupBtn.addEventListener('click', () => {
                 popupPaper.classList.remove('show');
-                gsap.to(envelopeScreen, { 
-                    opacity: 0, 
-                    duration: 0.8, 
-                    onComplete: () => {
-                        envelopeScreen.style.display = 'none';
-                        mainContent.classList.add('visible');
-                        
-                        // Активация анимации при скролле
-                        const fadeSections = document.querySelectorAll('.fade-section');
-                        const staggerItems = document.querySelectorAll('.stagger-item');
-                        
-                        const observer = new IntersectionObserver((entries) => {
-                            entries.forEach(entry => { 
-                                if (entry.isIntersecting) entry.target.classList.add('visible'); 
-                            });
-                        }, { threshold: 0.15 });
-                        
-                        fadeSections.forEach(el => observer.observe(el));
-                        
-                        const staggerObserver = new IntersectionObserver((entries) => {
-                            entries.forEach((entry, index) => { 
-                                if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), index * 100); 
-                            });
-                        }, { threshold: 0.15 });
-                        
-                        staggerItems.forEach(el => staggerObserver.observe(el));
-                    }
-                });
+                gsap.to(envelopeScreen, { opacity: 0, duration: 0.8, onComplete: () => {
+                    envelopeScreen.style.display = 'none';
+                    mainContent.classList.add('visible');
+                    
+                    const fadeSections = document.querySelectorAll('.fade-section');
+                    const staggerItems = document.querySelectorAll('.stagger-item');
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+                    }, { threshold: 0.15 });
+                    fadeSections.forEach(el => observer.observe(el));
+                    const staggerObserver = new IntersectionObserver((entries) => {
+                        entries.forEach((entry, index) => { if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), index * 100); });
+                    }, { threshold: 0.15 });
+                    staggerItems.forEach(el => staggerObserver.observe(el));
+                }});
             });
         }
 
@@ -844,7 +804,6 @@
         
         if (closeGroomModal) closeGroomModal.addEventListener('click', () => askGroomModal.classList.remove('show'));
         
-        // Закрытие модальных окон при клике на фон
         const modals = document.querySelectorAll('.custom-modal');
         modals.forEach(modal => {
             modal.addEventListener('click', (e) => {
@@ -852,13 +811,11 @@
             });
         });
         
-        // Кнопка очистки списка
         const clearAllBtn = document.getElementById('clearAllGuestsBtn');
         if (clearAllBtn) {
             clearAllBtn.addEventListener('click', clearAllGuests);
         }
         
-        // Подсказки для цветов на телефоне
         const isMobile = window.matchMedia('(max-width: 768px)').matches || ('ontouchstart' in window);
         const colorItems = document.querySelectorAll('.color-item');
         
